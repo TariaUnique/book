@@ -1,0 +1,493 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>chapter 1: object lessions · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    [c&c++]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" >
+            
+                <span>
+            
+                    
+                    [inside the c++ object model]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.2.1.1" data-path="Chapter 1. Object Lessons.html">
+            
+                <a href="Chapter 1. Object Lessons.html">
+            
+                    
+                    chapter 1: object lessions
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >chapter 1: object lessions</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><strong>c++ class&#x7684;&#x5E03;&#x5C40;&#x6210;&#x672C;</strong></p>
+<p>&#x76F8;&#x6BD4;c&#x8BED;&#x8A00;&#xFF0C;&#x6570;&#x636E;&#x548C;&#x51FD;&#x6570;&#x5206;&#x5F00;&#x58F0;&#x660E;&#xFF0C;c++&#x5C06;&#x6570;&#x636E;&#x548C;&#x5176;&#x76F8;&#x5173;&#x64CD;&#x4F5C;&#x7528;class&#x5C01;&#x88C5;&#x5728;&#x4E00;&#x8D77;&#x3002;&#x8FD9;&#x79CD;&#x5C01;&#x88C5;&#x5E76;&#x6CA1;&#x589E;&#x52A0;&#x5E03;&#x5C40;&#x6210;&#x672C;&#xFF0C; data members&#x76F4;&#x63A5;&#x5185;&#x542B;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;class object&#x4E4B;&#x4E2D;&#xFF0C;&#x5C31;&#x50CF;C struct &#x7684;&#x60C5;&#x51B5;&#x4E00;&#x6837;&#x3002;&#x800C; member functions&#x867D;&#x7136;&#x542B;&#x5728;class&#x7684;&#x58F0;&#x660E;&#x4E4B;&#x5185;&#xFF0C;&#x5374;&#x4E0D;&#x51FA;&#x73B0;&#x5728;object&#x4E4B;&#x4E2D;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;non-inline member function&#x53EA;&#x4F1A;&#x8BDE;&#x751F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x5B9E;&#x4F53;&#xFF0E;&#x800C;inline function &#x5982;&#x679C;&#x65E0;&#x6CD5;&#x62D3;&#x5C55;&#xFF0C;&#x5219;&#x4F1A;&#x5728;&#x5176;&#x6BCF;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5BF9;&#x5E94;&#x7684;&#x7F16;&#x8BD1;&#x6A21;&#x5757;&#x4E2D;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;static&#x51FD;&#x6570;&#x5B9E;&#x4F53;&#x3002;</p>
+<p>C++&#x5728;&#x5E03;&#x5C40;&#x4EE5;&#x53CA;&#x5B58;&#x53D6;&#x65F6;&#x95F4;&#x4E0A;&#x4E3B;&#x8981;&#x7684;&#x984D;&#x5916;&#x8D1F;&#x62C5;&#x662F;&#x7531;virtual&#x5F15;&#x8D77;&#xFF0C;&#x5305;&#x62EC;&#xFF1A;</p>
+<ul>
+<li>virtual function &#x7528;&#x4EE5;&#x652F;&#x6301;&#x4E00;&#x4E2A;&#x6709;&#x6548;&#x7387;&#x7684;&#x201C;&#x6267;&#x884C;&#x671F;&#x7ED1;&#x5B9A;&quot;</li>
+<li>virtual base class &#x7528;&#x4EE5;&#x5B9E;&#x73B0;&#x591A;&#x6B21;&#x51FA;&#x73B0;&#x5728;&#x7EE7;&#x627F;&#x4F53;&#x7CFB;&#x4E2D;&#x7684;base class&#xFF0C;&#x6709;&#x4E00;&#x4E2A;&#x5355;&#x4E00;&#x800C;&#x88AB;&#x5171;&#x4EAB;&#x7684;&#x5B9E;&#x4F53;</li>
+</ul>
+<p><strong>c++ &#x5BF9;&#x8C61;&#x6A21;&#x578B;</strong></p>
+<p>&#x5728;c++&#x4E2D;&#xFF0C;&#x6709;&#x4E24;&#x79CD;data members: static,non static. &#x6709;&#x4E09;&#x79CD;member functions: static, non static, virtual.</p>
+<p>Stroustrup&#x5F53;&#x521D;&#x8BBE;&#x8BA1;&#xFF08;&#x5F53;&#x524D;&#x4EA6;&#x4ECD;&#x5360;&#x6709;&#x4F18;&#x52BF;&#xFF09;&#x7684;C++&#x5BF9;&#x8C61;&#x6A21;&#x578B;&#x4E2D;&#xFF0C;Non static data members&#x88AB;&#x914D;&#x7F6E;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;class object&#x4E4B;&#x5185;&#xFF0C;static data members&#x5219;&#x88AB;&#x5B58;&#x653E;&#x5728;&#x6240;&#x6709; &#x7684;class object&#x4E4B;&#x5916;&#x3002;Static&#x548C;non static function members&#x4E5F;&#x88AB;&#x653E;&#x5728;&#x6240;&#x6709;&#x7684;class object&#x4E4B;&#x5916;&#xFF0E;Virtual functions&#x5219;&#x4EE5;&#x4E24;&#x4E2A;&#x6B65;&#x9AA4;&#x652F;&#x6301;&#x4E4B;&#xFF1A;</p>
+<ul>
+<li>&#x6BCF;&#x4E00;&#x4E2A;class&#x4EA7;&#x751F;&#x51FA;&#x4E00;&#x5806;&#x6307;&#x5411;virtual functions&#x7684;&#x6307;&#x9488;&#xFF0C;&#x653E;&#x5728;&#x8868;&#x683C;&#x4E4B;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x8868;&#x683C;&#x88AB;&#x79F0;&#x4E3A;virtual table(vtbl)</li>
+<li>&#x6BCF;&#x4E00;&#x4E2A;class object &#x88AB;&#x6DFB;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x6307;&#x5411;&#x5176;class&#x7684;virtual table.&#x901A;&#x5E38;&#x8FD9;&#x4E2A;&#x6307;&#x9488;&#x88AB;&#x79F0;&#x4E3A;vptr. vptr&#x7684;&#x8BBE;&#x5B9A;&#xFF08;setting&#xFF09;&#x548C;&#x91CD;&#x7F6E;&#xFF08;resetting&#xFF09;&#x90FD;&#x7531;&#x6BCF;&#x4E00;&#x4E2A;class&#x7684;contructor, destructor&#x548C;copy assignment&#x8FD0;&#x7B97;&#x7B26;&#x81EA;&#x52A8;&#x5B8C;&#x6210;,&#x6BCF;&#x4E2A;class&#x6240;&#x5173;&#x8054;&#x7684;type_info object&#xFF08;&#x7528;&#x4EE5;&#x652F;&#x6301;runtime identification,RTTI&#xFF09;&#x4E5F;&#x7ECF;&#x7531;virtual table&#x88AB;&#x6307;&#x51FA;&#x6765;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x653E;&#x5728;&#x8868;&#x683C;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;slot&#x5904;&#xB7;</li>
+</ul>
+<p>&#x5982;&#x4E0B;class Point&#x58F0;&#x660E;
+<img src="../../../images/c%26c%2B%2B/07.png" alt="">
+&#x5176;&#x5BF9;&#x8C61;&#x6A21;&#x578B;&#x5982;&#x4E0B;
+<img src="../../../images/c&amp;c++/08.png" alt=""></p>
+<p><strong>&#x52A0;&#x4E0A;&#x7EE7;&#x627F;</strong></p>
+<p>c++&#x652F;&#x6301;&#x5355;&#x4E00;&#x7EE7;&#x627F;&#xFF0C;&#x591A;&#x91CD;&#x7EE7;&#x627F;&#xFF0C;&#x865A;&#x62DF;&#x7EE7;&#x627F;&#xFF0C;&#x5982;&#x4E0B;
+<img src="../../../images/c&amp;c++/09.png" alt="">
+<img src="../../../images/c&amp;c++/10.png" alt="">
+<img src="../../../images/c&amp;c++/11.png" alt=""></p>
+<p>&#x5728;&#x865A;&#x62DF;&#x7EE7;&#x627F;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;base class&#x4E0D;&#x7BA1;&#x5728;&#x7EE7;&#x627F;&#x4E32;&#x94FE;&#x4E2D;&#x88AB;&#x6D3E;&#x751F;&#xFF08;derived&#xFF09;&#x591A;&#x5C11;&#x6B21;&#xFF0C;&#x6C38;&#x8FDC;&#x53EA;&#x4F1A;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x5B9E;&#x4F53;&#xFF08;&#x79F0;&#x4E3A;subobject&#xFF09;&#xB7;&#x4F8B;&#x5982;&#x67D0;&#x4E2A; iostream object&#x4E4B;&#x4E2D;&#x5C31;&#x53EA;&#x6709;virtual ios base class &#x7684;&#x4E00;&#x4E2A;subobject.
+<img src="../../../images/c&amp;c++/12.png" alt=""></p>
+<p>C++&#x6700;&#x521D;&#x91C7;&#x7528;&#x7684;&#x7EE7;&#x627F;&#x6A21;&#x578B;&#xFF0C;base class subobject&#x7684;data members&#x88AB;&#x76F4;&#x63A5;&#x653E;&#x7F6E;&#x4E8E;derived class object&#x4E2D;&#xFF0E;&#x8FD9;&#x63D0;&#x4F9B;&#x4E86;&#x5BF9;base class members&#x6700;&#x7D27;&#x51D1;&#x800C;&#x4E14;&#x6700;&#x6709;&#x6548;&#x7387;&#x7684;&#x5B58;&#x53D6;&#xFF0C;&#x7F3A;&#x70B9;&#x5462;&#xFF1F;&#x5F53;&#x7136;&#x5C31;&#x662F;&#xFF1A;base class members&#x7684;&#x4EFB;&#x4F55;&#x6539;&#x53D8;&#xFF0C;&#x5305;&#x62EC;&#x589E;&#x52A0;&#x3001;&#x79FB;&#x9664;&#x6216;&#x6539;&#x53D8;&#x7C7B;&#x578B;&#x7B49;&#x7B49;&#xFF0C;&#x90FD;&#x4F7F;&#x5F97;&#x6240;&#x6709;&#x7528;&#x5230;&#x6B64;base class&#x6216;&#x5176;derived class&#x7684;&#x76F8;&#x5173;&#x6A21;&#x5757;&#x90FD;&#x5FC5;&#x987B;&#x91CD;&#x65B0;&#x7F16;&#x8BD1;&#xFF0E;</p>
+<p>&#x81EA;C++2.0&#x8D77;&#x624D;&#x65B0;&#x5BFC;&#x5165;&#x7684;virtual base class&#xFF0C;&#x9700;&#x8981;&#x4E00;&#x4E9B;&#x95F4;&#x63A5;&#x7684;base class &#x8868;&#x73B0;&#x65B9;&#x6CD5;&#xFF0E;Virtual base class&#x7684;&#x539F;&#x59CB;&#x6A21;&#x578B;&#x662F;&#x5728;class object &#x4E2D;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;&#x6709;&#x5173;&#x8054;&#x7684;virtual base class&#x52A0;&#x4E0A;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x5176;&#x5B83;&#x6F14;&#x5316;&#x51FA;&#x6765;&#x7684;&#x6A21;&#x578B;&#x5219;&#x82E5;&#x4E0D;&#x662F;&#x5BFC;&#x5165;&#x4E00;&#x4E2A;virtual base class table,&#x5C31;&#x662F;&#x62D3;&#x5C55;&#x539F;&#x5B58;&#x5728;&#x7684;virtual table, &#x4EE5;&#x4FBF;&#x4E8E;&#x7EF4;&#x62A4;&#x6BCF;&#x4E00;&#x4E2A;virtual base class&#x7684;&#x4F4D;&#x7F6E;&#xFF08;&#x5728;virtual table&#x7684;&#x76F8;&#x5173;slob&#x4E2D;&#x8BB0;&#x5F55;virtual base class subobject&#x7684;&#x504F;&#x79FB;&#x91CF;&#xFF09;</p>
+<p>&#x6839;&#x636E;&#x4EE5;&#x4E0A;&#x5BF9;&#x8C61;&#x6A21;&#x578B;&#xFF0C;&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x6709;class X&#xFF0C;&#x5176;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;copy constructor, virtual destructor, and virtual function foo&#xFF0C;&#x6211;&#x4EEC;&#x6709;&#x5982;&#x4E0B;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;
+<img src="../../../images/c&amp;c++/13.png" alt="">
+&#x5728;&#x7F16;&#x8BD1;&#x5668;&#x5185;&#x90E8;&#x53EF;&#x80FD;&#x88AB;&#x8F6C;&#x6362;&#x4E3A;
+<img src="../../../images/c&amp;c++/14.png" alt="">
+<img src="../../../images/c&amp;c++/15.png" alt="">
+&#x4EE5;&#x4E0A;&#x8F6C;&#x6362;&#x4F7F;&#x7528;&#x4E86;NRV&#x4F18;&#x5316;&#x3002;</p>
+<p><strong>struct versus class</strong>
+c++&#x4E2D;&#x540C;&#x65F6;&#x652F;&#x6301;struct &#x548C;class &#x8FD9;&#x4E24;&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x3002;&#x5728;c&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;struct&#x53EA;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x5408;&#xFF0C;&#x800C;&#x5728;c++&#x4E2D;&#xFF0C;struct&#x51E0;&#x4E4E;&#x4E0E;class&#x7B49;&#x540C;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x6709;public&#xFF0C;private, protected&#x4E0D;&#x540C;&#x8BBF;&#x95EE;&#x7EA7;&#x522B;&#x7684;&#x533A;&#x6BB5;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x6709;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x865A;&#x51FD;&#x6570;&#x7B49;&#x7B49;.</p>
+<p>struct &#x4E0E;class&#x7684;&#x552F;&#x4E00;&#x533A;&#x522B;&#xFF0C;&#x5C31;&#x662F;class&#x7684;&#x9ED8;&#x8BA4;assess level&#x662F;private&#xFF0C;&#x800C;struct&#x662F;public.</p>
+<p>&#x5F53;&#x7136;&#x6709;&#x4E9B;&#x5728;c&#x7A0B;&#x5E8F;&#x4E2D;&#x7ECF;&#x5E38;&#x88AB;&#x4F7F;&#x7528;&#x7684;&#x5DE7;&#x8BA1;&#xFF0C;&#x6BD4;&#x5982;&#x67D4;&#x6027;&#x6570;&#x7EC4;&#xFF0C;&#x5728;struct&#x7684;&#x6700;&#x540E;&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x5355;&#x4E00;&#x5143;&#x7D20;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x8BE5;struct&#x4E8E;&#x662F;&#x62E5;&#x6709;&#x53EF;&#x53D8;&#x5927;&#x5C0F;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x6BD4;&#x5982;</p>
+<pre><code class="lang-c"><span class="hljs-keyword">struct</span> mumbel{
+<span class="hljs-comment">//...</span>
+<span class="hljs-keyword">char</span> pc[<span class="hljs-number">1</span>];
+}
+
+<span class="hljs-keyword">struct</span> mumbel * pm=(<span class="hljs-keyword">struct</span> mumbel *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">struct</span> mumbel)+<span class="hljs-built_in">strlen</span>(<span class="hljs-built_in">string</span>)+<span class="hljs-number">1</span>);
+
+<span class="hljs-built_in">strcpy</span>(&amp;(pm-&gt;pc),<span class="hljs-built_in">string</span>)
+</code></pre>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5728;c++&#x4E2D;&#x4E5F;&#x8FD9;&#x6837;&#x4F7F;&#x7528;&#xFF0C;&#x4F46;&#x662F;c++&#x4E2D;&#x5BF9;&#x5E94;&#x7684;class&#x4E2D;&#x6709;&#x591A;&#x4E2A;access section, &#x5E76;&#x4E14;&#x4E5F;&#x53EF;&#x80FD;&#x6709;&#x865A;&#x51FD;&#x6570;&#xFF0C;&#x6709;&#x57FA;&#x7C7B;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#xFF0C;&#x5728;class&#x7684;&#x672B;&#x5C3E;&#x518D;&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x5355;&#x4E00;&#x5143;&#x7D20;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x8FD9;&#x4E2A;&#x6210;&#x5458;&#x5B9E;&#x9645;&#x5E76;&#x4E0D;&#x4E00;&#x5B9A;&#x5B58;&#x50A8;&#x5728;&#x5BF9;&#x8C61;&#x7684;&#x672B;&#x5C3E;&#xFF0C;&#x56E0;&#x6B64;&#x4E5F;&#x5C31;&#x4E0D;&#x80FD;&#x50CF;&#x4EE5;&#x4E0A;&#x90A3;&#x6837;&#x4F7F;&#x7528;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> mumbel{
+<span class="hljs-keyword">public</span>:
+<span class="hljs-comment">//...</span>
+<span class="hljs-keyword">protected</span>:
+<span class="hljs-comment">//...</span>
+<span class="hljs-keyword">private</span>:
+<span class="hljs-comment">//....</span>
+<span class="hljs-keyword">char</span> pc[<span class="hljs-number">1</span>];
+}
+</code></pre>
+<p>C++&#x4E2D;&#x51E1;&#x5904;&#x4E8E;&#x540C;&#x4E00;&#x4E2A;access section&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5FC5;&#x5B9A;&#x4FDD;&#x8BC1;&#x4EE5;&#x5176;&#x58F0;&#x660E;&#x6B21;&#x5E8F;&#x51FA;&#x73B0;&#x5728;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#x5F53;&#x4E2D;&#xFF0E;&#x7136;&#x800C;&#x88AB;&#x653E;&#x7F6E;&#x5728;&#x591A;&#x4E2A;access sections&#x4E2D;&#x7684;&#x5404;&#x7B14;&#x6570;&#x636E;&#xFF0C;&#x6392;&#x5217;&#x6B21;&#x5E8F;&#x5C31;&#x4E0D;&#x4E00;&#x5B9A;&#x4E86;&#xFF0E;&#x4E0B;&#x9762;&#x7684;&#x58F0;&#x660E;&#x4E2D;&#xFF0C;&#x524D;&#x8FF0;&#x7684;c&#x4F0E;&#x4FE9;&#x6216;&#x8BB8;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x8FD0;&#x884C;&#xFF0C;&#x6216;&#x8BB8;&#x4E0D;&#x80FD;&#xFF0C;&#x9700;&#x89C6;protected data members&#x88AB;&#x653E;&#x5728;private data members&#x7684;&#x524D;&#x9762;&#x6216;&#x540E;&#x9762;&#x800C;&#x5B9A;</p>
+<p>&#x540C;&#x6837;&#x7684;&#x9053;&#x7406;,base classes&#x548C;derived classes&#x7684;data members&#x7684;&#x5E03;&#x5C40;&#x4E5F;&#x6CA1;&#x6709;&#x8C01;&#x5148;&#x8C01;&#x540E;&#x7684;&#x5F3A;&#x5236;&#x89C4;&#x5B9A;&#xFF0C;&#x56E0;&#x800C;&#x4E5F;&#x5C31;&#x4E0D;&#x4FDD;&#x8BC1;&#x524D;&#x8FF0;&#x7684;C&#x4F0E;&#x4FE9;&#x4E00;&#x5B9A;&#x6709;&#x6548;. virtual functions&#x7684;&#x5B58;&#x5728;&#x4E5F;&#x4F1A;&#x4F7F;&#x5F97;&#x524D;&#x8FF0;&#x7684;C&#x4F0E;&#x4FE9;&#x7684;&#x6709;&#x6548;&#x6027;&#x6210;&#x4E3A;&#x95EE;&#x53F7;&#x3002;&#x6240;&#x4EE5;&#x4E0D;&#x8981;&#x5728;C++&#x7A0B;&#x5E8F;&#x4E2D;&#x8FD9;&#x6837;&#x7528;&#x3002;</p>
+<p><strong>&#x4E09;&#x79CD;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x8303;&#x5F0F;</strong>
+C++&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x652F;&#x6301;&#x4E09;&#x79CD;&#x8BBE;&#x8BA1;&#x8303;&#x5F0F;</p>
+<ul>
+<li>&#x7A0B;&#x5E8F;&#x6A21;&#x578B;&#xFF08;procedural model&#xFF09;&#xFF0C;&#x50CF;C&#x4E00;&#x6837;
+<img src="../../../images/c&amp;c++/16.png" alt=""></li>
+<li>ADT( abstract data type model, &#x62BD;&#x8C61;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x6A21;&#x578B;)&#xFF0C;&#x7C7B;&#x4E2D;&#x5C01;&#x88C5;&#x4E86;&#x6570;&#x636E;&#xFF0C;&#x5BF9;&#x5916;&#x53EA;&#x63D0;&#x4F9B;&#x64CD;&#x4F5C;&#x63A5;&#x53E3;
+<img src="../../../images/c&amp;c++/17.png" alt=""></li>
+<li>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x6A21;&#x578B;(object-oriented model)&#xB7;&#x5728;&#x6B64;&#x6A21;&#x578B;&#x4E2D;&#x6709;&#x4E00;&#x4E9B;&#x5F7C;&#x6B64;&#x76F8;&#x5173;&#x7684;class&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;base class&#xFF08;&#x7528;&#x4EE5;&#x63D0;&#x4F9B;&#x5171;&#x901A;&#x63A5;&#x53E3;&#xFF09;&#x88AB;&#x5C01;&#x88C5;&#x8D77;&#x6765;&#xB7;
+<img src="../../../images/c&amp;c++/18.png" alt=""></li>
+</ul>
+<p>&#x5F53;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4F7F;&#x7528;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x6A21;&#x578B;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x591A;&#x6001;&#x7684;&#x6027;&#x8D28;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x901A;&#x8FC7;base class&#x7684;&#x6307;&#x9488;&#x6216;&#x8005;&#x5F15;&#x7528;&#x6765;&#x8C03;&#x7528;&#x63A5;&#x53E3;&#x3002;
+<img src="../../../images/c&amp;c++/19.png" alt="">
+<img src="../../../images/c&amp;c++/20.png" alt=""></p>
+<p>&#x867D;&#x7136;&#x4F60;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x6216;&#x95F4;&#x63A5;&#x5904;&#x7406;&#x7EE7;&#x627F;&#x4F53;&#x7CFB;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;base class object&#xFF0C;&#x4F46;&#x53EA;&#x6709;&#x901A;&#x8FC7;pointer&#x6216;reference&#x7684;&#x95F4;&#x63A5;&#x5904;&#x7406;&#xFF0C;&#x624D;&#x652F;&#x6301;OO&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x6240;&#x9700;&#x7684;&#x591A;&#x6001;&#x6027;&#x8D28;&#x3002;&#x4E0A;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#x7684;thing2&#x7684;&#x5B9A;&#x4E49;&#x548C;&#x8FD0;&#x7528;&#xFF0C;&#x662F;OO paradigm&#x4E2D;&#x4E00;&#x4E2A;&#x826F;&#x597D;&#x7684;&#x4F8B;&#x8BC1;. thing1&#x7684;&#x5B9A;&#x4E49;&#x548C;&#x8FD0;&#x7528;&#x5219;&#x9038;&#x51FA;&#x4E86;OO&#x7684;&#x4E60;&#x60EF;&#xFF0C;&#x5B83;&#x53CD;&#x6620;&#x7684;&#x662F;&#x4E00;&#x4E2A;ADT paradigm&#x7684;&#x826F;&#x597D;&#x884C;&#x4E3A;,thing1&#x884C;&#x4E3A;&#x662F;&#x597D;&#x662F;&#x574F;&#xFF0C;&#x89C6;&#x7A0B;&#x5E8F;&#x5458;&#x7684;&#x610F;&#x56FE;&#x800C;&#x5B9A;&#xFF0E;&#x5728;&#x6B64;&#x8303;&#x4F8B;&#x4E2D;&#xFF0C;&#x5B83;&#x7684;&#x884C;&#x4E3A;&#x975E;&#x5E38;&#x6709;&#x53EF;&#x80FD;&#x4E0D;&#x662F;&#x4F60;&#x8981;&#x7684;&#xFF01;</p>
+<p>&#x5728;OO paradigm&#x4E4B;&#x4E2D;&#xFF0C;&#x7A0B;&#x5E8F;&#x5458;&#x9700;&#x8981;&#x5904;&#x7406;&#x4E00;&#x4E2A;&#x672A;&#x77E5;&#x5B9E;&#x4F53;&#xFF0C;&#x5B83;&#x7684;&#x7C7B;&#x578B;&#x867D;&#x7136;&#x6709;&#x6240;&#x754C;&#x5B9A;&#xFF0C;&#x5374;&#x6709;&#x65E0;&#x7A77;&#x53EF;&#x80FD;&#x3002;&#x8FD9;&#x7EC4;&#x7C7B;&#x578B;&#x53D7;&#x9650;&#x4E8E;&#x5176;&#x7EE7;&#x627F;&#x4F53;&#x7CFB;&#xFF0C;&#x7136;&#x800C;&#x8BE5;&#x4F53;&#x7CFB;&#x7406;&#x8BBA;&#x4E0A;&#x6CA1;&#x6709;&#x6DF1;&#x5EA6;&#x548C;&#x5E7F;&#x5EA6;&#x7684;&#x9650;&#x5236;&#x3002;&#x539F;&#x5219;&#x4E0A;&#xFF0C;&#x88AB;&#x6307;&#x5B9A;&#x7684;object&#x7684;&#x771F;&#x5B9E;&#x7C7B;&#x578B;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x6267;&#x884C;&#x70B9;&#x4E4B;&#x524D;&#xFF0C;&#x662F;&#x65E0;&#x6CD5;&#x89E3;&#x6790;&#x7684;&#x3002;&#x5728;C++&#x4E2D;&#xFF0C;&#x53EA;&#x6709;&#x901A;&#x8FC7;pointers&#x548C;references&#x7684;&#x64CD;&#x4F5C;&#x624D;&#x80FD;&#x591F;&#x5B8C;&#x6210;&#x3002;&#x76F8;&#x53CD;&#x5730;&#xFF0C;&#x5728;ADT paradigm&#x4E2D;&#x7A0B;&#x5E8F;&#x5458;&#x5904;&#x7406;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x62E5;&#x6709;&#x56FA;&#x5B9A;&#x800C;&#x5355;&#x4E00;&#x7C7B;&#x578B;&#x7684;&#x5B9E;&#x4F53;,&#x5B83;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x671F;&#x5C31;&#x5DF2;&#x7ECF;&#x5B8C;&#x5168;&#x89E3;&#x6790;&#x597D;&#x4E86;&#x3002;</p>
+<p>&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x4E0B;&#x9762;&#x8FD9;&#x7EC4;&#x58F0;&#x660E;&#xFF1A;
+<img src="../../../images/c&amp;c++/21.png" alt="">
+&#x4F60;&#x7EDD;&#x5BF9;&#x6CA1;&#x6709;&#x529E;&#x6CD5;&#x786E;&#x5B9A;&#x5730;&#x8BF4;&#x51FA;px&#x6216;rx&#x5230;&#x5E95;&#x6307;&#x5411;&#x4F55;&#x79CD;&#x7C7B;&#x578B;&#x7684;objects&#xFF0C;&#x4F60;&#x53EA;&#x80FD;&#x591F;&#x8BF4;&#x5B83;&#x8981;&#x4E0D;&#x5C31;&#x662F;Library_materials object,&#x8981;&#x4E0D;&#x5C31;&#x662F;&#x540E;&#x8005;&#x7684;&#x4E00;&#x4E2A;&#x6D3E;&#x751F;object&#xFF0C;&#x6211;&#x4EEC;&#x5012;&#x662F;&#x53EF;&#x4EE5;&#x786E;&#x5B9A;&#xFF0C;dx&#x53EA;&#x80FD;&#x662F;&#x4E00;&#x4E2A;Library_materials object</p>
+<p>C++ &#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x652F;&#x6301;&#x591A;&#x6001;</p>
+<ul>
+<li>&#x7ECF;&#x7531;&#x4E00;&#x7EC4;&#x9690;&#x542B;&#x7684;&#x8F6C;&#x5316;&#x64CD;&#x4F5C;&#xFF0C;&#x4F8B;&#x5982;&#x628A;&#x4E00;&#x4E2A;derived class&#x6307;&#x9488;&#x8F6C;&#x5316;&#x4E3A;&#x4E00;&#x4E2A;&#x6307;&#x5411;&#x5176;public base class&#x7684;&#x6307;&#x9488;&#xFF1A;
+<code>shape *ps = new circle();</code></li>
+<li>&#x7ECF;&#x7531;virtual function &#x673A;&#x5236;
+<code>ps-&gt;rotate();</code></li>
+<li>&#x7ECF;&#x7531;dynamic_cast&#x548C;typeid&#x8FD0;&#x7B97;&#x7B26;
+<code>if(circle *c = dynamic_cast&lt;circle*&gt;(ps) )...</code></li>
+</ul>
+<p><strong>&#x9700;&#x8981;&#x591A;&#x5C11;&#x5185;&#x5B58;&#x624D;&#x80FD;&#x8868;&#x73B0;&#x4E00;&#x4E2A;class object?</strong></p>
+<ul>
+<li>non static data members&#x603B;&#x548C;&#x7684;&#x5927;&#x5C0F;</li>
+<li>&#x4E3A;&#x4E86;alignment&#x800C;padding&#x7684;&#x5B57;&#x8282;</li>
+<li>&#x652F;&#x6301;virtual&#x7684;overhead</li>
+</ul>
+<p>&#x5047;&#x8BBE;&#x6709;&#x57FA;&#x7C7B;ZooAnimal,&#x58F0;&#x660E;&#x5982;&#x4E0B;&#xFF0C;&#x5E76;&#x4E14;&#x5B9A;&#x4E49;&#x4E86;ZooAnimal&#x5BF9;&#x8C61;za,&#x548C;ZooAnimal&#x7684;&#x6307;&#x9488;pza
+<img src="../../../images/c&amp;c++/22.png" alt="">
+<img src="../../../images/c&amp;c++/23.png" alt=""></p>
+<p>&#x5047;&#x8BBE;za&#x5B58;&#x50A8;&#x5728;&#x5730;&#x5740;1000&#x5904;&#xFF0C;&#x5176;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#x5982;&#x4E0B;
+<img src="../../../images/c&amp;c++/24.png" alt=""></p>
+<p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x53C8;&#x58F0;&#x660E;&#x4E86;&#x6D3E;&#x751F;&#x7C7B;Bear,&#x5E76;&#x4E14;&#x5B9A;&#x4E49;&#x4E86;Bear&#x5BF9;&#x8C61;&#x548C;&#x6307;&#x9488;
+<img src="../../../images/c&amp;c++/25.png" alt="">
+&#x5219;&#x5176;&#x5BF9;&#x8C61;&#x548C;&#x6307;&#x9488;&#x7684;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#x5982;&#x4E0B;
+<img src="../../../images/c&amp;c++/26.png" alt=""></p>
+<p>&#x73B0;&#x5728;&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-c++">Bear b;
+ZooAnimal *pz=&amp;b;
+Bear* pb=&amp;b
+</code></pre>
+<p>pz &#x548C;pb&#x90FD;&#x6307;&#x5411;b&#x5BF9;&#x8C61;&#x7684;&#x8D77;&#x59CB;&#x5730;&#x5740;&#x5904;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x901A;&#x8FC7;pz&#x6307;&#x9488;&#x4EC5;&#x4EC5;&#x80FD;&#x8BBF;&#x95EE;&#x5230;ZooAnimal&#x5927;&#x5C0F;&#x7684;&#x5185;&#x5B58;&#x8303;&#x56F4;&#xFF0C;&#x800C;&#x901A;&#x8FC7;pb&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5168;&#x90E8;&#x7684;b&#x5BF9;&#x8C61;&#x5927;&#x5C0F;&#x7684;&#x5185;&#x5B58;&#x8303;&#x56F4;&#x3002;</p>
+<p>&#x9664;&#x4E86;ZooAnimal subobject&#x4E2D;&#x7684;members,&#x4E0D;&#x80FD;&#x901A;&#x8FC7;pz&#x76F4;&#x63A5;&#x5904;&#x7406;Bear&#x4E2D;&#x7684;members,&#x552F;&#x4E00;&#x7684;&#x4F8B;&#x5916;&#x662F;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x865A;&#x51FD;&#x6570;
+<img src="../../../images/c&amp;c++/27.png" alt="">
+&#x6CE8;&#x610F;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x4E2D;&#x7684;cell_block&#x5E94;&#x8BE5;&#x662F;public,&#x4E0D;&#x7136;&#x4E0D;&#x80FD;&#x88AB;&#x5916;&#x90E8;&#x8BBF;&#x95EE;</p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8C03;&#x7528;
+<code>pz-&gt;rotate();</code>
+pz&#x7684;&#x7C7B;&#x578B;&#x5C06;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x671F;&#x51B3;&#x5B9A;&#x4EE5;&#x4E0B;&#x4E24;&#x70B9;</p>
+<ul>
+<li>&#x56FA;&#x5B9A;&#x7684;&#x53EF;&#x7528;&#x63A5;&#x53E3;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;pz&#x53EA;&#x80FD;&#x591F;&#x8C03;&#x7528;ZooAnimal&#x7684;public&#x63A5;&#x53E3;&#xFF0E;</li>
+<li>&#x8BE5;&#x63A5;&#x53E3;&#x7684;access level</li>
+</ul>
+<p>&#x53EA;&#x6709;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x671F;&#xFF0C;&#x5728;&#x8BE5;&#x6267;&#x884C;&#x70B9;&#xFF0C;&#x624D;&#x80FD;&#x786E;&#x5B9A;&#x8C03;&#x7528;rotate&#x7684;object&#x5230;&#x5E95;&#x662F;&#x54EA;&#x4E2A;&#x3002;</p>
+<h3 id="member-initialization-list"><strong>Member Initialization List</strong></h3>
+<p>&#x4EE5;&#x4E0B;&#x7684;case&#xFF0C;&#x5FC5;&#x987B;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x4F7F;&#x7528;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;</p>
+<ul>
+<li>&#x521D;&#x59CB;&#x5316;&#x5F15;&#x7528;&#x6570;&#x636E;&#x6210;&#x5458;</li>
+<li>&#x521D;&#x59CB;&#x5316;const&#x6570;&#x636E;&#x6210;&#x5458;</li>
+<li>&#x5176;base class subobject&#x6216;&#x8005;class member data&#x9700;&#x8981;&#x8C03;&#x7528;&#x975E;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF08;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x6709;&#x53C2;&#x6570;&#xFF09;</li>
+</ul>
+<p>&#x6700;&#x540E;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5728;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x4E2D;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x7A0B;&#x5E8F;&#x7684;&#x7F16;&#x8BD1;&#x548C;&#x6267;&#x884C;&#x90FD;&#x6CA1;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x6548;&#x7387;&#x786E;&#x5F88;&#x4F4E;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Word {
+  String _name;
+  <span class="hljs-keyword">int</span> _cnt;
+<span class="hljs-keyword">public</span>:
+<span class="hljs-comment">// not wrong, just naive ...</span>
+  Word() {
+    _name = <span class="hljs-number">0</span>;
+    _cnt = <span class="hljs-number">0</span>;
+  }
+};
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x9996;&#x5148;&#x9ED8;&#x8BA4;&#x521D;&#x59CB;&#x5316;&#x4E86;_name,&#x7136;&#x540E;&#x53C8;&#x8C03;&#x7528;&#x4E86;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#xFF0C;&#x5C06;&#x521D;&#x59CB;&#x5316;&#x7684;&#x503C;&#x8986;&#x76D6;&#x3002;&#x8FD9;&#x4E2A;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x521B;&#x5EFA;&#x5E76;&#x6790;&#x6784;&#x4E86;&#x4E00;&#x4E2A;&#x4E34;&#x65F6;&#x7684;String &#x5BF9;&#x8C61;&#x3002;</p>
+<p>Here is the likely internal transformation of this constructor:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+Word::Word( <span class="hljs-comment">/* this pointer goes here */</span> )
+{
+<span class="hljs-comment">// invoke default String constructor</span>
+_name.String::String();
+<span class="hljs-comment">// generate temporary</span>
+String temp = String( <span class="hljs-number">0</span> );
+<span class="hljs-comment">// memberwise copy _name</span>
+_name.String::<span class="hljs-keyword">operator</span>=( temp );
+<span class="hljs-comment">// destroy temporary</span>
+temp.String::~String();
+_cnt = <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>&#x66F4;&#x6709;&#x6548;&#x7387;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// preferred implementation</span>
+Word::Word : _name( <span class="hljs-number">0</span> )
+{
+_cnt = <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>This expands to something like this:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+Word::Word( <span class="hljs-comment">/* this pointer goes here */</span> )
+{
+<span class="hljs-comment">// invoke String( int ) constructor</span>
+_name.String::String( <span class="hljs-number">0</span> );
+_cnt = <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>This pitfall, by the way, is most likely to occur in template code of this form:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">template</span> &lt; <span class="hljs-keyword">class</span> type &gt;
+foo&lt; type &gt;::foo( type t )
+{
+<span class="hljs-comment">// may or may not be a good idea</span>
+<span class="hljs-comment">// depending on the actual type of type</span>
+<span class="hljs-keyword">_t</span> = t;
+}
+</code></pre>
+<p>The compiler iterates over the initialization list, inserting the initializations in the proper order within the constructor prior to any explicit user code. The order in which the list entries are set down is determined by the declaration order of the members within the class declaration, not the order within the initialization list.</p>
+<p>&#x5047;&#x8BBE;&#x4EE3;&#x7801;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> X {
+  <span class="hljs-keyword">int</span> i;
+  <span class="hljs-keyword">int</span> j;
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-comment">// oops! do you see the problem?</span>
+  X( <span class="hljs-keyword">int</span> val ): j( val ), i( j ){}
+  ...
+};
+</code></pre>
+<p>&#x7F16;&#x8BD1;&#x5668;&#x5E94;&#x8BE5;&#x5BF9;&#x8FD9;&#x79CD;&#x9519;&#x8BEF;&#x4F7F;&#x7528;&#x7ED9;&#x4E2A;warning,&#x4F46;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;&#x53EA;&#x6709;g++&#x7F16;&#x8BD1;&#x5668;&#x8FD9;&#x6837;&#x505A;&#x4E86;&#x3002;</p>
+<p>&#x6B63;&#x786E;&#x7684;&#x521D;&#x59CB;&#x5316;&#x65B9;&#x5F0F;&#x5E94;&#x8BE5;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// preferred idiom</span>
+X::X( <span class="hljs-keyword">int</span> val )
+: j( val )
+{
+i = j;
+}
+</code></pre>
+<p>Another common question is whether you can invoke a member function to initialize a member, such as</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// is the invocation of X::xfoo() ok?</span>
+X::X( <span class="hljs-keyword">int</span> val ): i( xfoo( val )),j( val )
+{}
+</code></pre>
+<p>xfoo()&#x662F;X&#x7684;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x6210;&#x5458;&#x3002;&#x53EF;&#x4EE5;&#x662F;&#x53EF;&#x4EE5;&#xFF0C;&#x4F46;&#x8FD8;&#x662F;&#x8981;&#x770B;xfoo()&#x51FD;&#x6570;&#x5BF9;object&#x5B8C;&#x6574;&#x6027;&#x7684;&#x4F9D;&#x8D56;&#x5EA6;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x5C06;xfoo()&#x653E;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F53;&#x4E2D;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5728;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x786E;&#x4FDD;&#x5728;xfoo()&#x88AB;&#x8C03;&#x7528;&#x65F6;&#xFF0C;object&#x5BF9;&#x8C61;&#x662F;&#x5B8C;&#x6574;&#x7684;</p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x5982;&#x4E0B;&#x7684;&#x8C03;&#x7528;&#x6210;&#x5458;&#x51FD;&#x6570;&#x6765;&#x521D;&#x59CB;&#x5316;&#x57FA;&#x7C7B;&#xFF0C;&#x662F;&#x5426;&#x5408;&#x7406;&#xFF1F;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// is the invocation of FooBar::fval() ok?</span>
+<span class="hljs-keyword">class</span> FooBar : <span class="hljs-keyword">public</span> X {
+<span class="hljs-keyword">int</span> _fval;
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fval</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> _fval; }
+  FooBar( <span class="hljs-keyword">int</span> val ): _fval( val ),X( fval() ){}
+...
+};
+</code></pre>
+<p>&#x5176;&#x62D3;&#x5C55;&#x53EF;&#x80FD;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+FooBar::FooBar( <span class="hljs-comment">/* this pointer goes here */</span> )
+{
+<span class="hljs-comment">// Oops: definitely not a good idea</span>
+X::X( <span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>-&gt;fval() );
+_fval = val;
+};
+</code></pre>
+<p>In summary, the compiler iterates over and possibly reorders the initialization list to reflect the declaration order of the members. It inserts the code within the body of the constructor prior to any explicit user code.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"chapter 1: object lessions","level":"1.2.1.1","depth":3,"previous":{"title":"[inside the c++ object model]","level":"1.2.1","depth":2,"ref":"","articles":[{"title":"chapter 1: object lessions","level":"1.2.1.1","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 1. Object Lessons.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 1. Object Lessons.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"posts/c&c++/inside the c++ object model/Chapter 1. Object Lessons.md","mtime":"2023-05-28T09:51:13.945Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-05-28T09:54:31.322Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,6 +1,6 @@
 **c++ class的布局成本**
 
-相比c语言，数据和函数分开声明，c++将数据和其相关操作用class封装在一起。这种封装并没增加布局成本， data members直接内含在每一个class object之中，就像C struct 的情况一样。而 member functions虽然含在class的声明之内，却不出现在object之中，每一个non-inline member function只会诞生一个函数实体．而inline function 如果无法拓展，则会在其每一个文件对应的编译模块中产生一个static函数实体。
+相比c语言，数据和函数分开声明，c++将数据和其相关操作用class封装在一起。这种封装并没增加布局成本， data members直接内含在每一个class object之中，就像C struct 的情况一样。而 member functions虽然含在class的声明之内，却不出现在object之中，每一个non-inline member function只会诞生一个函数实体．而inline member function 如果无法拓展，则会在其每一个文件对应的编译模块中产生一个static函数实体。
 
 C++在布局以及存取时间上主要的額外负担是由virtual引起，包括：
 * virtual function 用以支持一个有效率的“执行期绑定"
@@ -29,7 +29,7 @@ c++支持单一继承，多重继承，虚拟继承，如下
 ![](../../../images/c&c++/10.png)
 ![](../../../images/c&c++/11.png)
 
-在虚拟继承的情况下，base class不管在继承串链中被派生（derived）多少次，永远只会存在一个实体（称为subobject）·例如某个 iostream object之中就只有virtual ios base class 的一个subobject.
+在虚拟继承的情况下，base class不管在继承串链中被派生（derived）多少次，永远只会在其派生对象中存在一个实体（称为subobject）·例如某个 iostream object之中就只有virtual ios base class 的一个subobject.
 ![](../../../images/c&c++/12.png)
 
 C++最初采用的继承模型，base class subobject的data members被直接放置于derived class object中．这提供了对base class members最紧凑而且最有效率的存取，缺点呢？当然就是：base class members的任何改变，包括增加、移除或改变类型等等，都使得所有用到此base class或其derived class的相关模块都必须重新编译．
@@ -72,7 +72,7 @@ char pc[1];
 }
 ```
 
-C++中凡处于同一个access section的数据，必定保证以其声明次序出现在内存布局当中．然而被放置在多个access sections中的各笔数据，排列次序就不一定了．下面的声明中，前述的c伎俩或许可以有效运行，或许不能，需视protected data members被放在private data members的前面或后面而定
+C++中凡处于同一个access section的数据，必定保证以其声明次序出现在内存布局当中．然而被放置在多个access sections中的各笔数据，排列次序就不一定了．上述的声明中，前述的c伎俩或许可以有效运行，或许不能，需视protected data members被放在private data members的前面或后面而定
 
 同样的道理,base classes和derived classes的data members的布局也没有谁先谁后的强制规定，因而也就不保证前述的C伎俩一定有效. virtual functions的存在也会使得前述的C伎俩的有效性成为问号。所以不要在C++程序中这样用。
 
@@ -85,7 +85,7 @@ C++程序设计支持三种设计范式
 * 面向对象模型(object-oriented model)·在此模型中有一些彼此相关的class，通过一个base class（用以提供共通接口）被封装起来·
   ![](../../../images/c&c++/18.png)
 
-当程序设计使用面向对象模型，需要使用多态的性质时，需要通过base class的指针或者引用来调用接口。
+当程序设计使用面向对象模型，并且需要使用多态的性质时，需要通过base class的指针或者引用来调用接口。
 ![](../../../images/c&c++/19.png)
 ![](../../../images/c&c++/20.png)
 
@@ -212,8 +212,7 @@ foo< type >::foo( type t )
 _t = t;
 }
 ```
-
-The compiler iterates over the initialization list, inserting the initializations in the proper order within the constructor prior to any explicit user code. The order in which the list entries are set down is determined by the declaration order of the members within the class declaration, not the order within the initialization list.
+编译器遍历初始化列表，根据成员声明的顺序，将其插入到构造函数中的合适位置处。并且初始化列表的代码，在explicit user code之前。
 
 假设代码如下
 ```c++
@@ -271,5 +270,5 @@ _fval = val;
 ```
 
 
-In summary, the compiler iterates over and possibly reorders the initialization list to reflect the declaration order of the members. It inserts the code within the body of the constructor prior to any explicit user code.
+In summary, the compiler iterates over and possibly reorders the initialization list to reflect the declaration order of the members. It inserts the code within the body of the constructor prior to any explicit user code.另外，基类的初始化在派生类之前。
 

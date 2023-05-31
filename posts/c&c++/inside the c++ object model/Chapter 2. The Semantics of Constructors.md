@@ -166,7 +166,7 @@ Virtual base class的存在需要特别处理。一个class object如果以另�
 Raccoon *ptr;
 RedPanda panda = *ptr
 ```
-这时候，编译器无法知道是否"bitwise copy semantics”是否还保持着，因为它无法知道（没有流程分析）Raccoon指针是否指向一个真正的Raccoon object，或是指向一个derived class object
+这时候，编译器无法知道是否"bitwise copy semantics”是否还保持着，因为它无法知道（没有流程分析）Raccoon指针是否指向一个真正的Raccoon object，或是指向一个derived class object. 注意，上述代码如果不对 Raccoon 指针做类型转换的话，应该会报错的。隐式转换只在从派生类转换为基类时发生，基类转换为派生类需要显示转换。
 
 ### **Program Transformation Semantics**
 已知下面程序片段
@@ -179,8 +179,8 @@ X foo(){
     return xx;
 }
 ```
-一个程序员可能会假设，
-* every invocation of foo() return xx by value
+一个程序员可能会假设， 
+* foo()函数的每次调用，都会创建xx local object,并且以传值的方式拷贝返回。
 * 如果X定义了拷贝构造函数，则每次调用foo()时，都会调用X的拷贝构造函数
 
 
@@ -238,9 +238,9 @@ X __temp; //伪定义操作，只分配内存
 __temp.X::X(xx); //调用拷贝初始化
 foo(__temp); //注意这里foo被转换为void foo(X& x0);
 ```
-这个__temp会在foo函数返回后调用析构函数销毁。
+这个__temp会在foo函数返回**后**调用析构函数销毁。
 
-另一种方式是在foo函数栈内调用拷贝构造函数创建x0,并在foo函数返回前销毁创建的x0.
+另一种方式是在foo函数栈内调用拷贝构造函数创建x0,并在foo函数返回**前**销毁创建的x0.
 当然，这种情况，foo也会被转换成 void foo(X& x); 其转换的伪代码如下
 ```c++
 void foo(X& x){
@@ -251,6 +251,8 @@ void foo(X& x){
     return;
 }
 ```
+之前了解到的函数栈的参数和返回值的传递，其被调函数的参数，都是在调用函数栈中构建的，当然，那些讲解都是一builtin type为例。
+函数参数对象的传递，如果参数类型不是引用类型，都是需要调用拷贝构造函数的。
 
 #### **Return Value Initialization**
 下面一段代码中，bar函数的返回值X是如何被xx拷贝初始化的呢？
@@ -262,9 +264,9 @@ X xx;
 return xx;
 }
 ```
-1.Add an additional argument of type reference to the class object. This argument will hold the copy constructed "return value."
+1. 首先添加一个引用，引用到返回值。也就是需要在函数中知道返回对象所在的地址。
+2. 在返回之前，给这个地址处的对象做拷贝初始化。
 
-2.Insert an invocation of the copy constructor prior to the return statement to initialize the added argument with the value of the object being returned.
 
 最后的`return xx;` 就变成了`return;`
 
@@ -287,7 +289,8 @@ __result.X::X( xx );
 return;
 }
 ```
-**以上讲的这些， 其实就是函数栈是如何传递参数和返回值的，只不过其中加上类的构造函数罢了。罗里吧嗦的。**
+
+也就是说，这一过程，也是要调用拷贝初始化的。
 
 
 到目前为止，我们看到一个函数,以如下这种方式被调用时
@@ -296,7 +299,7 @@ X bar(X x0)；
 
 X x1;
 //.....
-X x2=bar(x1);
+bar(x1);
 ```
 其参数和返回值，都需要调用拷贝构造函数，那么这一过程如何被优化呢？
 
@@ -391,3 +394,33 @@ memcpy( this, &t, sizeof( test ));
 ![](../../../images/c&C++/40.png)
 然而不管使用memcpy,或者是memset，都只有在classes不含任何由编译器产生的内部members时才能有效运行。如果Point3d class 声明一个或一个以上的virtual functions，或内含一个virtual base class，那么使用上述函数将会导致那些被编译器产生的内部members的初值被改写。例如，已知下面声明：
 ![](../../../images/c&C++/41.png)
+
+总结一下NRV优化
+简单来说，符合以下模式的函数
+```c++
+X foo(){
+    X xx;
+    //....;
+    return xx;
+}
+```
+没有优化前的编译器拓展
+```c++
+//伪代码
+void foo(X& _result){
+    X xx; //定义，只分配内存
+    xx.X::X();
+    //....
+    _result.X(xx); //调用拷贝构造函数
+    return;
+}
+```
+如果给X提供了拷贝构造函数，编译器可以选择应用NRV优化。如果编译器应用了NRV优化，便不再在函数栈中创建xx local object,而是直接对返回对象操作。如下，省去了调用拷贝构造函数。
+```c++
+void foo(X& _result){
+    _result.X::X();
+    //....直接操作_result
+    return;
+
+}
+```

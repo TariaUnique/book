@@ -23,20 +23,14 @@ void foo()
     // ...
 }
 ```
-当然也许Abstract_base类的设计者是想让其派生类初始化_mumble,如果是这样的话，派生类中需要提供protected Abstract_base constructor that takes one argument:
-```c++
-Abstract_Base::
-Abstract_Base( char *mumble_value = 0 ): _mumble( mumble_value )
-{}
-```
-然而，一个类的数据成员应该在其类自己的构造函数中初始化，这样做会破坏类的封装性，是其后的维护和修改都变得更困难。
+如果这个类的设计者的意图就是在派生类的构造函数中初始化基类，同时因为这个类是个虚基类，不应该有public 构造函数，应该在protected中提供显示构造函数，在派生类的构造函数中调用该基类的构造函数。
+
 
 也有人会说，这个类的设计错误不在于没有提供构造函数初始化其数据，而是在抽象基类中不应该有数据成员，抽象基类只需要提供接口就可以了，将接口与实现分离是一种常见的设计模型。这当然是有道理的，but it does not hold universally. Lifting up data members shared among several derived types can be a legitimate design choice.
 
 
 ### **Presence of a Pure Virtual Desctructor**
-C++新手常常很惊讶地发现，一个人竟然可以定义和调用（invoke）一个pure virtual
-function：不过它只能被静态地调用（invoked statically），不能经由虚拟机制调用，例如，你可以合法地写下这段码：
+C++新手常常很惊讶地发现，一个人竟然可以定义和调用（invoke）一个pure virtual  function：不过它只能被静态地调用（invoked statically），不能经由虚拟机制调用，例如，你可以合法地写下这段码：
 ```c++
 // ok: definition of pure virtual function
 // but may only be invoked statically ...
@@ -51,26 +45,31 @@ inline void Concrete_derived::interface()
     // ...
 }
 ```
-要不要这样做，全由class设计者决定．唯一的例外就是pure virtual destructor:class设计者一定得定义它，为什么？因为每一个derived class destructor会被编译器加以扩展，以静态调用的方式调用其每一个base class 的destructor.因此，只要缺乏任何一个base class destructors的定义，就会导致链接失败．
+要不要这样做，全由class设计者决定．唯一的例外就是pure virtual destructor:class设计者一定得定义它，为什么？因为每一个derived class destructor会被编译器加以扩展，以静态调用的方式调用其每一个base class 的destructor.因此，只要缺乏任何一个base class destructors的定义，就会导致链接失败． 即使基类的虚析构函数被定义为纯虚函数，也需要提供析构函数的定义。
 
-One could argue, shouldn't the invocation of a pure virtual destructor be suppressed by the compiler during the augmentation of the destructor of the derived class？编译器不能这样做，基类的设计者也许就是给其纯虚析构函数以定义，希望派生类的析构函数中调用这个定义。C++语言的设计保证了，派生类的析构函数中会依次调用其每一层基类的析构函数，类的设计者通常就是以此保证来设计基类的。
 
 又有人可能会说了，如果一个类的虚析构函数忘记定义了，难道编译器不能合成一个定义么？
-因为分离编译的缘故，编译器只有在连接期才可能知道一个类的虚析构函数只有声明没有定义，当然，这时候，也许可以实现一个机制，重新激活编译器，给其一个指令，合成析构函数。但是，应该没有编译器会这么做。
+因为分离编译的缘故，编译器只有在连接期才可能知道一个类的虚析构函数只有声明没有定义，当然，这时候，也许可以实现一个机制，重新激活编译器，给其一个指令，合成析构函数。但是，应该没有编译器会这么做。 
+
+最好的设计选择是不要将虚析构函数定义为pure virtual.
 
 
-**A better design alternative is to not declare a virtual destructor as pure.**
 
 当然，如果一个类没有声明析构函数，编译器会合成一个析构函数，这个析构函数什么也不做，也不是virtual的。
 
 ### **Presence of a Virtual Specification**
-将`Abstract_base::mumble()` 声明为virtual 并不是一个好的设计。 Because its algorithm is not type dependent and is therefore highly unlikely to be overridden by a subsequent derived class. 
-Moreover,because its nonvirtual implementation is inline, the performance penalty may be significant if it is frequently invoked. 如果一个inline函数被声明为virtual,其inline机制就失效了。
+将`Abstract_base::mumble()` 声明为virtual 并不是一个好的设计。 
+因为显然，这个函数并不是 type dependent, 不太可能在派生类中被重写。并且，这个函数的实现是inline的，而又被声明为virtual,如果一个inline函数被声明为virtual,其inline机制就失效了。 这样，本来因inline而带来的优化就没有了，编译器在遇到mumble函数调用的时候，本来可以原地拓展的，现在却需要走虚函数调用机制。
+
 
 ### **Presence of const within a Virtual Specification**
-`Abstract_base::interface()`这个pure virtual函数被声明为const了，Determining the const-ness of a virtual function may seem rather trivial, but in practice it is not easy to do within an abstract base class. Doing so means predicting the usage of a potentially infinite number of subclass implementations. Not declaring a function const means the function cannot be called by a const reference or const pointer argument—at least not without resorting to a casting away of the const.
+`Abstract_base::interface()`这个pure virtual函数被声明为const了，
+因为虚函数通常是type dependent,意味着派生类很可能要重写该函数。如果将虚函数声明为const，意味着派生类中也需要为const。
+如果一个成员函数没有被声明为const, 在const对象调用该成员时需要做 const cast.
+而如果一个成员函数被声明为const，实际实现时，比如在派生类中实现时，发现还是需要修改对象成员，这时候只能将const去掉。
+所以在基类中声明的虚函数，最好不要声明为const
 
-Considerably more problematic is declaring a function const and then discovering that, in practice, a derived instance really does need to modify a data member.  如果真发生了这样的情况话，还是把const去掉把。
+
 
 ### **A Reconsidered Class Declaration**
 综上所述，以下的Abstract_base的声明应该更合理
@@ -124,18 +123,22 @@ typedef struct
 
 C++在编译这个类时，会发生什么？理论上，编译器会在内部给这个类声明trivial default constructor, trivial destructor, trivial copy constructor, and trivial copy assignment operator 。
 
-In practice, all that happens is that the compiler has analyzed the declaration and tagged it to be `Plain Ol' Data`.
+而实际上，编译器在分析了这个类之后，将其tag为`Plain Ol' Data`.
 
-When the compiler encounters the definition
+
+
+当编译器遇到如下的定义时
 ```c++
 (1) Point global;
 ```
-then conceptually, the definition of both Point's trivial constructor and destructor are generated and invoked (the constructor at program startup and the destructor usually within the system-generated call to exit() upon completion of main() ). In practice, however, these trivial members are neither defined nor invoked, and the program behaves exactly as it would in C.
+理论上，编译器会定义 Point's trivial constructor and destructor， 并且，在program startup代码中需要调用constructor ，在exit代码中，需要调用destructor。
+事实上，这些trivial constructor and destructor 既没有被定义出来，也没有被调用。 the program behaves exactly as it would in C.
 
-只有一点例外，在c语言中，未初始化的全局变量是被放在bss（BlockStarted by Symbol）段的，bss段在可执行文件中只有符号，其数据是在被加载时零初始化的。
+
+只有一点例外，在c语言中，未初始化的全局变量是被放在bss（Block Started by Symbol）段的，bss段在可执行文件中只有符号，其数据是在被加载时零初始化的。
 而在c++中，因为构造函数的存在，全局变量都被认为是初始化过了的，不使用bss段，所有的全局变量都被放在已初始化过的全局变量数据段中，当然其中的数据都是零值初始化的。
 
-foobar()函数中的local Point object,没有被初始化，因为构造函数时trivial的，不会做任何事。这样，line 7中对其的直接使用，很可能是个bug
+foobar()函数中的local Point object,没有被初始化，因为构造函数是trivial的，不会做任何事。这样，line 7中对其的直接使用，很可能是个bug
 
 Line 6的
 ```c++
@@ -153,7 +156,7 @@ This assignment should generate a compiler warning of the general form
 ```c++
 warning, line 7: local is used before being initialized.
 ```
-Conceptually, this assignment triggers the definition of the trivial copy assignment operator, which is then invoked to carry out the assignment. Again, in practice, since the object is `Plain Ol' Data`, the assignment remains a bitwise copy exactly as it is in C.
+理论上， `*heap = local;`编译器在遇到这个语句时，会定义拷贝赋值运算符并调用。而实际上，因为是`Plain Ol' Data`，the assignment remains a bitwise copy exactly as it is in C.
 
 ```c++
 (9) delete heap;
@@ -164,7 +167,7 @@ __delete( heap );
 ```
 Again, conceptually, this triggers the generation of the trivial destructor for Point. But, as we've seen, the destructor, in practice, is neither generated nor invoked. 
 
-Finally, the return of local by value conceptually triggers the definition of the trivial copy constructor, which is then invoked, and so on. In practice, the return remains a simple bitwise operation of `Plain Ol' Data`.
+Finally, the return of local by value conceptually triggers the definition of the trivial copy constructor, which is then invoked。In practice, the return remains a simple bitwise copy operation of `Plain Ol' Data`.
 
 ### **Abstract Data Type**
 第二个关于Point的声明如下
@@ -173,7 +176,7 @@ class Point {
 public:
     Point( float x = 0.0, float y = 0.0, float z = 0.0 )
     : _x( x ), _y( y ), _z( z ) {}
-    // no copy constructor, copy operator
+    // no copy constructor, copy assignment operator
     // or destructor defined ...
     // ...
 private:
@@ -190,9 +193,10 @@ The definition of a global instance
 ```c++
 Point global; // apply Point::Point( 0.0, 0.0, 0.0 );
 ```
-now has the default constructor applied to it. Since global is defined at global scope, its initialization needs to be deferred until program startup (see Section 6.1 for a full discussion).
+编译器会在程序开始时，给global调用默认构造函数初始化。
 
-如果class的初始化的值都是constant values, 显示初始化列表的使用更高效，如下
+
+如果class的初始化的值都是constant values, 显示初始化列表的使用更高效，如下，local1使用显示初始化列表初始化。而local2使用默认构造函数初始化。
 ```c++
 void mumble()
 {
@@ -207,11 +211,13 @@ void mumble()
 }
 ```
 local1的初始化比local2更高效， 因为初始化列表中的常量，在mumble函数栈被设置时，就被放置在mumble函数栈中，local1对应的空间中了。
+而local2使用默认构造函数初始化，默认构造函数被拓展成一条条需要执行的赋值语句
 
-There are three drawbacks of an explicit initialization list:
+
+显示初始化列表初始化也有缺点：
 * 只有在所有的class members都是public时，才能使用
 * 在初始化列表中只能放置常量表达式(those able to be evaluated at compile time)
-* Because it is not applied automatically by the compiler, the likelihood of failure to initialize an object is significantly heightened.
+
 
 The definition of the local Point object
 ```c++
@@ -220,7 +226,7 @@ The definition of the local Point object
     // ...
 }
 ```
-is now followed by the inline expansion of the default Point constructor:
+is now followed by the inline expansion of the Point defaul constructor:
 ```c++
 {
   // inline expansion of default constructor
@@ -233,14 +239,16 @@ The allocation of the Point object on the heap on line 6
 ```c++
 (6) Point *heap = new Point;
 ```
-now includes a conditional invocation of the default Point constructor
+now includes a conditional invocation of the Point  default  constructor
 ```c++
 // Pseudo C++ Code
 Point *heap = __new( sizeof( Point ));
 if ( heap != 0 )
     heap->Point::Point();
 ```
-which is then inline expanded. The assignment of the local object to the object pointed to by heap
+which is then inline expanded. 
+
+The assignment of the local object to the object pointed to by heap
 ```c++
 (7) *heap = local;
 ```
@@ -248,6 +256,7 @@ remains a simple bitwise copy, as does the return of the local object by value :
 ```c++
 (10) return local;
 ```
+
 The deletion of the object addressed by heap
 ```c++
 (9) delete heap;
@@ -257,20 +266,21 @@ does not result in a destructor call, since we did not explicitly provide an ins
 Conceptually, our Point class has an associated default copy constructor, copy assignment operator, and destructor. **These, however, are trivial and are not in practice actually generated by the compiler.**
 
 ### **Preparing for Inheritance**
-下面的第三个Point的声明，提供了面向对象的特性，其中有virtual函数，这个virtual机制主要时针对z data member的存取的
+下面的第三个Point的声明，提供了面向对象的特性，其中有virtual函数，这个virtual机制主要是针对z data member的存取的
 ```c++
 class Point {
 public:
   Point( float x = 0.0, float y = 0.0 ): _x( x ), _y( y ) {}
   // no destructor, copy constructor, or
-  // copy operator defined ...
+  // copy  assignment operator defined ...
   virtual float z();
   // ...
 protected:
     float _x, _y;
 };
 ```
-We again do not define a copy constructor, copy assignment operator, or destructor. All our members are stored by value and are therefore well behaved on a program level under the default semantics. (Some people would argue that the introduction of a virtual function should always be accompanied by the declaration of a virtual destructor. But doing that would buy us nothing in this case.) <font clolr=red>这里存疑哈，trivail desctructor是nonvirtual的，如果派生类确实需要在desctrctor中执行一些操作，而 `delete p`将调用 Point的trivial destructor，这是不对的</font>
+这里，我们依然没有定义 copy constructor, copy assignment operator, or destructor。 
+All our members are stored by value and are therefore well behaved on a program level under the default semantics. (Some people would argue that the introduction of a virtual function should always be accompanied by the declaration of a virtual destructor. But doing that would buy us nothing in this case.) <font clolr=red>这里存疑哈，trivail desctructor是nonvirtual的，如果派生类确实需要在desctrctor中执行一些操作，而 `delete p`将调用 Point的trivial destructor，这是不对的</font>
 
 首先virtual函数的引入，导致每个Point calss object中都会存储一个指向virtual table的指针。其次，编译器会拓展默认构造函数，拷贝构造函数，拷贝赋值运算符
 * 对默认构造函数的拓展，需要在其中加上初始化virtual table pointer的代码。 This code has to be added after the invocation of any base class constructors but before execution of any user-supplied code. For example, here is a possible expansion of our Point constructor:
@@ -286,7 +296,9 @@ Point::Point( Point *this,float x, float y ):_x(x), _y(y)
   return;
 }
 ```
-* 拷贝构造函数和拷贝赋值运算符都需要被显示合成的，他们现在不是trivial的了。(The implicit destructor remains trivial and so is not synthesized.)A bitwise operation might otherwise result in an invalid setting of the vptr if a Point object is initialized or assigned with a derived class object.
+* 拷贝构造函数和拷贝赋值运算符都需要被显示合成的，他们现在不是trivial的了。(The implicit destructor remains trivial and so is not synthesized，also it's none virtual)
+
+其合成的函数中，vptr的设置不能简单的拷贝，比如如果是用派生类初始化基类。 其他的成员可能是copy member by member,or chunk by chunk 
 ```c++
 // Pseudo C++ Code:
 // internal synthesis of copy constructor
@@ -299,7 +311,8 @@ Point::Point( Point *this, const Point &rhs )
 }
 ```
 
-The compiler, in an optimization, may copy contiguous chucks of one object into another rather than implement a strict memberwise assignment. The Standard requires implementations to defer the actual synthesis of these nontrivial members until an actual use is encountered.
+当然，这些函数的合成，都是需要的时候再合成。
+
 
 line 7的拷贝
 ```c++
@@ -307,7 +320,7 @@ line 7的拷贝
 ```
 is likely to trigger the actual synthesize of the copy assignment operator and an inline expansion of its invocation, substituting `heap` for the `this` pointer and `local` for the `rhs` argument.
 
-最后line 10， return of local by value, 因为编译器合成了拷贝构造函数，其转换如下
+最后line 10， return of local by value，其转换如下
 ```c++
 // Pseudo C++ code: transformation of foobar()
 // to support copy construction
@@ -324,7 +337,7 @@ __result.Point::Point( local );
 return;
 }
 ```
-如果应用了NRV优化，进一步将拷贝构造函数的调用优化掉
+如果可以应用NRV优化（前提是合成了拷贝构造函数，但是到目前为止并没有），进一步将拷贝构造函数的调用优化掉
 ```c++
 // Pseudo C++ code: transformation of foobar()
 // to support named return value optimization
@@ -335,6 +348,8 @@ __result.Point::Point( 0.0, 0.0 );
 return;
 }
 ```
+
+
 In general, if your design includes a number of functions requiring the definition and return of a local class object by value, such as arithmetic operations of the form
 ```c++
 T operator+( const T&, const T& )
@@ -443,7 +458,7 @@ Point3d::Point3d( Point3d *this, float x, float y, float z )
    this->Point::Point( x, y );
    this->__vptr__Point3d = __vtbl__Point3d;
    this->__vptr__Point3d__Point =__vtbl__Point3d__Point;
-   this->_z = rhs._z;
+   this->_z = z;
    return this;
 }
 ```
@@ -467,7 +482,7 @@ if ( __most_derived != false )
     this->Point::Point( x, y);
 this->__vptr__Point3d = __vtbl__Point3d;
 this->__vptr__Point3d__Point = __vtbl__Point3d__Point;
-this->_z = rhs._z;
+this->_z =z;
 return;
 }
 ```
@@ -519,7 +534,7 @@ pt->size();
 ```
 would return the size of the Point3d class.
 
-在假设继承体系的类中，每个类的构造函数中都有对size的调用，如下
+在上述继承体系的类中，每个类的构造函数中都有对size的调用，如下
 ```c++
 Point3d::Point3d( float x, float y, float z ) : _x( x ), _y( y ), _z( z )
 {
@@ -560,7 +575,7 @@ PVertex::PVertex( Pvertex* this, bool __most_derived, float x, float y, float z 
 if ( __most_derived != false )
     this->Point::Point( x, y );
 // unconditional invocation of immediate base
-this->Vertex3d::Vertex3d( x, y, z );
+this->Vertex3d::Vertex3d( false,x, y, z );
 // initialize associated vptrs
 this->__vptr__PVertex = __vtbl__PVertex;
 this->__vptr__Point__PVertex = __vtbl__Point__PVertex;
@@ -601,7 +616,7 @@ return ;
 3. 明确地拒绝把一个class object 赋值给另一个class object
 
 如果我们要实现第三点，那么可以将copy assignment operator声明为private,并且不提供其定义。
-把它设为private，我们就不再允许于任何地点（除了在member funcuons以及此class
+把它设为private，我们就不再允许于任何地点（除了在member functions以及此class
 的friends之中）进行賦值（assign）操作．不提供其函数定义，则一旦某个member
 function或friends企图调用赋值操作，程序在链接时就会失败
 
@@ -690,7 +705,7 @@ inline Vertex3d& Vertex3d::operator=( const Vertex3d &v )
   ...
 }
 ```
-这看上去是不对的，因为`this->Point3d::operator=( v );`和`this->Vertex::operator=( v );`中都调用了`this->Point::operator=( v );`,我们似乎应该将处理构造函数那样，给拷贝构造函数加上参数，只有most derived class中才会调用`this->Point::operator=( v );`,而中间的`Point3d::operator=`和`Vertex::operator=`不调用`Point::operator`; 但这种方法却不能被使用。因为不能给拷贝构造函数加额外参数。
+这看上去是不对的，因为`this->Point3d::operator=( v );`和`this->Vertex::operator=( v );`中都调用了`this->Point::operator=( v );`,我们似乎应该像处理构造函数那样，给拷贝构造函数加上参数，只有most derived class中才会调用`this->Point::operator=( v );`,而中间的`Point3d::operator=`和`Vertex::operator=`不调用`Point::operator=()`; 但这种方法却不能被使用。因为不能给拷贝构造函数加额外参数。
 
 Actually, the copy assignment operator is ill behaved under virtual inheritance and needs to be carefully
 designed and documented. In practice, many compilers don't even try to get the semantics right. They invoke each virtual base instance within each intermediate copy assignment operator, thus causing multiple instances of the virtual base class copy assignment operator to be invoked. Cfront does this as well as the Edison Design Group's front-end, Borland's 4.5 C++ compiler, and Symantec's latest C++ Compiler under Windows. My guess is your compiler does it as well. What does the Standard have to say about this?

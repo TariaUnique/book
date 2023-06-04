@@ -248,7 +248,9 @@ Point knots[ 10 ];
 ```
 如果Point既没有构造函数也没有析构函数，那么我们所需要做的和为内置类型数组一样分配足够存储10个连续的Point元素的内存空间。
 
-如果Point定义了默认构造函数，必须逐个应用于每个元素。通常情况下，这是通过一个或多个运行时库函数来完成的。在cfront中，我们使用了一个名为vec_new()的函数实例来支持创建和初始化类对象数组。更近期的一些实现中，在处理不含虚基类的类和含有虚基类的类时提供两个实例——一个通常被命名为vec_vnew() 。其签名通常如下，尽管在各种实现中存在变体：
+如果Point定义了默认构造函数，必须逐个应用于每个元素。通常情况下，这是通过一个或多个运行时库函数来完成的。在cfront中，我们使用了一个名为vec_new()的函数实例来支持创建和初始化类对象数组。更近期的一些实现中，在处理不含虚基类的类和含有虚基类的类时提供两个实例——一个通常被命名为vec_vnew() 。
+
+其签名通常如下，尽管在各种实现中存在变体：
 ```c++
 void* vec_new(
 void *array, // address of start of array
@@ -274,8 +276,7 @@ void (*destructor)( void*, char )
 )
 ```
 
-What if the programmer provides one or more explicit initial values for an array of class objects, such as the
-following:
+What if the programmer provides one or more explicit initial values for an array of class objects, such as the following:
 ```c++
 Point knots[ 10 ] = {
 Point(),
@@ -427,7 +428,7 @@ int *p_array = new int[ 5 ];
 ```
 vec_new() 实际上并没有被调用，因为它的主要功能是将默认构造函数应用于类对象数组中的每个元素。Rather, the operator new instance is invoked:
 ```c++
-int *p_array = (int*) __nw( 5 * sizeof( int ));
+int *p_array = (int*) __new( 5 * sizeof( int ));
 ```
 Similarly, if we write
 ```c++
@@ -510,10 +511,10 @@ PV __vec_new(PV ptr_array, int elem_count, int size, PV construct )
     return 0;
   }
   if (construct) {
-      register char* elem = (char*) ptr_array;
-      register char* lim = elem + array_sz;
+      char* elem = (char*) ptr_array;
+      char* lim = elem + array_sz;
       // PF is a typedef for a pointer to function
-      register PF fp = PF(construct);
+      PF fp = PF(construct);
       while (elem < lim) {
         // invoke constructor through fp
         // on `this' element addressed by elem
@@ -552,14 +553,14 @@ Point *ptr = new Point3d[ 10 ];
 // only Point::~Point invoked ...
 delete [] ptr;
 ```
-传递给vec_delete()的析构函数，是根据指针类型来的，也就是传递的是Point::~Point。这样，不仅调用的析构函数不对，而且，传递给vec_delete()的元素大小，也是根据指针指向的独享大小来的，也不对。 Oops. The whole operation fails miserably. Not only is the wrong constructor applied, but after the first element, it is applied to incorrect chunks of memory.
+传递给vec_delete()的析构函数，是根据指针类型来的，也就是传递的是Point::~Point。这样，不仅调用的析构函数不对，而且，传递给vec_delete()的元素大小，也是根据指针指向的对象大小来的，也不对。 Oops. The whole operation fails miserably. Not only is the wrong constructor applied, but after the first element, it is applied to incorrect chunks of memory.
 
 所以，直接使用派生类的指针来访问派生数组。
 ```c++
 Point3d *ptr = new Point3d[ 10 ];
 ```
 
-书中所写的另一种方法：
+书中所写的另一种方法，针对确实使用`Point *ptr = new Point3d[ 10 ];`Point指针存储返回的数组地址的情况
 ```c++
 for ( int ix = 0; ix < elem_count; ++ix )
 {
@@ -576,15 +577,15 @@ delete p;
 T operator+( const T&, const T& );
 ```
 假设有如下表达式
-```
+```c++
 a+b;
 ```
-a,b是class T, 该表达式的计算是否会产生临时对象保存结果，一般来说视表达式的上下文和编译器的优化等级而定，假设如下代码段
+a,b是class T, 该表达式的计算是否会产生栈外临时对象保存结果，一般来说视表达式的上下文和编译器的优化等级而定，假设如下代码段
 ```c++
 T a, b;
 T c = a + b;
 ```
-编译器可能会先对a+b的结果生成临时对象，然后将该对象通过拷贝构造初始化c，也就是说将返回结果先保存在临时对象中，再拷贝给c。这里临时对象和c都在栈外。
+编译器可能会先对a+b的结果生成栈外临时对象，然后将该对象通过拷贝构造初始化c
 
 更可能的实现是，直接将a+b的结果拷贝构造给c,没有栈外临时对象的创建。
 
@@ -611,17 +612,8 @@ T T::operator+( const T& );
 ```c++
 c = a + b;
 ```
-是会生成临时变量的。This results in the following general sequence:
-```c++
-// Pseudo C++ code
-// T temp = a + b;
-T temp; //栈外
-a.operator+( temp, b ); // 1
-// c = temp
-c.operator =( temp ); // 2
-temp.T::~T();
-```
-In the line marked //1 , the unconstructed temporary is passed to operator+(). This means that either the result of the expression is copy constructed into the temporary or the temporary is used in place of the NRV. In the latter case, the constructor that would have been applied to the named return value  is applied to the temporary.
+是会生成栈外临时变量的。
+
 
 最后，如果表达式没有target:
 ```c++
@@ -644,7 +636,7 @@ printf( "%s\n", s + t );
 ```
 results in a temporary being associated with the s + t subexpression.
 
-临时对象的释放时期时机很重要，比如，如果`printf( "%s\n", s + t );`中，s+t subexpression temporary 的释放时机如下所示
+临时对象的释放时机很重要，比如，如果`printf( "%s\n", s + t );`中，s+t subexpression temporary 的释放时机如下所示
 ```c++
 // Pseudo C++ code: pre-Standard legal transformation
 // temporary is destroyed too soon ...
@@ -665,7 +657,7 @@ What is a full-expression? Informally, it is the outermost containing expression
 (( objA > 1024 ) && ( objB > 1024 ))
 ? objA + objB : foo( objA, objB );
 ```
-这个表达式中，子表达式有4个，full expresssion是最外面的`:?`表达式。在最外面的`:?`被计算完成之前，其中的4个子表达式的计算所产生的临时变量，都是不能被释放的。
+这个表达式中，子表达式有5个，full expresssion是最外面的`:?`表达式。在最外面的`:?`被计算完成之前，其中的4个子表达式的计算所产生的临时变量，都是不能被释放的。
 
 这个规定，导致临时变量的释放，在条件表达式中的实现有点麻烦
 ```c++
@@ -687,8 +679,8 @@ private:
 };
 
 main() {
-x xx;
-x yy;
+X xx;
+X yy;
 if ( xx.foo() || yy.foo() );
 return 0;
 }
@@ -696,8 +688,8 @@ return 0;
 被转换成
 ```c++
 int main (void ){
-struct x __1xx ;
-struct x __1yy ;
+struct X __1xx ;
+struct X __1yy ;
 int __0_result;
 // name_mangled default constructor:
 // X::X( X *this )
@@ -705,8 +697,8 @@ __ct__1xFv ( & __1xx ) ;
 __ct__1xFv ( & __1yy ) ;
 {
 // generated temporaries ...
-struct x __0__Q1 ;
-struct x __0__Q2 ;
+struct X __0__Q1 ;
+struct X __0__Q2 ;
 int __0__Q3 ;
 /* each side becomes a comma expression of
 * the following sequence of steps:
@@ -786,4 +778,4 @@ String temp;
 temp.String::String( " " );
 const String &space = temp;
 ```
-Obviously, if the temporary were destroyed now, the reference would be slightly less than useless. So the rule is that a temporary bound to a reference persists for the lifetime of the reference initialized or until the end of the scope in which the temporary is created, whichever comes first.
+Obviously, if the temporary were destroyed now, the reference would be slightly less than useless. So the rule is that a temporary bound to a reference persists for the lifetime of the reference or until the end of the scope in which the temporary is created, whichever comes first.

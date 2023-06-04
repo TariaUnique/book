@@ -1,0 +1,1005 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Chapter 6. Runtime Semantics · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Chapter 7. On the Cusp of the Object Model.html" />
+    
+    
+    <link rel="prev" href="Chapter 5. Semantics of Construction, Destruction, and Copy.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../readme.html">
+            
+                <a href="../readme.html">
+            
+                    
+                    c&c++
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    inside the c++ object model
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="Chapter 1. Object Lessons.html">
+            
+                <a href="Chapter 1. Object Lessons.html">
+            
+                    
+                    chapter 1. object lessions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="Chapter 2. The Semantics of Constructors.html">
+            
+                <a href="Chapter 2. The Semantics of Constructors.html">
+            
+                    
+                    Chapter 2. The Semantics of Constructors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="Chapter 3. The Semantics of Data.html">
+            
+                <a href="Chapter 3. The Semantics of Data.html">
+            
+                    
+                    Chapter 3. The Semantics of Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.4" data-path="Chapter 4. The Semantics of Function.html">
+            
+                <a href="Chapter 4. The Semantics of Function.html">
+            
+                    
+                    Chapter 4. The Semantics of Function
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.5" data-path="Chapter 5. Semantics of Construction, Destruction, and Copy.html">
+            
+                <a href="Chapter 5. Semantics of Construction, Destruction, and Copy.html">
+            
+                    
+                    Chapter 5. Semantics of Construction, Destruction, and Copy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.1.6" data-path="Chapter 6. Runtime Semantics.html">
+            
+                <a href="Chapter 6. Runtime Semantics.html">
+            
+                    
+                    Chapter 6. Runtime Semantics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.7" data-path="Chapter 7. On the Cusp of the Object Model.html">
+            
+                <a href="Chapter 7. On the Cusp of the Object Model.html">
+            
+                    
+                    Chapter 7. On the Cusp of the Object Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >Chapter 6. Runtime Semantics</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x6709;&#x5982;&#x4E0B;&#x7B80;&#x5355;&#x7684;&#x8868;&#x8FBE;&#x5F0F;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">if</span> ( yy == xx.getValue() ) ...
+</code></pre>
+<p>where xx and yy are defined as</p>
+<pre><code class="lang-c++">X xx;
+Y yy;
+</code></pre>
+<p>class Y is defined as</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Y {
+<span class="hljs-keyword">public</span>:
+    Y();
+    ~Y();
+    <span class="hljs-keyword">operator</span>==( <span class="hljs-keyword">const</span> Y&amp; ) <span class="hljs-keyword">const</span>;
+    <span class="hljs-comment">// ...</span>
+};
+</code></pre>
+<p>and class X is defined as</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> X {
+<span class="hljs-keyword">public</span>:
+    X();
+    ~X();
+    <span class="hljs-function"><span class="hljs-keyword">operator</span> <span class="hljs-title">Y</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+    <span class="hljs-function">X <span class="hljs-title">getValue</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-comment">// ...</span>
+};
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#x5982;&#x4F55;&#x88AB;&#x5904;&#x7406;&#xFF1F;
+&#x7B2C;&#x4E00;&#x6B65;&#xFF0C;==&#x8FD0;&#x7B97;&#x7B26;&#x8C03;&#x7528;&#x7684;&#x662F;<code>Y::operator==()</code>,&#x8F6C;&#x6362;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// resolution of intended operator</span>
+<span class="hljs-keyword">if</span> ( yy.<span class="hljs-keyword">operator</span>==( xx.getValue() ))
+</code></pre>
+<p>getValue()&#x8FD4;&#x56DE;&#x7684;&#x662F;type X,&#x800C;Y::operator==()&#x9700;&#x8981;&#x7684;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x662F;type Y,&#x56E0;&#x6B64;&#xFF0C;&#x9700;&#x8981;&#x8C03;&#x7528;X::operator Y()&#x8F6C;&#x6362;&#x64CD;&#x4F5C;&#x7B26;&#xFF0C;&#x7B2C;&#x4E8C;&#x6B65;&#x7684;&#x8F6C;&#x6362;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++">// conversion of getValue()&apos;s return value
+if ( yy.operator==( xx.getValue().operator Y() ))
+</code></pre>
+<p>&#x5230;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#xFF0C;&#x90FD;&#x662F;&#x7F16;&#x8BD1;&#x5668;&#x76F4;&#x63A5;&#x5BF9;&#x6211;&#x4EEC;&#x4EE3;&#x7801;&#x7684;&#x62D3;&#x5C55;&#x3002;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5199;&#x6210;&#x4E0A;&#x8FF0;&#x7684;&#x683C;&#x5F0F;&#xFF0C;&#x4F46;&#x8FD9;&#x4E2A;&#x662F;&#x4E0D;&#x63A8;&#x8350;&#x7684;&#x3002;</p>
+<p>Although the program text is semantically correct, it is not yet instructionally correct. Next we must generate temporaries to hold the return values of our function calls:</p>
+<ol>
+<li>Generate a temporary of class X to hold the return value of getValue() :<pre><code class="lang-c++">X temp1 = xx.getValue();
+</code></pre>
+</li>
+<li>Generate a temporary of class Y to hold the return value of operator Y() :<pre><code class="lang-c++">Y temp2 = temp1.<span class="hljs-function"><span class="hljs-keyword">operator</span> <span class="hljs-title">Y</span><span class="hljs-params">()</span></span>;
+</code></pre>
+</li>
+<li>Generate a temporary of type int to hold the return value of the equality operator:<pre><code class="lang-c++"><span class="hljs-keyword">int</span> temp3 = yy.<span class="hljs-keyword">operator</span>==( temp2 );
+</code></pre>
+</li>
+<li>Finally, the language requires that we apply the appropriate destructor to each class object temporary. </li>
+</ol>
+<p>&#x7EFC;&#x4E0A;&#xFF0C;&#x6700;&#x7EC8;&#x8F6C;&#x6362;&#x6210;&#x7684;&#x4EE3;&#x7801;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ code</span>
+<span class="hljs-comment">// transformation of conditional expression:</span>
+<span class="hljs-comment">// if ( yy == xx.getValue() ) ...</span>
+{
+X temp1 = xx.getValue();
+Y temp2 = temp1.<span class="hljs-function"><span class="hljs-keyword">operator</span> <span class="hljs-title">Y</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">int</span> temp3 = yy.<span class="hljs-keyword">operator</span>==( temp2 );
+<span class="hljs-keyword">if</span> ( temp3 ) ...
+temp2.Y::~Y();
+temp1.X::~X();
+}
+</code></pre>
+<h3 id="object-construction-and-destruction"><strong>Object Construction and Destruction</strong></h3>
+<p>&#x901A;&#x5E38;&#xFF0C;&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x6790;&#x6784;&#x51FD;&#x6570;&#x7684;&#x63D2;&#x5165;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+{
+Point point;
+<span class="hljs-comment">// point.Point::Point() generally inserted here</span>
+...
+<span class="hljs-comment">// point.Point::~Point() generally inserted here</span>
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x4EE3;&#x7801;&#x5757;{}&#x6216;&#x51FD;&#x6570;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;&#x4EE5;&#x4E0A;&#x7684;&#x79BB;&#x5F00;&#x70B9;&#xFF0C;&#x60C5;&#x51B5;&#x4F1A;&#x7A0D;&#x5FAE;&#x6DF7;&#x4E71;&#x4E00;&#x4E9B;&#xFF0C;Destructor&#x5FC5;&#x987B;&#x88AB;&#x653E;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;&#x79BB;&#x5F00;&#x70B9;&#x4E4B;&#x524D;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-c++">{
+   Point point;
+   <span class="hljs-comment">// constructor goes here ...</span>
+   <span class="hljs-keyword">switch</span>( <span class="hljs-keyword">int</span>( point.x() )) {
+      <span class="hljs-keyword">case</span> <span class="hljs-number">-1</span>:
+         <span class="hljs-comment">// mumble;</span>
+         <span class="hljs-comment">// destructor goes here</span>
+         <span class="hljs-keyword">return</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+         <span class="hljs-comment">// mumble;</span>
+         <span class="hljs-comment">// destructor goes here</span>
+         <span class="hljs-keyword">return</span>;
+      <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+         <span class="hljs-comment">// mumble;</span>
+         <span class="hljs-comment">// destructor goes here</span>
+         <span class="hljs-keyword">return</span>;
+      <span class="hljs-keyword">default</span>:
+         <span class="hljs-comment">// mumble;</span>
+         <span class="hljs-comment">// destructor goes here</span>
+         <span class="hljs-keyword">return</span>;
+   }
+   <span class="hljs-comment">// destructor goes here</span>
+}
+</code></pre>
+<p>&#x540C;&#x6837;&#x7684;&#x9053;&#x7406;&#xFF0C;goto&#x6307;&#x4EE4;&#x4E5F;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x9700;&#x8981;&#x591A;&#x4E2A;destructor&#x8C03;&#x7528;&#x64CD;&#x4F5C;&#xFF0C;&#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x7684;
+&#x7A0B;&#x5E8F;&#x7247;&#x6BB5;&#xFF1A;</p>
+<pre><code class="lang-c++">{
+   <span class="hljs-keyword">if</span> ( cache )
+      <span class="hljs-comment">// check cache; if match, return 1</span>
+   Point xx;
+   <span class="hljs-comment">// constructor goes here</span>
+   <span class="hljs-keyword">while</span> ( cvs.iter( xx ))
+      <span class="hljs-keyword">if</span> ( xx == value )
+        <span class="hljs-keyword">goto</span> found;
+   <span class="hljs-comment">// destructor goes here</span>
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+   found:
+      <span class="hljs-comment">// cache item</span>
+      <span class="hljs-comment">// destructor goes here</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+}
+</code></pre>
+<h3 id="global-objects"><strong>Global Objects</strong></h3>
+<p>&#x5982;&#x4E0B;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-c++">Matrix identity;
+main()
+{
+   <span class="hljs-comment">// identity must be initialized by this point!</span>
+   Matrix m1 = identity;
+   ...
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>&#x5982;&#x679C;identity&#x6709;&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x6790;&#x6784;&#x51FD;&#x6570;&#x7684;&#x8BDD;&#xFF0C;the language guarantees that identity is constructed prior to the first user statement of main() and destructed following the last statement of main() .</p>
+<p>A global object such as identity with an associated constructor and destructor is said to require both static initialization and deallocation.</p>
+<p>C++&#x6240;&#x6709;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x90FD;&#x88AB;&#x653E;&#x5728;&#x6570;&#x636E;&#x6BB5;&#xFF0C;&#x8981;&#x4E48;&#x6709;&#x521D;&#x503C;&#xFF0C;&#x8981;&#x4E48;&#x662F;&#x96F6;&#x503C;&#x3002;</p>
+<p>Thus in this code fragment:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">int</span> v1 = <span class="hljs-number">1024</span>;
+<span class="hljs-keyword">int</span> v2;
+</code></pre>
+<p>&#x6570;&#x636E;&#x6BB5;&#x4E2D;&#xFF0C;v1&#x7684;&#x503C;&#x662F;1024&#xFF0C;v2&#x7684;&#x503C;&#x662F;0.&#xFF08;&#x6CE8;&#x610F;v2&#x5E76;&#x4E0D;&#x662F;&#x653E;&#x5728;bss&#x6BB5;&#xFF0C;c++&#x6240;&#x6709;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x90FD;&#x5728;&#x6570;&#x636E;&#x6BB5;&#xFF0C;&#x4E0D;&#x7BA1;&#x6709;&#x6CA1;&#x6709;&#x521D;&#x59CB;&#x503C;&#xFF09;</p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x5982;&#x679C;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x662F;&#x5BF9;&#x8C61;&#xFF0C;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5E76;&#x4E0D;&#x662F;const expresssion,&#x4E0D;&#x80FD;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x6C42;&#x503C;&#x3002;Although the class object can be placed within the data segment during compilation with its memory zeroed out, its constructor cannot be applied until program startup.</p>
+<p>&#x5728;&#x8FDB;&#x7A0B;startup&#x65F6;&#xFF0C;&#x7ED9;data segment&#x4E2D;&#x7684;object&#x8C03;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x521D;&#x59CB;&#x5316;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF0C;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;static initialization</p>
+<p>cfront &#x7F16;&#x8BD1;&#x5668;&#x5BF9;static initialization and deallocation&#x7684;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;</p>
+<ul>
+<li>&#x5728;&#x9700;&#x8981;&#x9759;&#x6001;&#x521D;&#x59CB;&#x5316;&#x7684;&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x5FC5;&#x8981;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;<strong>sti()&#x51FD;&#x6570;&#x3002;&#x4F8B;&#x5982;&#xFF0C;identity&#x4F1A;&#x5BFC;&#x81F4;&#x5728;&#x6587;&#x4EF6;matrix.c&#x4E2D;&#x751F;&#x6210;&#x4EE5;&#x4E0B;</strong>sti()&#x51FD;&#x6570;&#xFF1A;<pre><code class="lang-c++">__sti__matrix_c__identity() {
+<span class="hljs-comment">// Pseudo C++ Code</span>
+identity.Matrix::Matrix();
+}
+</code></pre>
+&#x5176;&#x4E2D;&#xFF0C;<strong>matrix_c &#x662F;&#x6587;&#x4EF6;&#x540D;&#x7684;&#x7F16;&#x7801;&#xFF0C;&#x800C; </strong>identity &#x5219;&#x4EE3;&#x8868;&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x975E;&#x9759;&#x6001;&#x5BF9;&#x8C61;&#x3002;&#x5C06;&#x8FD9;&#x4E24;&#x4E2A;&#x540D;&#x79F0;&#x9644;&#x52A0;&#x5230; __sti &#x4E0A;&#x53EF;&#x5728;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x4E2D;&#x63D0;&#x4F9B;&#x552F;&#x4E00;&#x6807;&#x8BC6;&#x7B26;&#x3002;</li>
+<li>&#x540C;&#x6837;&#x5730;&#xFF0C;&#x5728;&#x6BCF;&#x4E2A;&#x9700;&#x8981;&#x9759;&#x6001;&#x91CA;&#x653E;&#x7684;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x5FC5;&#x8981;&#x6790;&#x6784;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;<strong>std()&#x51FD;&#x6570;&#x3002;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;</strong>std()&#x51FD;&#x6570;&#x6765;&#x8C03;&#x7528;Matrix&#x6790;&#x6784;&#x51FD;&#x6570;&#x5E76;&#x91CA;&#x653E;identity&#x3002;</li>
+<li>_main()&#x51FD;&#x6570;&#x6765;&#x8C03;&#x7528;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x6240;&#x6709;<strong>sti()&#x51FD;&#x6570;&#xFF0C;exit()&#x51FD;&#x6570;&#x7C7B;&#x4F3C;&#x5730;&#x8C03;&#x7528;&#x6240;&#x6709;</strong>std()&#x51FD;&#x6570;&#x3002;</li>
+</ul>
+<p>cfront inserted a <code>_main()</code> call as the new first statement within main() . The <code>exit()</code> function rather than the C library <code>exit()</code> function was linked in by cfront&apos;s <code>CC</code> command&#x3001;</p>
+<p>&#x9700;&#x8981;&#x89E3;&#x51B3;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x662F;&#x5982;&#x4F55;&#x6536;&#x96C6;&#x6240;&#x6709;.o&#x6587;&#x4EF6;&#x4E2D;&#x7684;<strong>sti()&#x548C;</strong>std()&#x51FD;&#x6570;&#xFF0C;&#x770B;&#x4E0D;&#x61C2;&#xFF0C;&#x7565;</p>
+<p>&#x4EE5;&#x4E0A;&#x7684;cfront&#x7684;&#x6700;&#x521D;&#x5B9E;&#x73B0;&#x7248;&#x672C;&#x53EB;&#x505A;munch&#xFF0C;&#x540E;&#x6765;&#x65B0;&#x7684;&#x5B9E;&#x73B0;&#x53EB;&#x505A;patch&#xFF0C;&#x5177;&#x4F53;&#x7565;&#x3002;&#x8FD9;&#x4E24;&#x4E2A;&#x5B9E;&#x73B0;&#x7248;&#x672C;&#x90FD;&#x662F;&#x901A;&#x7528;&#x7684;&#x3002;</p>
+<p>&#x4E00;&#x65E6;&#x7279;&#x5B9A;&#x4E8E;&#x5E73;&#x53F0;&#x7684;C++&#x7F16;&#x8BD1;&#x5668;&#x5F00;&#x59CB;&#x51FA;&#x73B0;&#xFF0C;&#x901A;&#x8FC7;&#x6269;&#x5C55;link editor&#x548C;&#x76EE;&#x6807;&#x6587;&#x4EF6;&#x683C;&#x5F0F;&#x4EE5;&#x76F4;&#x63A5;&#x652F;&#x6301;&#x9759;&#x6001;&#x521D;&#x59CB;&#x5316;&#x548C;&#x91CA;&#x653E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x4F8B;&#x5982;&#xFF0C;the System V Executable and Linking Format (ELF) &#x88AB;&#x6269;&#x5C55;&#x4E3A;&#x63D0;&#x4F9B;.init&#x548C;.fini sections &#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x6709;&#x5173;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x9759;&#x6001;&#x521D;&#x59CB;&#x5316;&#x548C;&#x91CA;&#x653E;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x4FE1;&#x606F;&#x3002;</p>
+<p>Implementation-specific startup routines (usually named something like crt0.o ) complete the platform-specific support for static initialization and deallocation.</p>
+<h3 id="local-static-objects"><strong>Local Static Objects</strong></h3>
+<p>&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#x4E2D;&#x6709;static local object mat_identity</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">const</span> Matrix&amp; <span class="hljs-title">identity</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">static</span> Matrix mat_identity;
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-keyword">return</span> mat_identity;
+}
+</code></pre>
+<p>static local object&#x6709;&#x5982;&#x4E0B;guaranteed semantics </p>
+<ul>
+<li><p>mat_identity must have its constructor applied only once, although the function may be invoked multiple times.</p>
+</li>
+<li><p>mat_identity must have its destructor applied only once, although again the function may be invoked multiple times.</p>
+</li>
+</ul>
+<p>&#x4E00;&#x79CD;&#x5B9E;&#x73B0;&#x7B56;&#x7565;&#x662F;&#x5728;&#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x65F6;&#x65E0;&#x6761;&#x4EF6;&#x6784;&#x9020;&#x5BF9;&#x8C61;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x8FD9;&#x4F1A;&#x5BFC;&#x81F4;&#x6240;&#x6709;static local objects&#x5728;&#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x65F6;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x65E0;&#x8BBA;&#x5B83;&#x4EEC;&#x7684;&#x76F8;&#x5173;&#x51FD;&#x6570;&#x662F;&#x5426;&#x88AB;&#x4F7F;&#x7528;&#x3002;&#x76F8;&#x53CD;&#xFF0C;&#x66F4;&#x597D;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x4EC5;&#x5728;&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;identity()&#x65F6;&#x6784;&#x9020;mat_identity&#xFF08;&#x8FD9;&#x73B0;&#x5728;&#x662F;&#x6807;&#x51C6;C++&#x6240;&#x8981;&#x6C42;&#x7684;&#xFF09;&#x3002;&#x6211;&#x4EEC;&#x8BE5;&#x5982;&#x4F55;&#x505A;&#x5230;&#x8FD9;&#x4E00;&#x70B9;&#xFF1F;</p>
+<p>&#x5728;cfront&#x4E2D;&#xFF0C;&#x5F15;&#x5165;&#x4E86;&#x4E00;&#x4E2A;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x6765;&#x4FDD;&#x62A4;mat_identity&#x7684;&#x521D;&#x59CB;&#x5316;&#x3002;&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;identity()&#x65F6;&#xFF0C;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x8BA1;&#x7B97;&#x4E3A;false&#x3002;&#x7136;&#x540E;&#x8C03;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x5C06;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x8BBE;&#x7F6E;&#x4E3A;true&#x3002;&#x8FD9;&#x89E3;&#x51B3;&#x4E86;&#x6784;&#x9020;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x6790;&#x6784;&#x51FD;&#x6570;&#x9700;&#x8981;&#x6709;&#x6761;&#x4EF6;&#x5730;&#x5E94;&#x7528;&#x4E8E;mat_identity&#xFF0C;&#x4F46;&#x4EC5;&#x5F53;mat_identity&#x5DF2;&#x88AB;&#x6784;&#x5EFA;&#x65F6;&#x624D;&#x9700;&#x8981;&#x5E94;&#x7528;&#x3002;&#x786E;&#x5B9A;&#x5B83;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x88AB;&#x6784;&#x5EFA;&#x5F88;&#x7B80;&#x5355;&#xFF1A;&#x5982;&#x679C;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x4E3A;&#x771F;&#xFF0C;&#x5219;&#x5B83;&#x5DF2;&#x7ECF;&#x88AB;&#x6784;&#x5EFA;&#x4E86;&#x3002;</p>
+<p>static local object&#x7684;&#x6790;&#x6784;&#x5E94;&#x8BE5;&#x5728;&#x7A0B;&#x5E8F;&#x9000;&#x51FA;&#x65F6;&#xFF0C;&#x95EE;&#x9898;&#x5728;&#x4E8E;mat_identity was  local to the function&#xFF0C;&#x5982;&#x4F55;&#x5728;&#x51FD;&#x6570;&#x5916;&#x8BBF;&#x95EE;&#x5B83;&#xFF1F;cfront &#x91C7;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x83B7;&#x53D6;&#x5176;&#x5730;&#x5740;&#x3002; static local object&#x7684;&#x5730;&#x5740;&#x5728;&#x6570;&#x636E;&#x6BB5;&#x4E2D;&#x3002;</p>
+<p>cfront&#x8F93;&#x51FA;&#xFF08;&#x7A0D;&#x5FAE;&#x7F8E;&#x5316;&#x4E00;&#x4E0B;&#xFF09;&#xFF1A;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// generated temporary static object guard</span>
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">struct</span> Matrix *__0__F3 = <span class="hljs-number">0</span> ;
+<span class="hljs-comment">// the C analog to a reference is a pointer</span>
+<span class="hljs-comment">// identity()&apos;s name is mangled based on signature</span>
+<span class="hljs-function"><span class="hljs-keyword">struct</span> Matrix* <span class="hljs-title">identity__Fv</span> <span class="hljs-params">()</span>
+</span>{
+<span class="hljs-comment">// the __1 reflects the lexical level</span>
+<span class="hljs-comment">// this permitted support for code such as</span>
+<span class="hljs-comment">// int val;</span>
+<span class="hljs-comment">// int f() { int val;</span>
+<span class="hljs-comment">// return val + ::val; }</span>
+<span class="hljs-comment">// where the last line becomes</span>
+<span class="hljs-comment">// ....return __1val + val;</span>
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">struct</span> Matrix __1mat_identity ;
+<span class="hljs-comment">// if the guard is set, do nothing, else</span>
+<span class="hljs-comment">// (a) invoke the constructor: __ct__6MatrixFv</span>
+<span class="hljs-comment">// (b) set the guard to address the object</span>
+__0__F3
+? <span class="hljs-number">0</span>
+:(__ct__1MatrixFv ( &amp; __1mat_identity ),
+(__0__F3 = (&amp;__1mat_identity)));
+...
+}
+</code></pre>
+<p>Finally, the destructor needed to be conditionally invoked within the static deallocation function associated with the text program file, in this case stat_0.c:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">char</span> __std__stat_0_c_j ()
+{
+  __0__F3
+  ? __dt__6MatrixFv( __0__F3 , <span class="hljs-number">2</span>)
+  : <span class="hljs-number">0</span> ;
+  ...
+}
+</code></pre>
+<h3 id="arrays-of-objects"><strong>Arrays of Objects</strong></h3>
+<p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x6709;&#x5982;&#x4E0B;&#x7684;&#x6570;&#x7EC4;&#x5B9A;&#x4E49;</p>
+<pre><code class="lang-c++">Point knots[ <span class="hljs-number">10</span> ];
+</code></pre>
+<p>&#x5982;&#x679C;Point&#x65E2;&#x6CA1;&#x6709;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E5F;&#x6CA1;&#x6709;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x6240;&#x9700;&#x8981;&#x505A;&#x7684;&#x548C;&#x4E3A;&#x5185;&#x7F6E;&#x7C7B;&#x578B;&#x6570;&#x7EC4;&#x4E00;&#x6837;&#x5206;&#x914D;&#x8DB3;&#x591F;&#x5B58;&#x50A8;10&#x4E2A;&#x8FDE;&#x7EED;&#x7684;Point&#x5143;&#x7D20;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x3002;</p>
+<p>&#x5982;&#x679C;Point&#x5B9A;&#x4E49;&#x4E86;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5FC5;&#x987B;&#x9010;&#x4E2A;&#x5E94;&#x7528;&#x4E8E;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x3002;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FD9;&#x662F;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x8FD0;&#x884C;&#x65F6;&#x5E93;&#x51FD;&#x6570;&#x6765;&#x5B8C;&#x6210;&#x7684;&#x3002;&#x5728;cfront&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;vec_new()&#x7684;&#x51FD;&#x6570;&#x5B9E;&#x4F8B;&#x6765;&#x652F;&#x6301;&#x521B;&#x5EFA;&#x548C;&#x521D;&#x59CB;&#x5316;&#x7C7B;&#x5BF9;&#x8C61;&#x6570;&#x7EC4;&#x3002;&#x66F4;&#x8FD1;&#x671F;&#x7684;&#x4E00;&#x4E9B;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x5728;&#x5904;&#x7406;&#x4E0D;&#x542B;&#x865A;&#x57FA;&#x7C7B;&#x7684;&#x7C7B;&#x548C;&#x542B;&#x6709;&#x865A;&#x57FA;&#x7C7B;&#x7684;&#x7C7B;&#x65F6;&#x63D0;&#x4F9B;&#x4E24;&#x4E2A;&#x5B9E;&#x4F8B;&#x2014;&#x2014;&#x4E00;&#x4E2A;&#x901A;&#x5E38;&#x88AB;&#x547D;&#x540D;&#x4E3A;vec_vnew() &#x3002;</p>
+<p>&#x5176;&#x7B7E;&#x540D;&#x901A;&#x5E38;&#x5982;&#x4E0B;&#xFF0C;&#x5C3D;&#x7BA1;&#x5728;&#x5404;&#x79CD;&#x5B9E;&#x73B0;&#x4E2D;&#x5B58;&#x5728;&#x53D8;&#x4F53;&#xFF1A;</p>
+<pre><code class="lang-c++">void* vec_new(
+void *array, // address of start of array
+size_t elem_size, // size of each class object
+int elem_count, // number of elements in array
+void (*constructor)( void* ),
+void (*destructor)( void*, char )
+)
+</code></pre>
+<p>&#x5176;&#x4E2D;&#xFF0C;constructor&#x548C;destructor&#x5206;&#x522B;&#x662F;&#x6307;&#x5411;&#x7C7B;&#x7684;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x6790;&#x6784;&#x51FD;&#x6570;&#x7684;&#x6307;&#x9488;&#x3002;array&#x5B58;&#x50A8;&#x6570;&#x7EC4;&#x7684;&#x5730;&#x5740;&#x6216;&#x8005;&#x4E3A;0&#x3002;&#x5982;&#x679C;&#x4E3A;0&#xFF0C;&#x5219;&#x8868;&#x793A;&#x8BE5;&#x6570;&#x7EC4;&#x901A;&#x8FC7;&#x5E94;&#x7528; operator new &#x5728;&#x5806;&#x4E0A;&#x8FDB;&#x884C;&#x52A8;&#x6001;&#x5206;&#x914D;&#x3002;elem_size&#x53C2;&#x6570;&#x8868;&#x793A;&#x6570;&#x7EC4;&#x4E2D;&#x5143;&#x7D20;&#x7684;&#x6570;&#x91CF;&#x3002;&#xFF08;&#x5728;&#x7B2C;6.2&#x8282;&#x4E2D;&#xFF0C;&#x6211;&#x5C06;&#x8BA8;&#x8BBA;new&#x548C;delete&#x8FD0;&#x7B97;&#x7B26;&#x3002;&#xFF09;&#x5728;vec_new()&#x51FD;&#x6570;&#x5185;&#x90E8;&#xFF0C;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F9D;&#x6B21;&#x5E94;&#x7528;&#x4E8E;elem_count&#x4E2A;&#x5143;&#x7D20;&#x3002;&#x6790;&#x6784;&#x51FD;&#x6570;&#x5BF9;&#x4E8E;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x7684;&#x652F;&#x6301;&#x662F;&#x5FC5;&#x8981;&#x7684;(it must be applied in the event the constructor being applied throws an exception)&#x3002;Here is a likely compiler invocation of vec_new() for our array of ten Point elements:</p>
+<pre><code class="lang-c++">Point knots[ <span class="hljs-number">10</span> ];
+vec_new( &amp;knots, <span class="hljs-keyword">sizeof</span>( Point ), <span class="hljs-number">10</span>, &amp;Point::Point, <span class="hljs-number">0</span> );
+</code></pre>
+<p>&#x5982;&#x679C;Point&#x4E5F;&#x5B9A;&#x4E49;&#x4E86;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x5728;knots&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x7ED3;&#x675F;&#x65F6;&#x9700;&#x8981;&#x5C06;&#x5176;&#x5E94;&#x7528;&#x4E8E;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x3002;&#x6BEB;&#x4E0D;&#x5947;&#x602A;&#xFF0C;&#x8FD9;&#x662F;&#x901A;&#x8FC7;&#x7C7B;&#x4F3C;&#x7684;vec_delete()&#xFF08;&#x6216;&#x5BF9;&#x4E8E;&#x5177;&#x6709;&#x865A;&#x57FA;&#x7C7B;&#x7684;&#x7C7B;&#x800C;&#x8A00;&#x662F;vec_vdelete()&#xFF09;&#x8FD0;&#x884C;&#x65F6;&#x5E93;&#x51FD;&#x6570;&#x6765;&#x5B9E;&#x73B0;&#x7684;&#x3002;&#x5B83;&#x901A;&#x5E38;&#x5177;&#x6709;&#x4EE5;&#x4E0B;&#x7B7E;&#x540D;&#xFF1A;</p>
+<pre><code class="lang-c++">void*
+vec_delete(
+void *array, // address of start of array
+size_t elem_size, // size of each class object
+int elem_count, // number of elements in array
+void (*destructor)( void*, char )
+)
+</code></pre>
+<p>What if the programmer provides one or more explicit initial values for an array of class objects, such as the following:</p>
+<pre><code class="lang-c++">Point knots[ <span class="hljs-number">10</span> ] = {
+Point(),
+Point( <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.5</span> ),
+<span class="hljs-number">-1.0</span>
+};
+</code></pre>
+<p>For those elements explicitly provided with an initial value, the use of vec_new() is unnecessary. For the remaining uninitialized elements, vec_new() is applied the same as for an array of class elements without an explicit initialization list. The previous definition is likely to be translated as follows:</p>
+<pre><code class="lang-c++">Point knots[ <span class="hljs-number">10</span> ];
+<span class="hljs-comment">// Pseudo C++ Code</span>
+<span class="hljs-comment">// initialize the first 3 with explicit invocations</span>
+Point::Point( &amp;knots[<span class="hljs-number">0</span>]);
+Point::Point( &amp;knots[<span class="hljs-number">1</span>], <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.5</span> );
+Point::Point( &amp;knots[<span class="hljs-number">2</span>], <span class="hljs-number">-1.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// initialize last 7 with vec_new ...</span>
+vec_new( &amp;knots+<span class="hljs-number">3</span>, <span class="hljs-keyword">sizeof</span>( Point ), <span class="hljs-number">7</span>, &amp;Point::Point, <span class="hljs-number">0</span> );
+</code></pre>
+<h3 id="default-constructors-and-arrays"><strong>Default Constructors and Arrays</strong></h3>
+<p>&#x7A0B;&#x5E8F;&#x5458;&#x4E0D;&#x5141;&#x8BB8;&#x83B7;&#x53D6;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x5730;&#x5740;&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x6B63;&#x662F;&#x7F16;&#x8BD1;&#x5668;&#x5728;&#x652F;&#x6301;vec_new()&#x65F6;&#x6240;&#x505A;&#x7684;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x901A;&#x8FC7;&#x6307;&#x9488;&#x8C03;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6709;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#x5982;&#x4F55;&#x83B7;&#x77E5;&#xFF1F;</p>
+<p>&#x5728;cfront 2.0&#x7248;&#x672C;&#x4E4B;&#x524D;&#xFF0C;&#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x7C7B;&#x5BF9;&#x8C61;&#x7684;&#x6570;&#x7EC4;&#x610F;&#x5473;&#x7740;&#x8BE5;&#x7C7B;&#x5FC5;&#x987B;&#x6CA1;&#x6709;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6216;&#x8005;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x4E0D;&#x5E26;&#x53C2;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;&#x4E0D;&#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x5E26;&#x6709;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x5728;cfront2.0&#x4E4B;&#x540E;&#xFF0C;&#x8FD9;&#x4E2A;&#x4E0D;&#x5408;&#x7406;&#x7684;&#x9650;&#x5236;&#x88AB;&#x4FEE;&#x6539;&#x4E86;&#x3002;</p>
+<p>cfront&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x4E0D;&#x5E26;&#x53C2;&#x6570;&#x7684;an internal stub constructor &#x3002;&#x5728;&#x51FD;&#x6570;&#x4F53;&#x5185;&#xFF0C;&#x8C03;&#x7528;&#x7528;&#x6237;&#x63D0;&#x4F9B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x5C06;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#x663E;&#x5F0F;&#x5730;&#x6307;&#x5B9A;&#x3002; Of course, the stub instance is generated and used only if an array of class objects is actually created.</p>
+<h3 id="operators-new-and-delete"><strong>Operators new and delete</strong></h3>
+<pre><code class="lang-c++"><span class="hljs-keyword">int</span> *pi = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>( <span class="hljs-number">5</span> );
+</code></pre>
+<p>it is actually accomplished as two discrete steps:</p>
+<ul>
+<li>The allocation of the requested memory through invocation of the appropriate operator new instance, passing it the size of the object:<pre><code class="lang-c++"><span class="hljs-comment">// invoke library instance of operator new</span>
+<span class="hljs-keyword">int</span> *pi = __new ( <span class="hljs-keyword">sizeof</span>( <span class="hljs-keyword">int</span> ));
+</code></pre>
+</li>
+<li>The initialization of the allocated object:<pre><code class="lang-c++">*pi = <span class="hljs-number">5</span>;
+</code></pre>
+</li>
+</ul>
+<p>Further, the initialization is performed only if the allocation of the object by operator new succeeds:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// discrete steps of operator new</span>
+<span class="hljs-comment">// given: int *pi = new int( 5 );</span>
+<span class="hljs-comment">// rewrite declaration</span>
+<span class="hljs-keyword">int</span> *pi;
+<span class="hljs-keyword">if</span> ( pi = __new( <span class="hljs-keyword">sizeof</span>( <span class="hljs-keyword">int</span> )))
+    *pi = <span class="hljs-number">5</span>;
+</code></pre>
+<p>Operator delete is handled similarly. When the programmer writes</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">delete</span> pi;
+</code></pre>
+<p>the language requires that operator delete not be applied if pi should be set to 0. Thus the compiler must construct a guard around the call:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">if</span> ( pi != <span class="hljs-number">0</span> )
+    __delete( pi );
+</code></pre>
+<p>Note that pi is not automatically reset to 0 and a subsequent dereference, such as</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">if</span> ( pi &amp;&amp; *pi == <span class="hljs-number">5</span> ) ...
+</code></pre>
+<p>may or may not evaluate as true. This is because an actual alteration or reuse of the storage that pi addresses may or may not have occurred.</p>
+<p>The allocation of a class object with an associated constructor is handled similarly. For example,</p>
+<pre><code class="lang-c++">Point3d *origin = <span class="hljs-keyword">new</span> Point3d;
+</code></pre>
+<p>is transformed into</p>
+<pre><code class="lang-c++">Point3d *origin;
+<span class="hljs-comment">//Pseudo C++ code</span>
+<span class="hljs-keyword">if</span> ( origin = __new( <span class="hljs-keyword">sizeof</span>( Point3d )))
+    origin = Point3d::Point3d( origin );
+</code></pre>
+<p>If exception handling is implemented, the transformation becomes somewhat more complicated:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo 3.C++ code</span>
+<span class="hljs-keyword">if</span> ( origin = __new( <span class="hljs-keyword">sizeof</span>( Point3d ))) {
+  <span class="hljs-keyword">try</span> {
+      origin = Point3d::Point3d( origin );
+  }
+  <span class="hljs-keyword">catch</span>( ... ) {
+      <span class="hljs-comment">// invoke delete lib function to</span>
+      <span class="hljs-comment">// free memory allocated by new ...</span>
+      __delete( origin );
+      <span class="hljs-comment">// propagate original exception upward</span>
+      <span class="hljs-keyword">throw</span>;
+  }
+}
+</code></pre>
+<p>The application of the destructor is similar. The expression</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">delete</span> origin;
+</code></pre>
+<p>becomes</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">if</span> ( origin != <span class="hljs-number">0</span> ) {
+  <span class="hljs-comment">// Pseudo C++ code</span>
+  Point3d::~Point3d( origin );
+  __delete( origin );
+}
+</code></pre>
+<p>Under exception handling, the destructor would be placed around a try block. The exception handler would invoke the delete operator and then rethrow the exception.</p>
+<p>The general library implementation of operator new is relatively straightforward(Note: The following version does not account for exception handling.)</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span>* <span class="hljs-keyword">operator</span> <span class="hljs-title">new</span><span class="hljs-params">( size_t size )</span>
+</span>{
+  <span class="hljs-keyword">if</span> ( size == <span class="hljs-number">0</span> )
+    size = <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">void</span> *last_alloc;
+  <span class="hljs-keyword">while</span> ( !( last_alloc = <span class="hljs-built_in">malloc</span>( size )))
+  {
+    <span class="hljs-keyword">if</span> ( _new_handler )
+        ( *_new_handler )();
+    <span class="hljs-keyword">else</span> 
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+  <span class="hljs-keyword">return</span> last_alloc;
+}
+</code></pre>
+<p>Although it is legal to write</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">new</span> T[ <span class="hljs-number">0</span> ];
+</code></pre>
+<p>&#x4F46;&#x901A;&#x8FC7;&#x4E0A;&#x8FF0;&#x7684;operator new&#x7684;&#x5B9E;&#x73B0;&#x53EF;&#x89C1;&#xFF0C;&#x5373;&#x4F7F;&#x6570;&#x7EC4;&#x5927;&#x5C0F;&#x662F;0&#xFF0C; operator new&#x90FD;&#x4F1A;&#x81F3;&#x5C11;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6307;&#x5411;&#x9ED8;&#x8BA4; 1 &#x5B57;&#x8282;&#x5185;&#x5B58;&#x5757;&#x7684;&#x6307;&#x9488;</p>
+<p>&#x4E0A;&#x8FF0;&#x7684;operator new&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;_new_handler()&#x662F;&#x9700;&#x8981;&#x7528;&#x6237;&#x63D0;&#x4F9B;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x7528;&#x6237;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#xFF0C;&#x5219;&#x4E3A;null.</p>
+<p>&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;operator new &#x4E00;&#x76F4;&#x662F;&#x901A;&#x8FC7;&#x6807;&#x51C6;&#x7684; C malloc() &#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x540C;&#x6837;&#x5730;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A; operator delete &#x4E5F;&#x4E00;&#x76F4;&#x662F;&#x901A;&#x8FC7;&#x6807;&#x51C6;&#x7684; C free() &#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> <span class="hljs-keyword">operator</span> <span class="hljs-title">delete</span><span class="hljs-params">( <span class="hljs-keyword">void</span> *ptr )</span>
+</span>{
+<span class="hljs-keyword">if</span> ( ptr )
+    <span class="hljs-built_in">free</span>( (<span class="hljs-keyword">char</span>*) ptr );
+}
+</code></pre>
+<h3 id="the-semantics-of-new-arrays"><strong>The Semantics of new Arrays</strong></h3>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x5199;&#x5982;&#x4E0B;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">int</span> *p_array = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[ <span class="hljs-number">5</span> ];
+</code></pre>
+<p>vec_new() &#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x6CA1;&#x6709;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x7684;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#x662F;&#x5C06;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5E94;&#x7528;&#x4E8E;&#x7C7B;&#x5BF9;&#x8C61;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x3002;Rather, the operator new instance is invoked:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">int</span> *p_array = (<span class="hljs-keyword">int</span>*) __new( <span class="hljs-number">5</span> * <span class="hljs-keyword">sizeof</span>( <span class="hljs-keyword">int</span> ));
+</code></pre>
+<p>Similarly, if we write</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// struct simple_aggr { float f1, f2; };</span>
+simple_aggr *p_aggr = <span class="hljs-keyword">new</span> simple_aggr[ <span class="hljs-number">5</span> ];
+</code></pre>
+<p>&#x540C;&#x4E0A;&#x4E00;&#x6837;&#xFF0C;vec_new() &#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x6CA1;&#x6709;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x56E0;&#x4E3A; simple_aggr &#x6CA1;&#x6709;&#x5B9A;&#x4E49;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6216;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x6570;&#x7EC4;&#x7684;&#x5206;&#x914D;&#x548C;&#x5220;&#x9664;&#x53EA;&#x6D89;&#x53CA;&#x5B9E;&#x9645;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#x7684;&#x83B7;&#x53D6;&#x548C;&#x91CA;&#x653E;&#x3002;</p>
+<p>If a class defines a default constructor, however, some version of vec_new() is invoked to allocate and construct the array of class objects. For example, the expression</p>
+<pre><code class="lang-c++">Point3d *p_array = <span class="hljs-keyword">new</span> Point3d[ <span class="hljs-number">10</span> ];
+</code></pre>
+<p>is generally transformed into</p>
+<pre><code class="lang-c++">Point3d *p_array;
+p_array = vec_new( <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>( Point3d ), <span class="hljs-number">10</span>, &amp;Point3d::Point3d,&amp;Point3d::~Point3d );
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x4F20;&#x9012;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x5728;&#x6784;&#x9020;&#x8FC7;&#x7A0B;&#x4E2D;&#x5982;&#x679C;&#x51FA;&#x73B0;&#x5F02;&#x5E38;&#xFF0C;&#x5219;&#x5DF2;&#x7ECF;&#x6784;&#x9020;&#x5B8C;&#x6210;&#x7684;&#x5BF9;&#x8C61;&#x9700;&#x8981;&#x88AB;&#x91CA;&#x653E;&#x3002;</p>
+<p>&#x5728;2.0&#x7248;&#x672C;&#x4E4B;&#x524D;&#xFF0C;&#x7A0B;&#x5E8F;&#x5458;&#x9700;&#x8981;&#x8D1F;&#x8D23;&#x63D0;&#x4F9B;&#x5E94;&#x7528;operator delete&#x5220;&#x9664;&#x7684;&#x6570;&#x7EC4;&#x7684;&#x5B9E;&#x9645;&#x5927;&#x5C0F;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x4E4B;&#x524D;&#x7684;&#x5206;&#x914D;&#xFF0C;&#x5176;&#x91CA;&#x653E;&#x5E94;&#x8BE5;&#x5199;&#x6210;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">delete</span> [<span class="hljs-number">10</span>] p_array;
+</code></pre>
+<p>&#x5728;2.1&#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x8BED;&#x8A00;&#x5DF2;&#x7ECF;&#x4FEE;&#x6539;&#x3002;&#x7528;&#x6237;&#x4E0D;&#x518D;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x8981;&#x5220;&#x9664;&#x7684;&#x6570;&#x7EC4;&#x5143;&#x7D20;&#x6570;&#x76EE;&#x3002;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x53EF;&#x4EE5;&#x5199;&#x6210;&#xFF1A;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">delete</span> [] p_array;
+</code></pre>
+<p>cfront&#x5B9E;&#x73B0;&#x4E86; the storage and then the retrieval of the element count associated with the pointer.</p>
+<p>&#x5728;delete&#x65F6;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4EC5;&#x5728;&#x65B9;&#x62EC;&#x53F7;&#x5B58;&#x5728;&#x65F6;&#x624D;&#x641C;&#x7D22;&#x7EF4;&#x5EA6;&#x5927;&#x5C0F;&#x3002;&#x5426;&#x5219;&#xFF0C;&#x5B83;&#x4F1A;&#x5047;&#x5B9A;&#x6B63;&#x5728;&#x5220;&#x9664;&#x5355;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;&#x5982;&#x679C;&#x7A0B;&#x5E8F;&#x5458;&#x672A;&#x63D0;&#x4F9B;&#x5FC5;&#x8981;&#x7684;&#x65B9;&#x62EC;&#x53F7;&#xFF0C;&#x5219;&#x4F1A;&#x51FA;&#x73B0;&#x9519;&#x8BEF;&#xFF0C;&#x53EA;&#x6709;&#x6570;&#x7EC4;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x88AB;&#x6790;&#x6784;&#xFF0C;&#x5176;&#x4F59;&#x7684;&#x5143;&#x7D20;&#x672A;&#x88AB;&#x6790;&#x6784;&#xFF0C;&#x5C3D;&#x7BA1;&#x5B83;&#x4EEC;&#x5173;&#x8054;&#x7684;&#x5185;&#x5B58;&#x5DF2;&#x7ECF;&#x88AB;&#x56DE;&#x6536;&#x3002;</p>
+<p>The less error-prone strategy of checking all delete operations for a possible array entry was rejected as being too costly.</p>
+<p>the storage and then the retrieval of the element count associated with the pointer &#x662F;&#x600E;&#x4E48;&#x5B9E;&#x73B0;&#x7684;&#x5462;&#xFF1F;</p>
+<p>&#x4E00;&#x4E2A;&#x663E;&#x800C;&#x6613;&#x89C1;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#xFF0C;&#x4E3A;vec_new()&#x64CD;&#x4F5C;&#x7B26;&#x8FD4;&#x56DE;&#x7684;&#x6BCF;&#x4E2A;&#x5185;&#x5B58;&#x5757;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x989D;&#x5916;&#x7684;&#x5B57;&#xFF0C;&#x5E76;&#x5C06;element count&#x5B58;&#x50A8;&#x5728;&#x90A3;&#x4E2A;&#x5B57;&#x4E2D;&#xFF08;&#x901A;&#x5E38;&#xFF0C;&#x85CF;&#x8D77;&#x6765;&#x7684;&#x503C;&#x88AB;&#x79F0;&#x4E3A;cookie&#xFF09;&#x3002;&#x7136;&#x800C;&#xFF0C;Jonathan&#x548C;Sun&#x5B9E;&#x73B0;&#x9009;&#x62E9;keep an associative array of pointer values and the array size.</p>
+<p>cookie strategy&#x7684;&#x95EE;&#x9898;&#x5728;&#x4E8E;&#xFF0C;if a bad pointer value should get passed to delete_vec()&#xFF0C;the cookie fetched would of course be invalid. An invalid element count and bad beginning address would result in the destructor&apos;s being applied on an arbitrary memory arena arbitrary number of times.Under the associative array strategy, however, the likely result of a bad address&apos;s being passed is simply the failure to fetch an element count</p>
+<p>&#x6211;&#x4EEC;&#x5927;&#x6982;&#x770B;&#x4E0B;&#x5173;&#x8054;&#x6570;&#x7EC4;&#x7684;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<p>Within the original implementation, two primary functions were added to support the storage and retrieval of the element count </p>
+<pre><code class="lang-c++"><span class="hljs-comment">// array_key is the address of the new array</span>
+<span class="hljs-comment">// mustn&apos;t either be 0 or already entered</span>
+<span class="hljs-comment">// elem_count is the count; it may be 0</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">void</span> *PV;
+<span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> __insert_new_array(PV array_key, <span class="hljs-keyword">int</span> elem_count);
+<span class="hljs-comment">// fetches (and removes) the array_key from table</span>
+<span class="hljs-comment">// either returns the elem_count, or -1</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> __remove_old_array(PV array_key);
+</code></pre>
+<p>original cfront implementation of vec_new() </p>
+<pre><code class="lang-c++">PV __vec_new(PV ptr_array, <span class="hljs-keyword">int</span> elem_count, <span class="hljs-keyword">int</span> size, PV construct )
+{
+  <span class="hljs-comment">// if ptr_array is 0, allocate array from heap</span>
+  <span class="hljs-comment">// if set, programmer wrote either</span>
+  <span class="hljs-comment">// T array[ count ];</span>
+  <span class="hljs-comment">// or</span>
+  <span class="hljs-comment">// new ( ptr_array ) T[ 10 ]</span>
+  <span class="hljs-keyword">int</span> alloc = <span class="hljs-number">0</span>; <span class="hljs-comment">// did we allocate here within vec_new?</span>
+  <span class="hljs-keyword">int</span> array_sz = elem_count * size;
+  <span class="hljs-keyword">if</span> ( alloc = ptr_array == <span class="hljs-number">0</span>)
+    <span class="hljs-comment">// global operator new ...</span>
+    ptr_array = PV( <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[ array_sz ] );
+  <span class="hljs-comment">// under Exception Handling,</span>
+  <span class="hljs-comment">// would throw exception bad_alloc</span>
+  <span class="hljs-keyword">if</span> ( ptr_array == <span class="hljs-number">0</span>)
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  <span class="hljs-comment">// place (array, count) into the cache</span>
+  <span class="hljs-keyword">int</span> status = __insert_new_array( ptr_array, elem_count );
+  <span class="hljs-keyword">if</span> (status == <span class="hljs-number">-1</span>) {
+    <span class="hljs-comment">// under Exception Handling, would throw exception</span>
+    <span class="hljs-comment">// would throw exception bad_alloc</span>
+    <span class="hljs-keyword">if</span> ( alloc )
+      <span class="hljs-keyword">delete</span> ptr_array;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+  }
+  <span class="hljs-keyword">if</span> (construct) {
+      <span class="hljs-keyword">char</span>* elem = (<span class="hljs-keyword">char</span>*) ptr_array;
+      <span class="hljs-keyword">char</span>* lim = elem + array_sz;
+      <span class="hljs-comment">// PF is a typedef for a pointer to function</span>
+      PF fp = PF(construct);
+      <span class="hljs-keyword">while</span> (elem &lt; lim) {
+        <span class="hljs-comment">// invoke constructor through fp</span>
+        <span class="hljs-comment">// on `this&apos; element addressed by elem</span>
+        (*fp)( (<span class="hljs-keyword">void</span>*)elem );
+        <span class="hljs-comment">// then advance to the next element</span>
+        elem += size;
+      }
+  }
+  <span class="hljs-keyword">return</span> PV(ptr_array);
+}
+</code></pre>
+<p>vec_delete() works similarly, but its behavior is not always what the C++ programmer either expects or requires. For example, given the following two class declarations:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point { 
+<span class="hljs-keyword">public</span>:
+  Point();
+  <span class="hljs-keyword">virtual</span> ~Point();
+  <span class="hljs-comment">// ...</span>
+};
+<span class="hljs-keyword">class</span> Point3d : <span class="hljs-keyword">public</span> Point { 
+<span class="hljs-keyword">public</span>:
+  Point3d();
+  ~Point3d();
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>the allocation of an array of ten Point3d objects results in the expected invocation of both the Point and Point3d constructor ten times, once for each element of the array:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Not at all a good idea</span>
+Point *ptr = <span class="hljs-keyword">new</span> Point3d[ <span class="hljs-number">10</span> ];
+</code></pre>
+<p>&#x800C;&#x5F53;&#x6211;&#x4EEC;&#x5982;&#x4E0B;&#x8C03;&#x7528;delete&#x65F6;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// oops: not what we need!</span>
+<span class="hljs-comment">// only Point::~Point invoked ...</span>
+<span class="hljs-keyword">delete</span> [] ptr;
+</code></pre>
+<p>&#x4F20;&#x9012;&#x7ED9;vec_delete()&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x662F;&#x6839;&#x636E;&#x6307;&#x9488;&#x7C7B;&#x578B;&#x6765;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4F20;&#x9012;&#x7684;&#x662F;Point::~Point&#x3002;&#x8FD9;&#x6837;&#xFF0C;&#x4E0D;&#x4EC5;&#x8C03;&#x7528;&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4E0D;&#x5BF9;&#xFF0C;&#x800C;&#x4E14;&#xFF0C;&#x4F20;&#x9012;&#x7ED9;vec_delete()&#x7684;&#x5143;&#x7D20;&#x5927;&#x5C0F;&#xFF0C;&#x4E5F;&#x662F;&#x6839;&#x636E;&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#x5927;&#x5C0F;&#x6765;&#x7684;&#xFF0C;&#x4E5F;&#x4E0D;&#x5BF9;&#x3002; Oops. The whole operation fails miserably. Not only is the wrong constructor applied, but after the first element, it is applied to incorrect chunks of memory.</p>
+<p>&#x6240;&#x4EE5;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x6D3E;&#x751F;&#x7C7B;&#x7684;&#x6307;&#x9488;&#x6765;&#x8BBF;&#x95EE;&#x6D3E;&#x751F;&#x6570;&#x7EC4;&#x3002;</p>
+<pre><code class="lang-c++">Point3d *ptr = <span class="hljs-keyword">new</span> Point3d[ <span class="hljs-number">10</span> ];
+</code></pre>
+<p>&#x4E66;&#x4E2D;&#x6240;&#x5199;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x9488;&#x5BF9;&#x786E;&#x5B9E;&#x4F7F;&#x7528;<code>Point *ptr = new Point3d[ 10 ];</code>Point&#x6307;&#x9488;&#x5B58;&#x50A8;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x7EC4;&#x5730;&#x5740;&#x7684;&#x60C5;&#x51B5;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> ix = <span class="hljs-number">0</span>; ix &lt; elem_count; ++ix )
+{
+Point *p = &amp;((Point3d*)ptr)[ ix ];
+<span class="hljs-keyword">delete</span> p;
+}
+</code></pre>
+<p>&#x867D;&#x7136;&#x5BF9;Point3d::~Point3d()&#x7684;&#x8C03;&#x7528;&#x6CA1;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x7B2C;&#x4E00;&#x6B21;delete&#x65F6;&#xFF0C;&#x6574;&#x5757;&#x6570;&#x7EC4;&#x7684;&#x5185;&#x5B58;&#x5C31;&#x88AB;&#x91CA;&#x653E;&#x56DE;malloc&#x5E93;&#x4E86;&#xFF0C;&#x540E;&#x7EED;&#x7684;delete, &#x53C8;&#x5728;&#x8C03;&#x7528;free&#x91CA;&#x653E;&#x56DE;malloc&#x5E93;&#xFF0C;&#x8FD9;&#x6837;&#x4F1A;&#x5BFC;&#x81F4;&#x9519;&#x8BEF;&#x3002;</p>
+<h3 id="temporary-objects"><strong>Temporary Objects</strong></h3>
+<p>&#x5047;&#x8BBE;&#x6709;&#x5173;&#x4E8E;class T&#x7684;&#x52A0;&#x6CD5;&#x64CD;&#x4F5C;</p>
+<pre><code class="lang-c++">T <span class="hljs-keyword">operator</span>+( <span class="hljs-keyword">const</span> T&amp;, <span class="hljs-keyword">const</span> T&amp; );
+</code></pre>
+<p>&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x8868;&#x8FBE;&#x5F0F;</p>
+<pre><code class="lang-c++">a+b;
+</code></pre>
+<p>a,b&#x662F;class T, &#x8BE5;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x8BA1;&#x7B97;&#x662F;&#x5426;&#x4F1A;&#x4EA7;&#x751F;&#x6808;&#x5916;&#x4E34;&#x65F6;&#x5BF9;&#x8C61;&#x4FDD;&#x5B58;&#x7ED3;&#x679C;&#xFF0C;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x89C6;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x548C;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#x4F18;&#x5316;&#x7B49;&#x7EA7;&#x800C;&#x5B9A;&#xFF0C;&#x5047;&#x8BBE;&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#x6BB5;</p>
+<pre><code class="lang-c++">T a, b;
+T c = a + b;
+</code></pre>
+<p>&#x7F16;&#x8BD1;&#x5668;&#x53EF;&#x80FD;&#x4F1A;&#x5148;&#x5BF9;a+b&#x7684;&#x7ED3;&#x679C;&#x751F;&#x6210;&#x6808;&#x5916;&#x4E34;&#x65F6;&#x5BF9;&#x8C61;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x8BE5;&#x5BF9;&#x8C61;&#x901A;&#x8FC7;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x521D;&#x59CB;&#x5316;c</p>
+<p>&#x66F4;&#x53EF;&#x80FD;&#x7684;&#x5B9E;&#x73B0;&#x662F;&#xFF0C;&#x76F4;&#x63A5;&#x5C06;a+b&#x7684;&#x7ED3;&#x679C;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x7ED9;c,&#x6CA1;&#x6709;&#x6808;&#x5916;&#x4E34;&#x65F6;&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x7F16;&#x8BD1;&#x5668;&#x53EF;&#x4EE5;&#x5E94;&#x7528;NRV&#x4F18;&#x5316;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;opeartor+()&#x5185;&#x90E8;&#x76F4;&#x63A5;&#x6784;&#x9020;c&#x3002;</p>
+<p>&#x90A3;&#x4E48;&#x7F16;&#x8BD1;&#x5668;&#x5230;&#x5E95;&#x4F1A;&#x91C7;&#x7528;&#x54EA;&#x79CD;&#x65B9;&#x6CD5;&#x5462;&#xFF1F;c++&#x6807;&#x51C6;&#x5BF9;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x7684;&#x751F;&#x6210;&#x6CA1;&#x6709;&#x89C4;&#x5B9A;&#xFF0C;&#x7531;&#x7F16;&#x8BD1;&#x5668;&#x81EA;&#x884C;&#x51B3;&#x5B9A;&#xFF0C;&#x53EA;&#x8981;&#x4FDD;&#x8BC1;&#xFF0C;&#x65E0;&#x8BBA;&#x54EA;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x6700;&#x7EC8;c&#x7684;&#x7ED3;&#x679C;&#x90FD;&#x662F;&#x6B63;&#x786E;&#x7684;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+<p>&#x5B9E;&#x73B0;&#x4E0A;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x7F16;&#x8BD1;&#x5668;&#x90FD;&#x4F1A;&#x4FDD;&#x8BC1;&#x4EE5;&#x4E0B;&#x7684;&#x8868;&#x8FBE;&#x5F0F;</p>
+<pre><code class="lang-c++">T c = a + b;
+</code></pre>
+<p>&#x5176;&#x4E2D;&#x52A0;&#x6CD5;&#x64CD;&#x4F5C;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x8FD9;&#x6837;&#x5B9A;&#x4E49;&#x7684;</p>
+<pre><code class="lang-c++">T <span class="hljs-keyword">operator</span>+( <span class="hljs-keyword">const</span> T&amp;, <span class="hljs-keyword">const</span> T&amp; );
+</code></pre>
+<p>or</p>
+<pre><code class="lang-c++">T T::<span class="hljs-keyword">operator</span>+( <span class="hljs-keyword">const</span> T&amp; );
+</code></pre>
+<p>&#x90FD;&#x4E0D;&#x4F1A;&#x751F;&#x6210;&#x6808;&#x5916;&#x7684;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x3002;</p>
+<p>&#x7136;&#x800C;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x8D4B;&#x503C;&#x8868;&#x8FBE;&#x5F0F;</p>
+<pre><code class="lang-c++">c = a + b;
+</code></pre>
+<p>&#x662F;&#x4F1A;&#x751F;&#x6210;&#x6808;&#x5916;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x7684;&#x3002;</p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x8868;&#x8FBE;&#x5F0F;&#x6CA1;&#x6709;target:</p>
+<pre><code class="lang-c++">a + b; <span class="hljs-comment">// no target!</span>
+</code></pre>
+<p>&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5FC5;&#x7136;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x4FDD;&#x5B58;&#x7ED3;&#x679C;&#x7684;&#x4E34;&#x65F6;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x79CD;&#x5728;&#x5B58;&#x5728;subexpressions&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x5C24;&#x4E3A;&#x5E38;&#x89C1;</p>
+<p>&#x6BD4;&#x5982;&#xFF0C;&#x6211;&#x4EEC;&#x6709;&#x5982;&#x4E0B;&#x53D8;&#x91CF;</p>
+<pre><code class="lang-c++">String s( &quot;hello&quot;), t( &quot;world&quot; ), u( &quot;!&quot; );
+</code></pre>
+<p>&#x4E0B;&#x8FF0;&#x8868;&#x8FBE;&#x5F0F;</p>
+<pre><code class="lang-c++">String v;
+v = s + t + u;
+</code></pre>
+<p>&#x6216;</p>
+<pre><code class="lang-c++"><span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;%s\n&quot;</span>, s + t );
+</code></pre>
+<p>results in a temporary being associated with the s + t subexpression.</p>
+<p>&#x4E34;&#x65F6;&#x5BF9;&#x8C61;&#x7684;&#x91CA;&#x653E;&#x65F6;&#x673A;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;&#x5982;&#x679C;<code>printf( &quot;%s\n&quot;, s + t );</code>&#x4E2D;&#xFF0C;s+t subexpression temporary &#x7684;&#x91CA;&#x653E;&#x65F6;&#x673A;&#x5982;&#x4E0B;&#x6240;&#x793A;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ code: pre-Standard legal transformation</span>
+<span class="hljs-comment">// temporary is destroyed too soon ...</span>
+String temp1 = <span class="hljs-keyword">operator</span>+( s, t );
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *temp2 = temp1.<span class="hljs-keyword">operator</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>*();
+<span class="hljs-comment">// oops: legal but ill-advised (pre-Standard)</span>
+temp1.~String();
+<span class="hljs-comment">// undefined what temp2 is addressing at this point!</span>
+<span class="hljs-built_in">printf</span>( <span class="hljs-string">&quot;%s\n&quot;</span>, temp2 );
+</code></pre>
+<p>&#x56E0;&#x6B64;&#xFF0C;C++&#x6807;&#x51C6;&#x7ED9;&#x4E34;&#x65F6;&#x5BF9;&#x8C61;&#x7684;&#x91CA;&#x653E;&#x65F6;&#x673A;&#x505A;&#x4E86;&#x5982;&#x4E0B;&#x7684;&#x89C4;&#x5B9A;</p>
+<pre><code>Temporary objects are destroyed as the last step in evaluating the **full-expression** that (lexically) contains the point where they were created. (Section 12.2)
+</code></pre><p>What is a full-expression? Informally, it is the outermost containing expression. For example, consider the following:&#x3000;&#xFF08;&#x6CE8;&#x610F;&#x8868;&#x8FBE;&#x5F0F;&#x548C;&#x8BED;&#x53E5;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x3000;expression &#x548C; statement&#x7684;&#x533A;&#x522B;&#xFF0C;&#x8FD9;&#x91CC;&#x5173;&#x6CE8;&#x7684;&#x662F;full-expression&#x548C;sub-expression&#xFF09;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// tertiary full expression with 5 sub-expressions</span>
+(( objA &gt; <span class="hljs-number">1024</span> ) &amp;&amp; ( objB &gt; <span class="hljs-number">1024</span> ))
+? objA + objB : foo( objA, objB );
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#xFF0C;&#x5B50;&#x8868;&#x8FBE;&#x5F0F;&#x6709;5&#x4E2A;&#xFF0C;full expresssion&#x662F;&#x6700;&#x5916;&#x9762;&#x7684;<code>:?</code>&#x8868;&#x8FBE;&#x5F0F;&#x3002;&#x5728;&#x6700;&#x5916;&#x9762;&#x7684;<code>:?</code>&#x88AB;&#x8BA1;&#x7B97;&#x5B8C;&#x6210;&#x4E4B;&#x524D;&#xFF0C;&#x5176;&#x4E2D;&#x7684;4&#x4E2A;&#x5B50;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x8BA1;&#x7B97;&#x6240;&#x4EA7;&#x751F;&#x7684;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#xFF0C;&#x90FD;&#x662F;&#x4E0D;&#x80FD;&#x88AB;&#x91CA;&#x653E;&#x7684;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x89C4;&#x5B9A;&#xFF0C;&#x5BFC;&#x81F4;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x7684;&#x91CA;&#x653E;&#xFF0C;&#x5728;&#x6761;&#x4EF6;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x7684;&#x5B9E;&#x73B0;&#x6709;&#x70B9;&#x9EBB;&#x70E6;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">if</span> ( s + t || u + v )
+{}
+</code></pre>
+<p>&#x672C;&#x6765;&#xFF0C;u+v&#x751F;&#x6210;&#x7684;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x5176;&#x88AB;&#x8BA1;&#x7B97;&#x65F6;&#xFF0C;&#x624D;&#x4F1A;&#x4EA7;&#x751F;&#xFF0C;&#x4ECE;&#x800C;&#x9700;&#x8981;&#x88AB;&#x91CA;&#x653E;&#x3002;&#x73B0;&#x5728;&#x9700;&#x8981;&#x7B49;&#x5230;<code>||</code>&#x8868;&#x8FBE;&#x5F0F;&#x8BA1;&#x7B97;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#xFF0C;&#x624D;&#x80FD;&#x7EDF;&#x4E00;&#x91CA;&#x653E;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x91CA;&#x653E;&#x65F6;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x67D0;&#x79CD;&#x673A;&#x5236;&#xFF0C;&#x77E5;&#x9053;&#x5230;&#x5E95;u+v&#x6709;&#x6CA1;&#x6709;&#x88AB;&#x8BA1;&#x7B97;&#x3002;</p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x672C;&#x6765;&#x7F16;&#x8BD1;&#x5668;&#x53EF;&#x4EE5;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x8F6C;&#x6362;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> X {
+<span class="hljs-keyword">public</span>:
+  X();
+  ~X();
+  <span class="hljs-function"><span class="hljs-keyword">operator</span> <span class="hljs-title">int</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function">X <span class="hljs-title">foo</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">int</span> val;
+};
+
+main() {
+X xx;
+X yy;
+<span class="hljs-keyword">if</span> ( xx.foo() || yy.foo() );
+<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>&#x88AB;&#x8F6C;&#x6362;&#x6210;</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span> <span class="hljs-params">(<span class="hljs-keyword">void</span> )</span></span>{
+<span class="hljs-keyword">struct</span> X __1xx ;
+<span class="hljs-keyword">struct</span> X __1yy ;
+<span class="hljs-keyword">int</span> __0_result;
+<span class="hljs-comment">// name_mangled default constructor:</span>
+<span class="hljs-comment">// X::X( X *this )</span>
+__ct__1xFv ( &amp; __1xx ) ;
+__ct__1xFv ( &amp; __1yy ) ;
+{
+<span class="hljs-comment">// generated temporaries ...</span>
+<span class="hljs-keyword">struct</span> X __0__Q1 ;
+<span class="hljs-keyword">struct</span> X __0__Q2 ;
+<span class="hljs-keyword">int</span> __0__Q3 ;
+<span class="hljs-comment">/* each side becomes a comma expression of
+* the following sequence of steps:
+*
+* tempQ1 = xx.foo();
+* tempQ3 = tempQ1.operator int();
+* tempQ1.X::~X();
+* tempQ3;
+*/</span>
+<span class="hljs-comment">// __opi__1xFv ==&gt; X::operator int()</span>
+<span class="hljs-keyword">if</span> ((((
+__0__Q3 = __opi__1xFv(((
+__0__Q1 = foo__1xFv( &amp;__1xx )), (&amp;__0__Q1 )))),
+__dt__1xFv( &amp;__0__Q1, <span class="hljs-number">2</span>) ), __0__Q3 )
+|| (((
+__0__Q3 = __opi__1xFv(((
+__0__Q2 = foo__1xFv( &amp; __1yy )), (&amp;__0__Q2 )))),
+__dt__1xFv( &amp; __0__Q2, <span class="hljs-number">2</span>) ), __0__Q3 ));
+
+
+{
+{
+__0_result = <span class="hljs-number">0</span> ;
+__dt__1xFv ( &amp; __1yy , <span class="hljs-number">2</span>) ;
+__dt__1xFv ( &amp; __1xx , <span class="hljs-number">2</span>) ;
+}
+<span class="hljs-keyword">return</span> __0_result ;
+}
+
+}
+
+}
+</code></pre>
+<p>This strategy of placing the temporary&apos;s destructor in the evaluation of each subexpression circumvents the need to keep track of whether the second subexpression is actually evaluated. However, under the Standard&apos;s lifetime of temporaries rule, this implementation strategy is no longer permissible. The temporaries must not be destroyed until after evaluation of the full expression&#x2014;that is, both sides&#x2014;and so some form of conditional test must be inserted now to determine whether to destroy the temporary associated with the second subexpression.</p>
+<p>&#x4E34;&#x65F6;&#x5BF9;&#x8C61;&#x7684;&#x91CA;&#x653E;&#x89C4;&#x5219;&#x8FD8;&#x5C31;&#x4E24;&#x4E2A;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#x505A;&#x4E86;&#x8865;&#x5145;&#xFF0C;The first concerns an expression used to initialize an object; for example</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">bool</span> verbose;
+<span class="hljs-comment">//...</span>
+String progNameVersion =
+!verbose
+? <span class="hljs-number">0</span>
+: progName + progVersion;
+</code></pre>
+<p><code>?:</code>&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x8BA1;&#x7B97;&#x4F1A;&#x751F;&#x6210;<code>progName + progVersion</code>&#x5B50;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x4E34;&#x65F6;&#x5BF9;&#x8C61;&#xFF0C;&#x7136;&#x800C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x4E0D;&#x80FD;&#x5728;<code>?:</code>&#x8BA1;&#x7B97;&#x5B8C;&#x6210;&#x540E;&#x5C31;&#x88AB;&#x91CA;&#x653E;&#xFF0C;&#x8FD8;&#x8981;&#x521D;&#x59CB;&#x5316;<code>progNameVersion</code>&#x5462;!</p>
+<p>&#x56E0;&#x6B64;&#x6807;&#x51C6;&#x505A;&#x4E86;&#x5982;&#x4E0B;&#x7684;&#x8865;&#x5145;</p>
+<pre><code>&#x2026;the temporary that holds the result of the expression shall persist until the object&apos;s initialization is complete.
+</code></pre><p>&#x4F46;&#x8FD8;&#x662F;&#x8981;&#x6CE8;&#x610F;&#x5982;&#x4E0B;&#x7684;&#x60C5;&#x51B5;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Oops: not a good idea</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *progNameVersion = progName + progVersion;
+</code></pre>
+<p>progNameVersion &#x6307;&#x5411;&#x7684;&#x5185;&#x5B58;&#x662F;&#x4E34;&#x65F6;&#x5BF9;&#x8C61;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x8FD9;&#x4E2A;&#x5185;&#x5B58;&#x5728;&#x8BE5;&#x8868;&#x8FBE;&#x5F0F;&#x4E4B;&#x540E;&#x5C31;&#x88AB;&#x91CA;&#x653E;&#x4E86;&#xFF0C;&#x5176;&#x8F6C;&#x6362;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+String temp;
+<span class="hljs-keyword">operator</span>+( temp, progName, progVersion );
+progNameVersion = temp.String::<span class="hljs-keyword">operator</span> <span class="hljs-keyword">char</span>*();
+temp.String::~String();
+</code></pre>
+<p>&#x5F53;&#x7136;&#x8FD9;&#x79CD;&#x9519;&#x8BEF;&#x5C31;&#x5E94;&#x8BE5;&#x7B97;&#x662F;&#x7A0B;&#x5E8F;&#x5458;&#x4F7F;&#x7528;&#x7684;&#x9519;&#x8BEF;&#x4E86;&#x3002;</p>
+<p>The second exception to the lifetime of temporaries rule concerns when a temporary is bound to a reference. For example,</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">const</span> String &amp;space = <span class="hljs-string">&quot; &quot;</span>;
+</code></pre>
+<p>generates code that looks something like</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+String temp;
+temp.String::String( <span class="hljs-string">&quot; &quot;</span> );
+<span class="hljs-keyword">const</span> String &amp;space = temp;
+</code></pre>
+<p>Obviously, if the temporary were destroyed now, the reference would be slightly less than useless. So the rule is that a temporary bound to a reference persists for the lifetime of the reference or until the end of the scope in which the temporary is created, whichever comes first.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Chapter 5. Semantics of Construction, Destruction, and Copy.html" class="navigation navigation-prev " aria-label="Previous page: Chapter 5. Semantics of Construction, Destruction, and Copy">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Chapter 7. On the Cusp of the Object Model.html" class="navigation navigation-next " aria-label="Next page: Chapter 7. On the Cusp of the Object Model">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Chapter 6. Runtime Semantics","level":"1.2.1.6","depth":3,"next":{"title":"Chapter 7. On the Cusp of the Object Model","level":"1.2.1.7","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 7. On the Cusp of the Object Model.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 7. On the Cusp of the Object Model.md","articles":[]},"previous":{"title":"Chapter 5. Semantics of Construction, Destruction, and Copy","level":"1.2.1.5","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 5. Semantics of Construction, Destruction, and Copy.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 5. Semantics of Construction, Destruction, and Copy.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"posts/c&c++/inside the c++ object model/Chapter 6. Runtime Semantics.md","mtime":"2023-05-31T12:41:45.963Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-06-04T00:08:50.467Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

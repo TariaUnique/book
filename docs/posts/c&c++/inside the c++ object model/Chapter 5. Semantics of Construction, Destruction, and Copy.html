@@ -1,0 +1,1010 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Chapter 5. Semantics of Construction, Destruction, and Copy · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Chapter 6. Runtime Semantics.html" />
+    
+    
+    <link rel="prev" href="Chapter 4. The Semantics of Function.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../readme.html">
+            
+                <a href="../readme.html">
+            
+                    
+                    c&c++
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    inside the c++ object model
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="Chapter 1. Object Lessons.html">
+            
+                <a href="Chapter 1. Object Lessons.html">
+            
+                    
+                    chapter 1. object lessions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="Chapter 2. The Semantics of Constructors.html">
+            
+                <a href="Chapter 2. The Semantics of Constructors.html">
+            
+                    
+                    Chapter 2. The Semantics of Constructors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="Chapter 3. The Semantics of Data.html">
+            
+                <a href="Chapter 3. The Semantics of Data.html">
+            
+                    
+                    Chapter 3. The Semantics of Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.4" data-path="Chapter 4. The Semantics of Function.html">
+            
+                <a href="Chapter 4. The Semantics of Function.html">
+            
+                    
+                    Chapter 4. The Semantics of Function
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.1.5" data-path="Chapter 5. Semantics of Construction, Destruction, and Copy.html">
+            
+                <a href="Chapter 5. Semantics of Construction, Destruction, and Copy.html">
+            
+                    
+                    Chapter 5. Semantics of Construction, Destruction, and Copy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.6" data-path="Chapter 6. Runtime Semantics.html">
+            
+                <a href="Chapter 6. Runtime Semantics.html">
+            
+                    
+                    Chapter 6. Runtime Semantics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.7" data-path="Chapter 7. On the Cusp of the Object Model.html">
+            
+                <a href="Chapter 7. On the Cusp of the Object Model.html">
+            
+                    
+                    Chapter 7. On the Cusp of the Object Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >Chapter 5. Semantics of Construction, Destruction, and Copy</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>&#x8003;&#x8651;&#x5982;&#x4E0B;&#x7684;&#x62BD;&#x8C61;&#x57FA;&#x7C7B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Abstract_base {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~Abstract_base() = <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">interface</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* <span class="hljs-title">mumble</span> <span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> _mumble; }
+<span class="hljs-keyword">protected</span>:
+    <span class="hljs-keyword">char</span> *_mumble;
+};
+</code></pre>
+<p>&#x867D;&#x7136;&#x8FD9;&#x4E2A;class&#x88AB;&#x8BBE;&#x8BA1;&#x4E3A;&#x4E00;&#x4E2A;&#x62BD;&#x8C61;&#x7684;&#x57FA;&#x7C7B;&#xFF08;&#x5176;&#x4E2D;&#x6709;pure virtual function&#xFF0C;&#x4F7F;&#x5F97;Abstract_base class &#x4E0D;&#x53EF;&#x80FD;&#x62E5;&#x6709;object&#xFF09;&#xFF0C;&#x4F46;&#x5B83;&#x4ECD;&#x7136;&#x9700;&#x8981;&#x4E00;&#x4E2A;explicit&#x6784;&#x9020;&#x51FD;&#x6570;&#x4EE5;&#x521D;&#x59CB;&#x5316;&#x5176;data member _mmumble.&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A;&#x521D;&#x59CB;&#x5316;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x4E0B;&#x7684;&#x6D3E;&#x751F;&#x7C7B;&#x4E2D;&#xFF0C;_mumble&#x6CA1;&#x6709;&#x88AB;&#x521D;&#x59CB;&#x5316;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Concrete_derived : <span class="hljs-keyword">public</span> Abstract_base {
+<span class="hljs-keyword">public</span>:
+    Concrete_derived();
+    <span class="hljs-comment">// ...</span>
+};
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-comment">// Abstract_base::_mumble uninitialized</span>
+    Concrete_derived trouble;
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;&#x8BBE;&#x8BA1;&#x8005;&#x7684;&#x610F;&#x56FE;&#x5C31;&#x662F;&#x5728;&#x6D3E;&#x751F;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x521D;&#x59CB;&#x5316;&#x57FA;&#x7C7B;&#xFF0C;&#x540C;&#x65F6;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x7C7B;&#x662F;&#x4E2A;&#x865A;&#x57FA;&#x7C7B;&#xFF0C;&#x4E0D;&#x5E94;&#x8BE5;&#x6709;public &#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5E94;&#x8BE5;&#x5728;protected&#x4E2D;&#x63D0;&#x4F9B;&#x663E;&#x793A;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5728;&#x6D3E;&#x751F;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x8C03;&#x7528;&#x8BE5;&#x57FA;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x4E5F;&#x6709;&#x4EBA;&#x4F1A;&#x8BF4;&#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;&#x8BBE;&#x8BA1;&#x9519;&#x8BEF;&#x4E0D;&#x5728;&#x4E8E;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x6784;&#x9020;&#x51FD;&#x6570;&#x521D;&#x59CB;&#x5316;&#x5176;&#x6570;&#x636E;&#xFF0C;&#x800C;&#x662F;&#x5728;&#x62BD;&#x8C61;&#x57FA;&#x7C7B;&#x4E2D;&#x4E0D;&#x5E94;&#x8BE5;&#x6709;&#x6570;&#x636E;&#x6210;&#x5458;&#xFF0C;&#x62BD;&#x8C61;&#x57FA;&#x7C7B;&#x53EA;&#x9700;&#x8981;&#x63D0;&#x4F9B;&#x63A5;&#x53E3;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x5C06;&#x63A5;&#x53E3;&#x4E0E;&#x5B9E;&#x73B0;&#x5206;&#x79BB;&#x662F;&#x4E00;&#x79CD;&#x5E38;&#x89C1;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x578B;&#x3002;&#x8FD9;&#x5F53;&#x7136;&#x662F;&#x6709;&#x9053;&#x7406;&#x7684;&#xFF0C;but it does not hold universally. Lifting up data members shared among several derived types can be a legitimate design choice.</p>
+<h3 id="presence-of-a-pure-virtual-desctructor"><strong>Presence of a Pure Virtual Desctructor</strong></h3>
+<p>C++&#x65B0;&#x624B;&#x5E38;&#x5E38;&#x5F88;&#x60CA;&#x8BB6;&#x5730;&#x53D1;&#x73B0;&#xFF0C;&#x4E00;&#x4E2A;&#x4EBA;&#x7ADF;&#x7136;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x548C;&#x8C03;&#x7528;&#xFF08;invoke&#xFF09;&#x4E00;&#x4E2A;pure virtual  function&#xFF1A;&#x4E0D;&#x8FC7;&#x5B83;&#x53EA;&#x80FD;&#x88AB;&#x9759;&#x6001;&#x5730;&#x8C03;&#x7528;&#xFF08;invoked statically&#xFF09;&#xFF0C;&#x4E0D;&#x80FD;&#x7ECF;&#x7531;&#x865A;&#x62DF;&#x673A;&#x5236;&#x8C03;&#x7528;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5408;&#x6CD5;&#x5730;&#x5199;&#x4E0B;&#x8FD9;&#x6BB5;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// ok: definition of pure virtual function</span>
+<span class="hljs-comment">// but may only be invoked statically ...</span>
+<span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> Abstract_base::interface()
+{
+    <span class="hljs-comment">// ...</span>
+}
+<span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> Concrete_derived::interface()
+{
+    <span class="hljs-comment">// ok: static invocation</span>
+    Abstract_base::interface();
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>&#x8981;&#x4E0D;&#x8981;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x5168;&#x7531;class&#x8BBE;&#x8BA1;&#x8005;&#x51B3;&#x5B9A;&#xFF0E;&#x552F;&#x4E00;&#x7684;&#x4F8B;&#x5916;&#x5C31;&#x662F;pure virtual destructor:class&#x8BBE;&#x8BA1;&#x8005;&#x4E00;&#x5B9A;&#x5F97;&#x5B9A;&#x4E49;&#x5B83;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#xFF1F;&#x56E0;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;derived class destructor&#x4F1A;&#x88AB;&#x7F16;&#x8BD1;&#x5668;&#x52A0;&#x4EE5;&#x6269;&#x5C55;&#xFF0C;&#x4EE5;&#x9759;&#x6001;&#x8C03;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#x8C03;&#x7528;&#x5176;&#x6BCF;&#x4E00;&#x4E2A;base class &#x7684;destructor.&#x56E0;&#x6B64;&#xFF0C;&#x53EA;&#x8981;&#x7F3A;&#x4E4F;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;base class destructors&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x94FE;&#x63A5;&#x5931;&#x8D25;&#xFF0E; &#x5373;&#x4F7F;&#x57FA;&#x7C7B;&#x7684;&#x865A;&#x6790;&#x6784;&#x51FD;&#x6570;&#x88AB;&#x5B9A;&#x4E49;&#x4E3A;&#x7EAF;&#x865A;&#x51FD;&#x6570;&#xFF0C;&#x4E5F;&#x9700;&#x8981;&#x63D0;&#x4F9B;&#x6790;&#x6784;&#x51FD;&#x6570;&#x7684;&#x5B9A;&#x4E49;&#x3002;</p>
+<p>&#x53C8;&#x6709;&#x4EBA;&#x53EF;&#x80FD;&#x4F1A;&#x8BF4;&#x4E86;&#xFF0C;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x865A;&#x6790;&#x6784;&#x51FD;&#x6570;&#x5FD8;&#x8BB0;&#x5B9A;&#x4E49;&#x4E86;&#xFF0C;&#x96BE;&#x9053;&#x7F16;&#x8BD1;&#x5668;&#x4E0D;&#x80FD;&#x5408;&#x6210;&#x4E00;&#x4E2A;&#x5B9A;&#x4E49;&#x4E48;&#xFF1F;
+&#x56E0;&#x4E3A;&#x5206;&#x79BB;&#x7F16;&#x8BD1;&#x7684;&#x7F18;&#x6545;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x53EA;&#x6709;&#x5728;&#x8FDE;&#x63A5;&#x671F;&#x624D;&#x53EF;&#x80FD;&#x77E5;&#x9053;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x865A;&#x6790;&#x6784;&#x51FD;&#x6570;&#x53EA;&#x6709;&#x58F0;&#x660E;&#x6CA1;&#x6709;&#x5B9A;&#x4E49;&#xFF0C;&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#xFF0C;&#x4E5F;&#x8BB8;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x673A;&#x5236;&#xFF0C;&#x91CD;&#x65B0;&#x6FC0;&#x6D3B;&#x7F16;&#x8BD1;&#x5668;&#xFF0C;&#x7ED9;&#x5176;&#x4E00;&#x4E2A;&#x6307;&#x4EE4;&#xFF0C;&#x5408;&#x6210;&#x6790;&#x6784;&#x51FD;&#x6570;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5E94;&#x8BE5;&#x6CA1;&#x6709;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x8FD9;&#x4E48;&#x505A;&#x3002; </p>
+<p>&#x6700;&#x597D;&#x7684;&#x8BBE;&#x8BA1;&#x9009;&#x62E9;&#x662F;&#x4E0D;&#x8981;&#x5C06;&#x865A;&#x6790;&#x6784;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x4E3A;pure virtual.</p>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x7C7B;&#x6CA1;&#x6709;&#x58F0;&#x660E;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5408;&#x6210;&#x4E00;&#x4E2A;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4EC0;&#x4E48;&#x4E5F;&#x4E0D;&#x505A;&#xFF0C;&#x4E5F;&#x4E0D;&#x662F;virtual&#x7684;&#x3002;</p>
+<h3 id="presence-of-a-virtual-specification"><strong>Presence of a Virtual Specification</strong></h3>
+<p>&#x5C06;<code>Abstract_base::mumble()</code> &#x58F0;&#x660E;&#x4E3A;virtual &#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x8BBE;&#x8BA1;&#x3002; 
+&#x56E0;&#x4E3A;&#x663E;&#x7136;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5E76;&#x4E0D;&#x662F; type dependent, &#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x5728;&#x6D3E;&#x751F;&#x7C7B;&#x4E2D;&#x88AB;&#x91CD;&#x5199;&#x3002;&#x5E76;&#x4E14;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x5B9E;&#x73B0;&#x662F;inline&#x7684;&#xFF0C;&#x800C;&#x53C8;&#x88AB;&#x58F0;&#x660E;&#x4E3A;virtual,&#x5982;&#x679C;&#x4E00;&#x4E2A;inline&#x51FD;&#x6570;&#x88AB;&#x58F0;&#x660E;&#x4E3A;virtual,&#x5176;inline&#x673A;&#x5236;&#x5C31;&#x5931;&#x6548;&#x4E86;&#x3002; &#x8FD9;&#x6837;&#xFF0C;&#x672C;&#x6765;&#x56E0;inline&#x800C;&#x5E26;&#x6765;&#x7684;&#x4F18;&#x5316;&#x5C31;&#x6CA1;&#x6709;&#x4E86;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5728;&#x9047;&#x5230;mumble&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x672C;&#x6765;&#x53EF;&#x4EE5;&#x539F;&#x5730;&#x62D3;&#x5C55;&#x7684;&#xFF0C;&#x73B0;&#x5728;&#x5374;&#x9700;&#x8981;&#x8D70;&#x865A;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x673A;&#x5236;&#x3002;</p>
+<h3 id="presence-of-const-within-a-virtual-specification"><strong>Presence of const within a Virtual Specification</strong></h3>
+<p><code>Abstract_base::interface()</code>&#x8FD9;&#x4E2A;pure virtual&#x51FD;&#x6570;&#x88AB;&#x58F0;&#x660E;&#x4E3A;const&#x4E86;&#xFF0C;
+&#x56E0;&#x4E3A;&#x865A;&#x51FD;&#x6570;&#x901A;&#x5E38;&#x662F;type dependent,&#x610F;&#x5473;&#x7740;&#x6D3E;&#x751F;&#x7C7B;&#x5F88;&#x53EF;&#x80FD;&#x8981;&#x91CD;&#x5199;&#x8BE5;&#x51FD;&#x6570;&#x3002;&#x5982;&#x679C;&#x5C06;&#x865A;&#x51FD;&#x6570;&#x58F0;&#x660E;&#x4E3A;const&#xFF0C;&#x610F;&#x5473;&#x7740;&#x6D3E;&#x751F;&#x7C7B;&#x4E2D;&#x4E5F;&#x9700;&#x8981;&#x4E3A;const&#x3002;
+&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x51FD;&#x6570;&#x6CA1;&#x6709;&#x88AB;&#x58F0;&#x660E;&#x4E3A;const, &#x5728;const&#x5BF9;&#x8C61;&#x8C03;&#x7528;&#x8BE5;&#x6210;&#x5458;&#x65F6;&#x9700;&#x8981;&#x505A; const cast.
+&#x800C;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x51FD;&#x6570;&#x88AB;&#x58F0;&#x660E;&#x4E3A;const&#xFF0C;&#x5B9E;&#x9645;&#x5B9E;&#x73B0;&#x65F6;&#xFF0C;&#x6BD4;&#x5982;&#x5728;&#x6D3E;&#x751F;&#x7C7B;&#x4E2D;&#x5B9E;&#x73B0;&#x65F6;&#xFF0C;&#x53D1;&#x73B0;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x5BF9;&#x8C61;&#x6210;&#x5458;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x53EA;&#x80FD;&#x5C06;const&#x53BB;&#x6389;&#x3002;
+&#x6240;&#x4EE5;&#x5728;&#x57FA;&#x7C7B;&#x4E2D;&#x58F0;&#x660E;&#x7684;&#x865A;&#x51FD;&#x6570;&#xFF0C;&#x6700;&#x597D;&#x4E0D;&#x8981;&#x58F0;&#x660E;&#x4E3A;const</p>
+<h3 id="a-reconsidered-class-declaration"><strong>A Reconsidered Class Declaration</strong></h3>
+<p>&#x7EFC;&#x4E0A;&#x6240;&#x8FF0;&#xFF0C;&#x4EE5;&#x4E0B;&#x7684;Abstract_base&#x7684;&#x58F0;&#x660E;&#x5E94;&#x8BE5;&#x66F4;&#x5408;&#x7406;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Abstract_base {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">virtual</span> ~Abstract_base();
+    <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">interface</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* <span class="hljs-title">mumble</span> <span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> _mumble; }
+<span class="hljs-keyword">protected</span>:
+    Abstract_base( <span class="hljs-keyword">char</span> *pc = <span class="hljs-number">0</span> );
+    <span class="hljs-keyword">char</span> *_mumble;
+};
+</code></pre>
+<h3 id="object-construction-without-inheritance"><strong>Object Construction without Inheritance</strong></h3>
+<p>&#x8003;&#x8651;&#x5982;&#x4E0B;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;</p>
+<pre><code>(1) Point global;
+(2)
+(3) Point foobar()
+(4) {
+(5)     Point local;
+(6)     Point *heap = new Point;
+(7)     *heap = local;
+(8)     // ... stuff ...
+(9)     delete heap;
+(10)    return local;
+(11) }
+</code></pre><p>line 1,5,6 &#x4EE3;&#x8868;3&#x4E2A;object &#x53D8;&#x91CF;&#x7684;&#x521B;&#x5EFA;&#xFF0C;global,local,heap memory allocation.</p>
+<p>line 7 &#x5C06;&#x4E00;&#x4E2A;object&#x8D4B;&#x503C;&#x7ED9;&#x53E6;&#x4E00;&#x4E2A;object</p>
+<p>line 10 &#x5C06;&#x8FD4;&#x56DE;&#x503C;&#x521D;&#x59CB;&#x5316;</p>
+<p>line 9 explicitly deletes the heap object</p>
+<p>object&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x7531;&#x8FD0;&#x884C;&#x65F6;&#x51B3;&#x5B9A;&#x3002; The local object&apos;s lifetime extends from its definition at line 5 through line 10.
+The global object&apos;s lifetime extends for the entire program execution. 
+The lifetime of an object allocated on the heap extends from the point of its allocation using <code>operator new</code> through application of <code>operator delete</code>.</p>
+<p>&#x5047;&#x8BBE;Point&#x7684;&#x58F0;&#x660E;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span>
+{
+    <span class="hljs-keyword">float</span> x, y, z;
+} Point;
+</code></pre>
+<p>&#x548C;C&#x662F;&#x5B8C;&#x5168;&#x517C;&#x5BB9;&#x7684;&#xFF0C;&#x8FD9;&#x79CD;&#x58F0;&#x660E;&#xFF0C;&#x5728;C++&#x4E2D;&#x88AB;&#x53EB;&#x505A;<code>Plain Ol&apos; Data</code></p>
+<p>C++&#x5728;&#x7F16;&#x8BD1;&#x8FD9;&#x4E2A;&#x7C7B;&#x65F6;&#xFF0C;&#x4F1A;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#xFF1F;&#x7406;&#x8BBA;&#x4E0A;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5728;&#x5185;&#x90E8;&#x7ED9;&#x8FD9;&#x4E2A;&#x7C7B;&#x58F0;&#x660E;trivial default constructor, trivial destructor, trivial copy constructor, and trivial copy assignment operator &#x3002;</p>
+<p>&#x800C;&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5728;&#x5206;&#x6790;&#x4E86;&#x8FD9;&#x4E2A;&#x7C7B;&#x4E4B;&#x540E;&#xFF0C;&#x5C06;&#x5176;tag&#x4E3A;<code>Plain Ol&apos; Data</code>.</p>
+<p>&#x5F53;&#x7F16;&#x8BD1;&#x5668;&#x9047;&#x5230;&#x5982;&#x4E0B;&#x7684;&#x5B9A;&#x4E49;&#x65F6;</p>
+<pre><code class="lang-c++">(<span class="hljs-number">1</span>) Point global;
+</code></pre>
+<p>&#x7406;&#x8BBA;&#x4E0A;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5B9A;&#x4E49; Point&apos;s trivial constructor and destructor&#xFF0C; &#x5E76;&#x4E14;&#xFF0C;&#x5728;program startup&#x4EE3;&#x7801;&#x4E2D;&#x9700;&#x8981;&#x8C03;&#x7528;constructor &#xFF0C;&#x5728;exit&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x8C03;&#x7528;destructor&#x3002;
+&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x8FD9;&#x4E9B;trivial constructor and destructor &#x65E2;&#x6CA1;&#x6709;&#x88AB;&#x5B9A;&#x4E49;&#x51FA;&#x6765;&#xFF0C;&#x4E5F;&#x6CA1;&#x6709;&#x88AB;&#x8C03;&#x7528;&#x3002; the program behaves exactly as it would in C.</p>
+<p>&#x53EA;&#x6709;&#x4E00;&#x70B9;&#x4F8B;&#x5916;&#xFF0C;&#x5728;c&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x672A;&#x521D;&#x59CB;&#x5316;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x662F;&#x88AB;&#x653E;&#x5728;bss&#xFF08;Block Started by Symbol&#xFF09;&#x6BB5;&#x7684;&#xFF0C;bss&#x6BB5;&#x5728;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x4E2D;&#x53EA;&#x6709;&#x7B26;&#x53F7;&#xFF0C;&#x5176;&#x6570;&#x636E;&#x662F;&#x5728;&#x88AB;&#x52A0;&#x8F7D;&#x65F6;&#x96F6;&#x521D;&#x59CB;&#x5316;&#x7684;&#x3002;
+&#x800C;&#x5728;c++&#x4E2D;&#xFF0C;&#x56E0;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x5B58;&#x5728;&#xFF0C;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x90FD;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x4E86;&#x7684;&#xFF0C;&#x4E0D;&#x4F7F;&#x7528;bss&#x6BB5;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x90FD;&#x88AB;&#x653E;&#x5728;&#x5DF2;&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x6570;&#x636E;&#x6BB5;&#x4E2D;&#xFF0C;&#x5F53;&#x7136;&#x5176;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x90FD;&#x662F;&#x96F6;&#x503C;&#x521D;&#x59CB;&#x5316;&#x7684;&#x3002;</p>
+<p>foobar()&#x51FD;&#x6570;&#x4E2D;&#x7684;local Point object,&#x6CA1;&#x6709;&#x88AB;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x56E0;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x662F;trivial&#x7684;&#xFF0C;&#x4E0D;&#x4F1A;&#x505A;&#x4EFB;&#x4F55;&#x4E8B;&#x3002;&#x8FD9;&#x6837;&#xFF0C;line 7&#x4E2D;&#x5BF9;&#x5176;&#x7684;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x662F;&#x4E2A;bug</p>
+<p>Line 6&#x7684;</p>
+<pre><code class="lang-c++">(<span class="hljs-number">6</span>) Point *heap = <span class="hljs-keyword">new</span> Point;
+</code></pre>
+<p>is transformed into a call of the library instance of operator new</p>
+<pre><code class="lang-c++">Point *heap = __new( <span class="hljs-keyword">sizeof</span>( Point ));
+</code></pre>
+<p>Again, there is no default constructor applied to the Point object returned by the call to operator new. The assignment to this object on the next line would solve this problem if local were properly initialized:</p>
+<pre><code class="lang-c++">(<span class="hljs-number">7</span>) *heap = local;
+</code></pre>
+<p>This assignment should generate a compiler warning of the general form</p>
+<pre><code class="lang-c++">warning, line <span class="hljs-number">7</span>: local is used before being initialized.
+</code></pre>
+<p>&#x7406;&#x8BBA;&#x4E0A;&#xFF0C; <code>*heap = local;</code>&#x7F16;&#x8BD1;&#x5668;&#x5728;&#x9047;&#x5230;&#x8FD9;&#x4E2A;&#x8BED;&#x53E5;&#x65F6;&#xFF0C;&#x4F1A;&#x5B9A;&#x4E49;&#x62F7;&#x8D1D;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x7B26;&#x5E76;&#x8C03;&#x7528;&#x3002;&#x800C;&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x56E0;&#x4E3A;&#x662F;<code>Plain Ol&apos; Data</code>&#xFF0C;the assignment remains a bitwise copy exactly as it is in C.</p>
+<pre><code class="lang-c++">(<span class="hljs-number">9</span>) <span class="hljs-keyword">delete</span> heap;
+</code></pre>
+<p>is transformed into a call of the library instance of operator delete</p>
+<pre><code class="lang-c++">__delete( heap );
+</code></pre>
+<p>Again, conceptually, this triggers the generation of the trivial destructor for Point. But, as we&apos;ve seen, the destructor, in practice, is neither generated nor invoked. </p>
+<p>Finally, the return of local by value conceptually triggers the definition of the trivial copy constructor, which is then invoked&#x3002;In practice, the return remains a simple bitwise copy operation of <code>Plain Ol&apos; Data</code>.</p>
+<h3 id="abstract-data-type"><strong>Abstract Data Type</strong></h3>
+<p>&#x7B2C;&#x4E8C;&#x4E2A;&#x5173;&#x4E8E;Point&#x7684;&#x58F0;&#x660E;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point {
+<span class="hljs-keyword">public</span>:
+    Point( <span class="hljs-keyword">float</span> x = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> y = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> z = <span class="hljs-number">0.0</span> )
+    : _x( x ), _y( y ), _z( z ) {}
+    <span class="hljs-comment">// no copy constructor, copy assignment operator</span>
+    <span class="hljs-comment">// or destructor defined ...</span>
+    <span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">float</span> _x, _y, _z;
+};
+</code></pre>
+<p>&#x63D0;&#x4F9B;&#x4E86;&#x5BF9;&#x6570;&#x636E;&#x7684;&#x5C01;&#x88C5;&#xFF0C;&#x4F7F;&#x7528;ADT&#x8BBE;&#x8BA1;&#x8303;&#x5F0F;&#x3002;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;virtual&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x7C7B;&#x5BF9;&#x8C61;&#x7684;&#x5927;&#x5C0F;&#x540C;&#x4E4B;&#x524D;&#x4E00;&#x6837;&#xFF0C;&#x53EA;&#x6709;&#x4E09;&#x4E2A;&#x6570;&#x636E;&#x6210;&#x5458;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x5176;public&#xFF0C;private access label&#x4E0D;&#x4F1A;&#x5360;&#x7528;&#x5BF9;&#x8C61;&#x4EFB;&#x4F55;&#x7A7A;&#x95F4;&#xFF0C;member function&#x4E5F;&#x4E00;&#x6837;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x4E5F;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x62F7;&#x8D1D;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x7B26;&#xFF0C;default bitwise copy semantics are sufficient. &#x6211;&#x4EEC;&#x4E5F;&#x4E0D;&#x4F1A;&#x63D0;&#x4F9B;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C; the default program management of memory is sufficient.</p>
+<p>The definition of a global instance</p>
+<pre><code class="lang-c++">Point global; <span class="hljs-comment">// apply Point::Point( 0.0, 0.0, 0.0 );</span>
+</code></pre>
+<p>&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5728;&#x7A0B;&#x5E8F;&#x5F00;&#x59CB;&#x65F6;&#xFF0C;&#x7ED9;global&#x8C03;&#x7528;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#x521D;&#x59CB;&#x5316;&#x3002;</p>
+<p>&#x5982;&#x679C;class&#x7684;&#x521D;&#x59CB;&#x5316;&#x7684;&#x503C;&#x90FD;&#x662F;constant values, &#x663E;&#x793A;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x7684;&#x4F7F;&#x7528;&#x66F4;&#x9AD8;&#x6548;&#xFF0C;&#x5982;&#x4E0B;&#xFF0C;local1&#x4F7F;&#x7528;&#x663E;&#x793A;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x521D;&#x59CB;&#x5316;&#x3002;&#x800C;local2&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#x521D;&#x59CB;&#x5316;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mumble</span><span class="hljs-params">()</span>
+</span>{
+    Point1 local1 = { <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> };
+    <span class="hljs-function">Point2 <span class="hljs-title">local2</span><span class="hljs-params">(<span class="hljs-number">1.0</span>,<span class="hljs-number">1.0</span>,<span class="hljs-number">1.0</span>)</span></span>; 
+    <span class="hljs-comment">// &#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684; inline expansion &#x5982;&#x4E0B;</span>
+    local2._x = <span class="hljs-number">1.0</span>;
+    local2._y = <span class="hljs-number">1.0</span>;
+    local2._z = <span class="hljs-number">1.0</span>;
+
+    <span class="hljs-comment">// the explicit initialization is slightly faster</span>
+}
+</code></pre>
+<p>local1&#x7684;&#x521D;&#x59CB;&#x5316;&#x6BD4;local2&#x66F4;&#x9AD8;&#x6548;&#xFF0C; &#x56E0;&#x4E3A;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x4E2D;&#x7684;&#x5E38;&#x91CF;&#xFF0C;&#x5728;mumble&#x51FD;&#x6570;&#x6808;&#x88AB;&#x8BBE;&#x7F6E;&#x65F6;&#xFF0C;&#x5C31;&#x88AB;&#x653E;&#x7F6E;&#x5728;mumble&#x51FD;&#x6570;&#x6808;&#x4E2D;&#xFF0C;local1&#x5BF9;&#x5E94;&#x7684;&#x7A7A;&#x95F4;&#x4E2D;&#x4E86;&#x3002;
+&#x800C;local2&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#x88AB;&#x62D3;&#x5C55;&#x6210;&#x4E00;&#x6761;&#x6761;&#x9700;&#x8981;&#x6267;&#x884C;&#x7684;&#x8D4B;&#x503C;&#x8BED;&#x53E5;</p>
+<p>&#x663E;&#x793A;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x521D;&#x59CB;&#x5316;&#x4E5F;&#x6709;&#x7F3A;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x53EA;&#x6709;&#x5728;&#x6240;&#x6709;&#x7684;class members&#x90FD;&#x662F;public&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x4F7F;&#x7528;</li>
+<li>&#x5728;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x4E2D;&#x53EA;&#x80FD;&#x653E;&#x7F6E;&#x5E38;&#x91CF;&#x8868;&#x8FBE;&#x5F0F;(those able to be evaluated at compile time)</li>
+</ul>
+<p>The definition of the local Point object</p>
+<pre><code class="lang-c++">{
+    Point local;
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>is now followed by the inline expansion of the Point defaul constructor:</p>
+<pre><code class="lang-c++">{
+  <span class="hljs-comment">// inline expansion of default constructor</span>
+  Point local;
+  local._x = <span class="hljs-number">0.0</span>; local._y = <span class="hljs-number">0.0</span>; local._z = <span class="hljs-number">0.0</span>;
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>The allocation of the Point object on the heap on line 6</p>
+<pre><code class="lang-c++">(<span class="hljs-number">6</span>) Point *heap = <span class="hljs-keyword">new</span> Point;
+</code></pre>
+<p>now includes a conditional invocation of the Point  default  constructor</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+Point *heap = __new( <span class="hljs-keyword">sizeof</span>( Point ));
+<span class="hljs-keyword">if</span> ( heap != <span class="hljs-number">0</span> )
+    heap-&gt;Point::Point();
+</code></pre>
+<p>which is then inline expanded. </p>
+<p>The assignment of the local object to the object pointed to by heap</p>
+<pre><code class="lang-c++">(<span class="hljs-number">7</span>) *heap = local;
+</code></pre>
+<p>remains a simple bitwise copy, as does the return of the local object by value :</p>
+<pre><code class="lang-c++">(<span class="hljs-number">10</span>) <span class="hljs-keyword">return</span> local;
+</code></pre>
+<p>The deletion of the object addressed by heap</p>
+<pre><code class="lang-c++">(<span class="hljs-number">9</span>) <span class="hljs-keyword">delete</span> heap;
+</code></pre>
+<p>does not result in a destructor call, since we did not explicitly provide an instance.</p>
+<p>Conceptually, our Point class has an associated default copy constructor, copy assignment operator, and destructor. <strong>These, however, are trivial and are not in practice actually generated by the compiler.</strong></p>
+<h3 id="preparing-for-inheritance"><strong>Preparing for Inheritance</strong></h3>
+<p>&#x4E0B;&#x9762;&#x7684;&#x7B2C;&#x4E09;&#x4E2A;Point&#x7684;&#x58F0;&#x660E;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x5176;&#x4E2D;&#x6709;virtual&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;virtual&#x673A;&#x5236;&#x4E3B;&#x8981;&#x662F;&#x9488;&#x5BF9;z data member&#x7684;&#x5B58;&#x53D6;&#x7684;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point {
+<span class="hljs-keyword">public</span>:
+  Point( <span class="hljs-keyword">float</span> x = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> y = <span class="hljs-number">0.0</span> ): _x( x ), _y( y ) {}
+  <span class="hljs-comment">// no destructor, copy constructor, or</span>
+  <span class="hljs-comment">// copy  assignment operator defined ...</span>
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">float</span> <span class="hljs-title">z</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">protected</span>:
+    <span class="hljs-keyword">float</span> _x, _y;
+};
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x4F9D;&#x7136;&#x6CA1;&#x6709;&#x5B9A;&#x4E49; copy constructor, copy assignment operator, or destructor&#x3002; 
+All our members are stored by value and are therefore well behaved on a program level under the default semantics. (Some people would argue that the introduction of a virtual function should always be accompanied by the declaration of a virtual destructor. But doing that would buy us nothing in this case.) <font clolr="red">&#x8FD9;&#x91CC;&#x5B58;&#x7591;&#x54C8;&#xFF0C;trivail desctructor&#x662F;nonvirtual&#x7684;&#xFF0C;&#x5982;&#x679C;&#x6D3E;&#x751F;&#x7C7B;&#x786E;&#x5B9E;&#x9700;&#x8981;&#x5728;desctrctor&#x4E2D;&#x6267;&#x884C;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#xFF0C;&#x800C; <code>delete p</code>&#x5C06;&#x8C03;&#x7528; Point&#x7684;trivial destructor&#xFF0C;&#x8FD9;&#x662F;&#x4E0D;&#x5BF9;&#x7684;</font></p>
+<p>&#x9996;&#x5148;virtual&#x51FD;&#x6570;&#x7684;&#x5F15;&#x5165;&#xFF0C;&#x5BFC;&#x81F4;&#x6BCF;&#x4E2A;Point calss object&#x4E2D;&#x90FD;&#x4F1A;&#x5B58;&#x50A8;&#x4E00;&#x4E2A;&#x6307;&#x5411;virtual table&#x7684;&#x6307;&#x9488;&#x3002;&#x5176;&#x6B21;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x62D3;&#x5C55;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x62F7;&#x8D1D;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x7B26;</p>
+<ul>
+<li>&#x5BF9;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x62D3;&#x5C55;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x5176;&#x4E2D;&#x52A0;&#x4E0A;&#x521D;&#x59CB;&#x5316;virtual table pointer&#x7684;&#x4EE3;&#x7801;&#x3002; This code has to be added after the invocation of any base class constructors but before execution of any user-supplied code. For example, here is a possible expansion of our Point constructor:<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code: internal augmentation</span>
+Point::Point( Point *<span class="hljs-keyword">this</span>,<span class="hljs-keyword">float</span> x, <span class="hljs-keyword">float</span> y ):_x(x), _y(y)
+{
+<span class="hljs-comment">// set the object&apos;s virtual table pointer</span>
+<span class="hljs-keyword">this</span>-&gt;__vptr__Point = __vtbl__Point;
+<span class="hljs-comment">// expand member initialization list</span>
+<span class="hljs-keyword">this</span>-&gt;_x = x;
+<span class="hljs-keyword">this</span>-&gt;_y = y;
+<span class="hljs-keyword">return</span>;
+}
+</code></pre>
+</li>
+<li>&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x62F7;&#x8D1D;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x7B26;&#x90FD;&#x9700;&#x8981;&#x88AB;&#x663E;&#x793A;&#x5408;&#x6210;&#x7684;&#xFF0C;&#x4ED6;&#x4EEC;&#x73B0;&#x5728;&#x4E0D;&#x662F;trivial&#x7684;&#x4E86;&#x3002;(The implicit destructor remains trivial and so is not synthesized&#xFF0C;also it&apos;s none virtual)</li>
+</ul>
+<p>&#x5176;&#x5408;&#x6210;&#x7684;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;vptr&#x7684;&#x8BBE;&#x7F6E;&#x4E0D;&#x80FD;&#x7B80;&#x5355;&#x7684;&#x62F7;&#x8D1D;&#xFF0C;&#x6BD4;&#x5982;&#x5982;&#x679C;&#x662F;&#x7528;&#x6D3E;&#x751F;&#x7C7B;&#x521D;&#x59CB;&#x5316;&#x57FA;&#x7C7B;&#x3002; &#x5176;&#x4ED6;&#x7684;&#x6210;&#x5458;&#x53EF;&#x80FD;&#x662F;copy member by member,or chunk by chunk </p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code:</span>
+<span class="hljs-comment">// internal synthesis of copy constructor</span>
+Point::Point( Point *<span class="hljs-keyword">this</span>, <span class="hljs-keyword">const</span> Point &amp;rhs )
+{
+  <span class="hljs-comment">// set the object&apos;s virtual table pointer</span>
+  <span class="hljs-keyword">this</span>-&gt;__vptr__Point = __vtbl__Point;
+  <span class="hljs-comment">// &apos;bitblast&apos; contiguous portion of rhs&apos;coordinates into this object or provide a member by member assignment ...</span>
+  <span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#x7684;&#x5408;&#x6210;&#xFF0C;&#x90FD;&#x662F;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#x518D;&#x5408;&#x6210;&#x3002;</p>
+<p>line 7&#x7684;&#x62F7;&#x8D1D;</p>
+<pre><code class="lang-c++">*heap = local;
+</code></pre>
+<p>is likely to trigger the actual synthesize of the copy assignment operator and an inline expansion of its invocation, substituting <code>heap</code> for the <code>this</code> pointer and <code>local</code> for the <code>rhs</code> argument.</p>
+<p>&#x6700;&#x540E;line 10&#xFF0C; return of local by value&#xFF0C;&#x5176;&#x8F6C;&#x6362;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ code: transformation of foobar()</span>
+<span class="hljs-comment">// to support copy construction</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foobar</span><span class="hljs-params">( Point &amp;__result )</span>
+</span>{
+Point local;
+local.Point::Point( <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// heap remains the same ...</span>
+<span class="hljs-comment">// application of copy constructor</span>
+__result.Point::Point( local );
+<span class="hljs-comment">// destruction of local object would go here</span>
+<span class="hljs-comment">// had Point defined a destructor:</span>
+<span class="hljs-comment">// local.Point::~Point();</span>
+<span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x53EF;&#x4EE5;&#x5E94;&#x7528;NRV&#x4F18;&#x5316;&#xFF08;&#x524D;&#x63D0;&#x662F;&#x5408;&#x6210;&#x4E86;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x4F46;&#x662F;&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#x5E76;&#x6CA1;&#x6709;&#xFF09;&#xFF0C;&#x8FDB;&#x4E00;&#x6B65;&#x5C06;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x4F18;&#x5316;&#x6389;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ code: transformation of foobar()</span>
+<span class="hljs-comment">// to support named return value optimization</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foobar</span><span class="hljs-params">( Point &amp;__result )</span>
+</span>{
+__result.Point::Point( <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// heap remains the same ...</span>
+<span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>In general, if your design includes a number of functions requiring the definition and return of a local class object by value, such as arithmetic operations of the form</p>
+<pre><code class="lang-c++">T <span class="hljs-keyword">operator</span>+( <span class="hljs-keyword">const</span> T&amp;, <span class="hljs-keyword">const</span> T&amp; )
+{
+    T result;
+    <span class="hljs-comment">// ... actual work ...</span>
+    <span class="hljs-keyword">return</span> result;
+};
+</code></pre>
+<p>then it makes good sense to provide a copy constructor even if the default memberwise semantics are sufficient. Its presence triggers the application of the NRV optimization. </p>
+<h3 id="object-construction-under-inheritance"><strong>Object Construction under Inheritance</strong></h3>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;object&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>T object;
+</code></pre><p>&#x5B9E;&#x9645;&#x4E0A;&#x4F1A;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;&#x5462;&#xFF1F;&#x5982;&#x679C;T&#x6709;&#x4E00;&#x4E2A;constructor&#xFF08;&#x4E0D;&#x8BBA;&#x662F;&#x7531;user&#x63D0;&#x4F9B;&#x6216;&#x662F;&#x7531;&#x7F16;&#x8BD1;&#x5668;&#x5408;&#x6210;&#xFF09;&#xFF0C;&#x5B83;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#xFF0E;&#x4F46;&#x8FD9;&#x4E2A;constructor&#x5185;&#x90E8;&#x5230;&#x5E95;&#x505A;&#x4E86;&#x54EA;&#x4E9B;&#x4E8B;&#x60C5;&#x5462;&#xFF1F;</p>
+<ol>
+<li>The data members initialized in the member initialization list have to be entered within the body of the constructor in the order of member declaration.</li>
+<li>If a member class object is not present in the member initialization list but has an associated default constructor, that default constructor must be invoked.</li>
+<li>Prior to that, if there is a virtual table pointer (or pointers) contained within the class object, it (they)must be initialized with the address of the appropriate virtual table(s).</li>
+<li>Prior to that, all immediate base class constructors must be invoked in the order of base class declaration (the order within the member initialization list is not relevant).<ul>
+<li>If the base class is listed within the member initialization list, the explicit arguments, if any, must be passed.</li>
+<li>If the base class is not listed within the member initialization list, the default constructor (or default memberwise copy constructor) must be invoked, if present.</li>
+<li>If the base class is a second or subsequent base class, the this pointer must be adjusted.</li>
+</ul>
+</li>
+<li>Prior to that, all virtual base class constructors must be invoked in a left-to-right, depth-first search of the inheritance hierarchy defined by the derived class.<ul>
+<li>If the class is listed within the member initialization list, the explicit arguments, if any, must be passed. Otherwise, if there is a default constructor associated with the class, it must be invoked.</li>
+<li>In addition, the offset of each virtual base class subobject within the class must somehow be made accessible at runtime.</li>
+<li>These constructors, however, may be invoked if, and only if, the class object represents the &quot;most-derived class.&quot; Some mechanism supporting this must be put into place. </li>
+</ul>
+</li>
+</ol>
+<p>&#x73B0;&#x5728;Point&#x7684;&#x58F0;&#x660E;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point {
+<span class="hljs-keyword">public</span>:
+   Point( <span class="hljs-keyword">float</span> x = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> y = <span class="hljs-number">0.0</span> );
+   Point( <span class="hljs-keyword">const</span> Point&amp; );
+   Point&amp; <span class="hljs-keyword">operator</span>=( <span class="hljs-keyword">const</span> Point&amp; );
+   <span class="hljs-keyword">virtual</span> ~Point();
+   <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">float</span> <span class="hljs-title">z</span><span class="hljs-params">()</span></span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">0.0</span>; }
+   <span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">protected</span>:
+   <span class="hljs-keyword">float</span> _x, _y;
+};
+</code></pre>
+<p>&#x73B0;&#x6709;Line&#x7C7B;&#x58F0;&#x660E;&#x5982;&#x4E0B;&#xFF0C;composed of a begin and end point</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Line {
+Point _begin, _end;
+<span class="hljs-keyword">public</span>:
+   Line( <span class="hljs-keyword">float</span>=<span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span>=<span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span>=<span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span>=<span class="hljs-number">0.0</span> );
+   Line( <span class="hljs-keyword">const</span> Point&amp;, <span class="hljs-keyword">const</span> Point&amp; );
+   draw();
+   <span class="hljs-comment">// ...</span>
+};
+</code></pre>
+<p>Each explicit constructor is augmented to invoke the constructors of its two member class objects. For example, the user constructor</p>
+<pre><code class="lang-c++">Line::Line( <span class="hljs-keyword">const</span> Point &amp;begin, <span class="hljs-keyword">const</span> Point &amp;end ): _end( end ), _begin( begin )
+{};
+</code></pre>
+<p>is internally augmented and transformed into</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code: Line constructor augmentation</span>
+Line::Line( Line *<span class="hljs-keyword">this</span>, <span class="hljs-keyword">const</span> Point &amp;begin, <span class="hljs-keyword">const</span> Point &amp;end ): _end( end ), _begin( begin )
+{
+<span class="hljs-keyword">this</span>-&gt;_begin.Point::Point( begin );
+<span class="hljs-keyword">this</span>-&gt;_end.Point::Point( end );
+<span class="hljs-keyword">return</span>;
+};
+</code></pre>
+<p>Since the Point class declares a copy constructor, a copy assignment operator, and a destructor (virtual in this case), the implicit copy constructor, copy assignment operator, and destructor for Line are nontrivial.</p>
+<p>&#x5408;&#x6210;&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4E0D;&#x662F;virtual&#x7684;(If Line were derived from Point, the synthesized destructor would be virtual. However, because Line contains only Point objects, the synthesized Line destructor is nonvirtual). Within it, the destructors for its two member class objects are invoked in the reverse order of their construction:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code: Line destructor synthesis</span>
+<span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> Line::~Line( Line *<span class="hljs-keyword">this</span> )
+{
+    <span class="hljs-keyword">this</span>-&gt;_end.Point::~Point();
+    <span class="hljs-keyword">this</span>-&gt;_begin.Point::~Point();
+};
+</code></pre>
+<h3 id="virtual-inheritance"><strong>Virtual Inheritance</strong></h3>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point3d : <span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> Point {
+<span class="hljs-keyword">public</span>:
+   Point3d( <span class="hljs-keyword">float</span> x = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> y = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> z = <span class="hljs-number">0.0</span> )
+   : Point( x, y ), _z( z ) {}
+   Point3d( <span class="hljs-keyword">const</span> Point3d&amp; rhs )
+   : Point( rhs ), _z( rhs._z ) {}
+   ~Point3d();
+   Point3d&amp; <span class="hljs-keyword">operator</span>=( <span class="hljs-keyword">const</span> Point3d&amp; );
+   <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">float</span> <span class="hljs-title">z</span><span class="hljs-params">()</span></span>{ <span class="hljs-keyword">return</span> _z; }
+   <span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">protected</span>:
+   <span class="hljs-keyword">float</span> _z;
+};
+</code></pre>
+<p>The conventional constructor augmentation does not work due to the shared nature of the virtual base class:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code:</span>
+<span class="hljs-comment">// Invalid Constructor Augmentation</span>
+Point3d::Point3d( Point3d *<span class="hljs-keyword">this</span>, <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">float</span> y, <span class="hljs-keyword">float</span> z )
+{
+   <span class="hljs-keyword">this</span>-&gt;Point::Point( x, y );
+   <span class="hljs-keyword">this</span>-&gt;__vptr__Point3d = __vtbl__Point3d;
+   <span class="hljs-keyword">this</span>-&gt;__vptr__Point3d__Point =__vtbl__Point3d__Point;
+   <span class="hljs-keyword">this</span>-&gt;_z = z;
+   <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+}
+</code></pre>
+<p>Consider the following three class derivations:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Vertex : <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">public</span> Point { ... };
+<span class="hljs-keyword">class</span> Vertex3d : <span class="hljs-keyword">public</span> Point3d, <span class="hljs-keyword">public</span> Vertex { ... };
+<span class="hljs-keyword">class</span> PVertex : <span class="hljs-keyword">public</span> Vertex3d { ... };
+</code></pre>
+<p>The constructor for Vertex must also invoke the Point class constructor. However, when Point3d and Vertex are subobjects of Vertex3d, their invocations of the Point constructor must not occur; rather, Vertex3d, as the most-derived class, becomes responsible for initializing Point. In the subsequent PVertex derivation, it, not Vertex3d, is responsible for the initialization of the shared Point subobject.</p>
+<p>&#x8FD9;&#x79CD;&#x6709;&#x65F6;&#x5019;&#x9700;&#x8981;&#x8C03;&#x7528;virtual base class&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x53C8;&#x4E0D;&#x9700;&#x8981;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x901A;&#x8FC7;&#x5BF9;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x6765;&#x5B9E;&#x73B0;&#x7684;&#x3002; &#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Psuedo C++ Code:</span>
+<span class="hljs-comment">// Constructor Augmentation with Virtual Base class</span>
+Point3d::Point3d( Point3d *<span class="hljs-keyword">this</span>, <span class="hljs-keyword">bool</span> __most_derived,
+<span class="hljs-keyword">float</span> x, <span class="hljs-keyword">float</span> y, <span class="hljs-keyword">float</span> z )
+{
+<span class="hljs-keyword">if</span> ( __most_derived != <span class="hljs-literal">false</span> )
+    <span class="hljs-keyword">this</span>-&gt;Point::Point( x, y);
+<span class="hljs-keyword">this</span>-&gt;__vptr__Point3d = __vtbl__Point3d;
+<span class="hljs-keyword">this</span>-&gt;__vptr__Point3d__Point = __vtbl__Point3d__Point;
+<span class="hljs-keyword">this</span>-&gt;_z =z;
+<span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>&#x540E;&#x7EED;&#x6D3E;&#x751F;&#x7684;&#x7C7B;&#xFF0C;&#x6BD4;&#x5982;Vertex3d,&#x5176;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x5728;&#x8C03;&#x7528;Point3d &#x548C; Vertex&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x65F6;&#xFF0C;&#x90FD;&#x5C06;__most_derived&#x53C2;&#x6570;&#x8BBE;&#x7F6E;&#x4E3A;false,suppressing the Point constructor invocation within both constructors</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Psuedo C++ Code:</span>
+<span class="hljs-comment">// Constructor Augmentation with Virtual Base class</span>
+Vertex3d::Vertex3d( Vertex3d *<span class="hljs-keyword">this</span>, <span class="hljs-keyword">bool</span> __most_derived,
+<span class="hljs-keyword">float</span> x, <span class="hljs-keyword">float</span> y, <span class="hljs-keyword">float</span> z )
+{
+<span class="hljs-keyword">if</span> ( __most_derived != <span class="hljs-literal">false</span> )
+    <span class="hljs-keyword">this</span>-&gt;Point::Point( x, y);
+<span class="hljs-comment">// invoke immediate base classes,</span>
+<span class="hljs-comment">// setting __most_derived to false</span>
+<span class="hljs-keyword">this</span>-&gt;Point3d::Point3d( <span class="hljs-literal">false</span>, x, y, z );
+<span class="hljs-keyword">this</span>-&gt;Vertex::Vertex( <span class="hljs-literal">false</span>, x, y );
+<span class="hljs-comment">// set vptrs...</span>
+<span class="hljs-comment">// insert user code....</span>
+<span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x66F4;&#x4E3A;&#x6709;&#x6548;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x5C31;&#x662F;&#x5C06;constructor&#x751F;&#x6210;&#x4E24;&#x4EFD;&#xFF0C;&#x4E00;&#x4EFD;&#x7528;&#x4E8E;&#x5B8C;&#x6574;&#x5BF9;&#x8C61;&#x7684;&#x8C03;&#x7528;&#xFF0C;&#x5176;&#x4E2D;&#x4F1A;&#x8C03;&#x7528;&#x5176;virtual base class &#x7684; constructor,sets all vptrs, and so on.&#x53E6;&#x4E00;&#x4EFD;&#x9488;&#x5BF9;subobject&#xFF0C; does not invoke the virtual base class constructors, may possibly not set the vptrs, and so on &#x3002;&#x4E0D;&#x8FC7;&#x4F5C;&#x8005;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x54EA;&#x79CD;&#x7F16;&#x8BD1;&#x5668;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
+<h3 id="the-semantics-of-the-vptr-initialization"><strong>The Semantics of the vptr Initialization</strong></h3>
+<p>When we define a PVertex object, the order of constructor calls is</p>
+<pre><code class="lang-c++">Point( x, y );
+Point3d( x, y, z );
+Vertex( x, y, z );
+Vertex3d( x, y, z );
+PVertex( x, y, z );
+</code></pre>
+<p>&#x5047;&#x8BBE;&#x8FD9;&#x4E2A;&#x7EE7;&#x627F;&#x4F53;&#x7CFB;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x7C7B;&#x4E2D;&#x90FD;&#x58F0;&#x660E;&#x4E86;virtual function size() that returns the size in bytes of the class&#x3002;&#x4E0B;&#x9762;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-c++">PVertex pv;
+Point3d p3d;
+Point *pt = &amp;pv;
+</code></pre>
+<p>the call</p>
+<pre><code>pt-&gt;size();
+</code></pre><p>would return the size of the PVertex class and</p>
+<pre><code>pt = &amp;p3d
+pt-&gt;size();
+</code></pre><p>would return the size of the Point3d class.</p>
+<p>&#x5728;&#x4E0A;&#x8FF0;&#x7EE7;&#x627F;&#x4F53;&#x7CFB;&#x7684;&#x7C7B;&#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x90FD;&#x6709;&#x5BF9;size&#x7684;&#x8C03;&#x7528;&#xFF0C;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++">Point3d::Point3d( <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">float</span> y, <span class="hljs-keyword">float</span> z ) : _x( x ), _y( y ), _z( z )
+{
+   <span class="hljs-keyword">if</span> ( spyOn )
+    <span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">&quot;within Point3d::Point3d()&quot;</span>&lt;&lt; <span class="hljs-string">&quot; size: &quot;</span> &lt;&lt; size() &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+</code></pre>
+<p>&#x8FD9;&#x6837;&#xFF0C;PVertex&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x5176;&#x5404;&#x57FA;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#xFF0C;&#x5176;&#x4E2D;&#x5BF9;size&#x7684;&#x89E3;&#x6790;&#xFF0C;&#x662F;&#x89E3;&#x6790;&#x5230;PVertex::size()&#xFF0C;&#x8FD8;&#x662F;&#x89E3;&#x6790;&#x5230;&#x6B63;&#x5728;&#x88AB;&#x6784;&#x9020;&#x7684;subobject&#x7684;size&#x5462;&#xFF1F;&#x7B54;&#x6848;&#x662F;&#x89E3;&#x6790;&#x5230;&#x6B63;&#x5728;&#x88AB;&#x6784;&#x9020;&#x7684;subobject&#x7684;size&#x3002;&#x8FD9;&#x662F;&#x5FC5;&#x987B;&#x4FDD;&#x8BC1;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x662F;&#x4ECE;&#x57FA;&#x7C7B;&#x5230;&#x6D3E;&#x751F;&#x7C7B;&#xFF0C;&#x5728;&#x6784;&#x9020;&#x57FA;&#x7C7B;&#x65F6;&#xFF0C;&#x6D3E;&#x751F;&#x7C7B;&#x8FD8;&#x4E0D;&#x5B8C;&#x6574;&#xFF0C;&#x4E0D;&#x80FD;&#x8C03;&#x7528;&#x6D3E;&#x751F;&#x7C7B;&#x7684;&#x865A;&#x51FD;&#x6570;&#x3002;&#x4F46;&#x8FD9;&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x7684;&#xFF1F;</p>
+<p>&#x5982;&#x679C;&#x9700;&#x8981;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6216;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4E2D;&#x8C03;&#x7528;&#x865A;&#x51FD;&#x6570;&#xFF0C;&#x5E94;&#x8BE5;&#x76F4;&#x63A5;&#x9759;&#x6001;&#x8C03;&#x7528;&#xFF0C;&#x6BD4;&#x5982;&#x4E0A;&#x9762;&#x7684;Point3d&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x5BF9;size&#x7684;&#x8C03;&#x7528;&#x5E94;&#x8BE5;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++">Point3d::size()
+</code></pre>
+<p>&#x7136;&#x800C;&#x5982;&#x679C;size&#x51FD;&#x6570;&#x4E2D;&#x53C8;&#x6709;&#x5BF9;&#x865A;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x53EA;&#x80FD;&#x8D70;&#x865A;&#x51FD;&#x6570;&#x673A;&#x5236;&#x8C03;&#x7528;&#x4E86;&#x3002;&#x865A;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x4E3B;&#x8981;&#x901A;&#x8FC7;vptr,&#x56E0;&#x6B64;vptr&#x7684;&#x521D;&#x59CB;&#x5316;&#x65F6;&#x673A;&#x5C31;&#x5F88;&#x91CD;&#x8981;&#x4E86;&#x3002;vptr&#x7684;&#x521D;&#x59CB;&#x5316;&#x65F6;&#x673A;&#xFF0C;<strong>After invocation of the base class constructors but before execution of user-provided code or the expansion of members initialized within the member initialization list</strong></p>
+<p>&#x4E00;&#x4E2A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x6267;&#x884C;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;</p>
+<ul>
+<li>Within the derived class constructor, all virtual base class and then immediate base class constructors are invoked.</li>
+<li>That done, the object&apos;s vptr(s) are initialized to address the associated virtual table(s).</li>
+<li>The member initialization list, if present, is expanded within the body of the constructor. This must be done after the vptr is set in case a virtual member function is called.</li>
+<li>The explicit user-supplied code is executed.</li>
+</ul>
+<p>&#x5047;&#x8BBE;PVertex&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++">PVertex::PVertex( <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">float</span> y, <span class="hljs-keyword">float</span> z ): _next( <span class="hljs-number">0</span> ), Vertex3d( x, y, z ), Point( x, y )
+{
+<span class="hljs-keyword">if</span> ( spyOn )
+  <span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">&quot;within Point3d::Point3d()&quot;</span>
+  &lt;&lt; <span class="hljs-string">&quot; size: &quot;</span> &lt;&lt; size() &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+</code></pre>
+<p>&#x6309;&#x7167;&#x5982;&#x4E0A;&#x7684;&#x6D41;&#x7A0B;&#xFF0C;&#x4F1A;&#x88AB;&#x62D3;&#x5C55;&#x6210;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+<span class="hljs-comment">// expansion of PVertex constructor</span>
+PVertex::PVertex( Pvertex* <span class="hljs-keyword">this</span>, <span class="hljs-keyword">bool</span> __most_derived, <span class="hljs-keyword">float</span> x, <span class="hljs-keyword">float</span> y, <span class="hljs-keyword">float</span> z )
+{
+<span class="hljs-comment">// conditionally invoke the virtual base constructor</span>
+<span class="hljs-keyword">if</span> ( __most_derived != <span class="hljs-literal">false</span> )
+    <span class="hljs-keyword">this</span>-&gt;Point::Point( x, y );
+<span class="hljs-comment">// unconditional invocation of immediate base</span>
+<span class="hljs-keyword">this</span>-&gt;Vertex3d::Vertex3d( <span class="hljs-literal">false</span>,x, y, z );
+<span class="hljs-comment">// initialize associated vptrs</span>
+<span class="hljs-keyword">this</span>-&gt;__vptr__PVertex = __vtbl__PVertex;
+<span class="hljs-keyword">this</span>-&gt;__vptr__Point__PVertex = __vtbl__Point__PVertex;
+
+<span class="hljs-keyword">this</span>-&gt;_next=<span class="hljs-number">0</span>;
+<span class="hljs-comment">// explicit user code</span>
+<span class="hljs-keyword">if</span> ( spyOn )
+  <span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">&quot;within PVertex::PVertex()&quot;</span>
+  &lt;&lt; <span class="hljs-string">&quot; size: &quot;</span>
+  <span class="hljs-comment">// invocation through virtual mechanism</span>
+  &lt;&lt; (*<span class="hljs-keyword">this</span>-&gt;__vptr__PVertex[ <span class="hljs-number">3</span> ].faddr)(<span class="hljs-keyword">this</span>)
+  &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-keyword">return</span> ;
+}
+</code></pre>
+<p>&#x7136;&#x800C;&#x8FD9;&#x4E2A;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x7684;base class &#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x90FD;&#x8BBE;&#x7F6E;&#x5176;vptr,&#x800C;&#x8FD9;&#x4E2A;&#x8BBE;&#x7F6E;&#x7684;&#x503C;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x4F1A;&#x5728;&#x5176;&#x4E0B;&#x4E00;&#x5C42;&#x7684;&#x6D3E;&#x751F;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x518D;&#x6B21;&#x88AB;&#x8BBE;&#x7F6E;&#x3002;</p>
+<p>&#x53E6;&#x4E00;&#x79CD;&#x6784;&#x9020;&#x51FD;&#x6570;vptr&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x5C31;&#x662F;&#x5C06;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x6210;2&#x5206;&#xFF0C;&#x4E00;&#x4EFD;&#x9488;&#x5BF9;&#x5B8C;&#x6574;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#xFF0C;&#x5176;&#x4E2D;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x6240;&#x6709;&#x7684;vptr,&#x53E6;&#x4E00;&#x4E2A;&#x9488;&#x5BF9;subobject&#x7684;&#x6784;&#x9020;&#x5B9E;&#x73B0;&#xFF0C;&#x5176;&#x4E2D;vptr&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x80FD;&#x7701;&#x7565;&#x5C31;&#x88AB;&#x7701;&#x7565;&#x3002;&#x9664;&#x975E;&#x8BE5;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x8C03;&#x7528;&#x4E86;&#x865A;&#x51FD;&#x6570;&#xFF0C;&#x5219;vpr&#x9700;&#x8981;&#x88AB;&#x8BBE;&#x7F6E;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x56DE;&#x7B54;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;</p>
+<ul>
+<li>&#x5728;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x5728;&#x5176;&#x521D;&#x59CB;&#x5316;&#x5217;&#x8868;&#x4E2D;&#x8C03;&#x7528;virtual function&#x4F5C;&#x4E3A;&#x5176;&#x6570;&#x636E;&#x6210;&#x5458;&#x7684;&#x521D;&#x59CB;&#x503C;&#xFF0C;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#xFF1F;</li>
+</ul>
+<p>&#x5982;&#x679C;&#x4EC5;&#x4ECE;virtual function&#x8C03;&#x7528;&#x5230;&#x6B63;&#x786E;&#x7684;&#x865A;&#x51FD;&#x6570;&#x8FD9;&#x4E00;&#x8C03;&#x5EA6;&#x8003;&#x8651;&#xFF0C;&#x662F;&#x53EF;&#x4EE5;&#x7684;&#x3002;&#x56E0;&#x4E3A; vptr is guaranteed to have been set by the compiler prior to the expansion of the member initialization list.
+&#x800C;&#x5982;&#x679C;&#x8BE5;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x672A;&#x88AB;&#x521D;&#x59CB;&#x5316;&#x7684;&#x6570;&#x636E;&#x6210;&#x5458;&#xFF0C;&#x5C31;&#x662F;&#x9519;&#x8BEF;&#x7684;&#x4E86;&#x3002;&#x603B;&#x7684;&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x79CD;idiom&#x662F;&#x4E0D;&#x63A8;&#x8350;&#x7684;&#x3002;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x662F;&#x8C03;&#x7528;virtual function&#x4F5C;&#x4E3A;&#x57FA;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x53C2;&#x6570;&#x5462;&#xFF1F;</li>
+</ul>
+<p>&#x8FD9;&#x6837;&#x7EDD;&#x5BF9;&#x662F;&#x9519;&#x8BEF;&#x7684;&#xFF0C; The vptr is either not set or set to the wrong class.Further, any of the data members of the class that are accessed within the function are guaranteed to not yet be initialized.</p>
+<h3 id="object-copy-semantics"><strong>Object Copy Semantics</strong></h3>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x8BBE;&#x8BA1;&#x4E00;&#x4E2A;class&#xFF0C;&#x5E76;&#x4EE5;&#x4E00;&#x4E2A;class object&#x8D4B;&#x503C;&#x7ED9;&#x53E6;&#x4E00;&#x4E2A;class object&#x65F6;&#xFF0C;
+&#x6211;&#x4EEC;&#x6709;&#x4E09;&#x79CD;&#x9009;&#x62E9;&#xFF1A;</p>
+<ol>
+<li>&#x4EC0;&#x4E48;&#x90FD;&#x4E0D;&#x505A;&#xFF0C;&#x56E0;&#x6B64;&#x5F97;&#x4EE5;&#x5B9E;&#x65BD;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#x3002;</li>
+<li>&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;explicit copy assignment operator</li>
+<li>&#x660E;&#x786E;&#x5730;&#x62D2;&#x7EDD;&#x628A;&#x4E00;&#x4E2A;class object &#x8D4B;&#x503C;&#x7ED9;&#x53E6;&#x4E00;&#x4E2A;class object</li>
+</ol>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8981;&#x5B9E;&#x73B0;&#x7B2C;&#x4E09;&#x70B9;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x5C06;copy assignment operator&#x58F0;&#x660E;&#x4E3A;private,&#x5E76;&#x4E14;&#x4E0D;&#x63D0;&#x4F9B;&#x5176;&#x5B9A;&#x4E49;&#x3002;
+&#x628A;&#x5B83;&#x8BBE;&#x4E3A;private&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x4E0D;&#x518D;&#x5141;&#x8BB8;&#x4E8E;&#x4EFB;&#x4F55;&#x5730;&#x70B9;&#xFF08;&#x9664;&#x4E86;&#x5728;member functions&#x4EE5;&#x53CA;&#x6B64;class
+&#x7684;friends&#x4E4B;&#x4E2D;&#xFF09;&#x8FDB;&#x884C;&#x8CE6;&#x503C;&#xFF08;assign&#xFF09;&#x64CD;&#x4F5C;&#xFF0E;&#x4E0D;&#x63D0;&#x4F9B;&#x5176;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#xFF0C;&#x5219;&#x4E00;&#x65E6;&#x67D0;&#x4E2A;member
+function&#x6216;friends&#x4F01;&#x56FE;&#x8C03;&#x7528;&#x8D4B;&#x503C;&#x64CD;&#x4F5C;&#xFF0C;&#x7A0B;&#x5E8F;&#x5728;&#x94FE;&#x63A5;&#x65F6;&#x5C31;&#x4F1A;&#x5931;&#x8D25;</p>
+<p>&#x5047;&#x8BBE;Point&#x7C7B;&#x58F0;&#x660E;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point {
+<span class="hljs-keyword">public</span>:
+   Point( <span class="hljs-keyword">float</span> x = <span class="hljs-number">0.0</span>, y = <span class="hljs-number">0.0</span> );
+   <span class="hljs-comment">//...( no virtual functions</span>
+<span class="hljs-keyword">protected</span>:
+   <span class="hljs-keyword">float</span> _x, _y;
+};
+</code></pre>
+<p>&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x7406;&#x7531;&#x9700;&#x8981;&#x7981;&#x6B62;&#x62F7;&#x8D1D;&#x4E00;&#x4E2A;Point object.&#x56E0;&#x6B64;&#x95EE;&#x9898;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#xFF1A;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#x662F;&#x5426;&#x8DB3;&#x591F;&#xFF1F;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8981;&#x652F;&#x6301;&#x7684;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#xFF0C;&#x90A3;&#x4E48;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#x4E0D;&#x4F46;&#x8DB3;&#x591F;&#x800C;&#x4E14;&#x6709;&#x6548;&#x7387;&#xFF0C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x7406;&#x7531;&#x518D;&#x81EA;&#x5DF1;&#x63D0;&#x4F9B;&#x4E00;copy assignment operator</p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4E0D;&#x5BF9;&#x4F9B;&#x5E94;&#x4E00;&#x4E2A;copy assignment operator&#xFF0C;&#x800C;&#x5149;&#x662F;&#x4F9D;&#x8D56;&#x9ED8;&#x8BA4;&#x7684;memberwise copy&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x4EA7;&#x751F;&#x51FA;&#x4E00;&#x4E2A;copy assignment operator&#x5B9E;&#x4F53;&#x5417;&#xFF1F;&#x8FD9;&#x4E2A;&#x7B54;&#x6848;&#x548C;copy constructor&#x7684;&#x60C5;&#x51B5;&#x4E00;&#x6837;&#xFF1A;&#x5B9E;&#x9645;&#x4E0A;&#x4E0D;&#x4F1A;&#xFF01;&#x7531;&#x4E8E;&#x6B64;class&#x5DF2;&#x7ECF;&#x6709;&#x4E86;bitwise copy&#x8BED;&#x610F;&#xFF0C;&#x6240;&#x4EE5;implicit copy assignment operator&#x88AB;&#x89C6;&#x4E3A;&#x6BEB;&#x65E0;&#x7528;&#x5904;&#xFF0C;&#x4E5F;&#x6839;&#x672C;&#x4E0D;&#x4F1A;&#x88AB;&#x5408;&#x6210;&#x51FA;&#x6765;&#xFF0E;</p>
+<p>&#x4E00;&#x4E2A;class&#x5728;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x4E0D;&#x5177;&#x6709;bitwise copy semantics:</p>
+<ul>
+<li>When the class contains a member object of a class for which a copy assignment operator exists</li>
+<li>When the class is derived from a base class for which a copy assignment operator exists</li>
+<li>When the class declares one or more virtual functions (we must not copy the vptr address of the righthand class object, since it might be a derived class object)</li>
+<li>When the class inherits from a virtual base class</li>
+</ul>
+<p>&#x5982;&#x679C;copy assignment operator&#x4E0D;&#x5177;&#x6709;bitwise copy semantics&#x65F6;&#xFF0C;copy assignment operator&#x662F;nontrivial&#x7684;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5408;&#x6210;&#x51FA;&#x5177;&#x4F53;&#x7684;&#x5B9E;&#x4F8B;&#x3002;</p>
+<p>For our Point class, then, the assignment</p>
+<pre><code class="lang-c++">Point a, b;
+...
+a = b;
+</code></pre>
+<p>is accomplished as a bitwise copy of Point b into Point a ; no copy assignment operator is invoked.</p>
+<p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x5982;&#x4E0B;&#x7684;copy assignment operator:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">inline</span> Point&amp; Point::<span class="hljs-keyword">operator</span>=( <span class="hljs-keyword">const</span> Point &amp;p )
+{
+  _x = p._x;
+  _y = p._y;
+}
+</code></pre>
+<p>Now let&apos;s derive our Point3d class (note the virtual inheritance):</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point3d : <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">public</span> Point {
+<span class="hljs-keyword">public</span>:
+  Point3d( <span class="hljs-keyword">float</span> x = <span class="hljs-number">0.0</span>, y = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> z = <span class="hljs-number">0.0</span> );
+  ...
+<span class="hljs-keyword">protected</span>:
+  <span class="hljs-keyword">float</span> _z;
+}
+</code></pre>
+<p>If we do not define a copy assignment operator for Point3d, the compiler needs to synthesize one . The synthesized instance might look as follows: </p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code: synthesized copy assignment operator</span>
+<span class="hljs-keyword">inline</span> Point3d&amp; Point3d::<span class="hljs-keyword">operator</span>=( Point3d *<span class="hljs-keyword">const</span> <span class="hljs-keyword">this</span>, <span class="hljs-keyword">const</span> Point3d &amp;p )
+{
+  <span class="hljs-comment">// invoke the base class instance</span>
+  <span class="hljs-keyword">this</span>-&gt;Point::<span class="hljs-keyword">operator</span>=( p );
+  <span class="hljs-comment">// memberwise copy the derived class members</span>
+  _z = p._z;
+  <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;
+}
+</code></pre>
+<p>&#x90A3;&#x4E48;&#x5047;&#x8BBE;Vertex&#x4E5F;&#x865A;&#x62DF;&#x7EE7;&#x627F;&#x81EA;Point,&#x5176;&#x5408;&#x6210;&#x7684;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// class Vertex : virtual public Point</span>
+<span class="hljs-keyword">inline</span> Vertex&amp; Vertex::<span class="hljs-keyword">operator</span>=( <span class="hljs-keyword">const</span> Vertex &amp;v )
+{
+  <span class="hljs-keyword">this</span>-&gt;Point::<span class="hljs-keyword">operator</span>=( v );
+  _next = v._next;
+  <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;
+}
+</code></pre>
+<p>&#x8FD9;&#x65F6;&#x5019;&#xFF0C;Vertex3d&#x7EE7;&#x627F;&#x81EA;Point3d&#x548C;Vertex&#xFF0C;&#x90A3;&#x4E48;&#x5408;&#x6210;&#x7684;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x662F;&#x4E0D;&#x662F;&#x5C31;&#x662F;&#x5982;&#x4E0B;&#x5462;&#xFF1F;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">inline</span> Vertex3d&amp; Vertex3d::<span class="hljs-keyword">operator</span>=( <span class="hljs-keyword">const</span> Vertex3d &amp;v )
+{
+  <span class="hljs-keyword">this</span>-&gt;Point::<span class="hljs-keyword">operator</span>=( v );
+  <span class="hljs-keyword">this</span>-&gt;Point3d::<span class="hljs-keyword">operator</span>=( v );
+  <span class="hljs-keyword">this</span>-&gt;Vertex::<span class="hljs-keyword">operator</span>=( v );
+  ...
+}
+</code></pre>
+<p>&#x8FD9;&#x770B;&#x4E0A;&#x53BB;&#x662F;&#x4E0D;&#x5BF9;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;<code>this-&gt;Point3d::operator=( v );</code>&#x548C;<code>this-&gt;Vertex::operator=( v );</code>&#x4E2D;&#x90FD;&#x8C03;&#x7528;&#x4E86;<code>this-&gt;Point::operator=( v );</code>,&#x6211;&#x4EEC;&#x4F3C;&#x4E4E;&#x5E94;&#x8BE5;&#x50CF;&#x5904;&#x7406;&#x6784;&#x9020;&#x51FD;&#x6570;&#x90A3;&#x6837;&#xFF0C;&#x7ED9;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x52A0;&#x4E0A;&#x53C2;&#x6570;&#xFF0C;&#x53EA;&#x6709;most derived class&#x4E2D;&#x624D;&#x4F1A;&#x8C03;&#x7528;<code>this-&gt;Point::operator=( v );</code>,&#x800C;&#x4E2D;&#x95F4;&#x7684;<code>Point3d::operator=</code>&#x548C;<code>Vertex::operator=</code>&#x4E0D;&#x8C03;&#x7528;<code>Point::operator=()</code>; &#x4F46;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x5374;&#x4E0D;&#x80FD;&#x88AB;&#x4F7F;&#x7528;&#x3002;&#x56E0;&#x4E3A;&#x4E0D;&#x80FD;&#x7ED9;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x52A0;&#x989D;&#x5916;&#x53C2;&#x6570;&#x3002;</p>
+<p>Actually, the copy assignment operator is ill behaved under virtual inheritance and needs to be carefully
+designed and documented. In practice, many compilers don&apos;t even try to get the semantics right. They invoke each virtual base instance within each intermediate copy assignment operator, thus causing multiple instances of the virtual base class copy assignment operator to be invoked. Cfront does this as well as the Edison Design Group&apos;s front-end, Borland&apos;s 4.5 C++ compiler, and Symantec&apos;s latest C++ Compiler under Windows. My guess is your compiler does it as well. What does the Standard have to say about this?
+<strong>It is unspecified whether subojects representing virtual base classes are assigned more than once by the implicitly defined copy assignment operator (Section 12.8)</strong></p>
+<p>&#x6240;&#x4EE5;&#x5728;&#x4F7F;&#x7528;virtual base class&#x65F6;&#x8981;&#x614E;&#x91CD;&#x4E86;</p>
+<p>One way to ensure the most-derived class effects the virtual base class subobject copy is to place an explicit call of that operator last in the derived class instance of the copy assignment operator:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">inline</span> Vertex3d&amp;
+Vertex3d::<span class="hljs-keyword">operator</span>=( <span class="hljs-keyword">const</span> Vertex3d &amp;v )
+{
+<span class="hljs-keyword">this</span>-&gt;Point3d::<span class="hljs-keyword">operator</span>=( v );
+<span class="hljs-keyword">this</span>-&gt;Vertex::<span class="hljs-keyword">operator</span>=( v );
+<span class="hljs-comment">// must place this last if your compiler does</span>
+<span class="hljs-comment">// not suppress intermediate class invocations</span>
+<span class="hljs-keyword">this</span>-&gt;Point::<span class="hljs-keyword">operator</span>=( v );
+...
+}
+</code></pre>
+<p>This doesn&apos;t elide the multiple copies of the subobject, but it does guarantee the correct final semantics.</p>
+<p>&#x6211;&#x5EFA;&#x8BAE;&#x5C3D;&#x53EF;&#x80FD;&#x4E0D;&#x8981;&#x5141;&#x8BB8;&#x4E00;&#x4E2A;virtual base class&#x7684;&#x62F7;&#x8D1D;&#x64CD;&#x4F5C;&#xFF0E;&#x66F4;&#x8FDB;&#x4E00;&#x6B65;&#xFF1A;&#x4E0D;&#x8981;&#x5728;&#x4EFB;&#x4F55;virtual base class&#x4E2D;&#x58F0;&#x660E;&#x6570;&#x636E;&#x3002;</p>
+<h3 id="semantics-of-destruction"><strong>Semantics of Destruction</strong></h3>
+<p>&#x5982;&#x679C;class&#x6CA1;&#x6709;&#x58F0;&#x660E;destructor,&#x5982;&#x679C;&#x8BE5;&#x7C7B;&#x5176;member or base class &#x6709;destructor, &#x7F16;&#x8BD1;&#x5668;&#x624D;&#x4F1A;&#x7D66;&#x5176;&#x5408;&#x6210;&#x6790;&#x6784;&#x51FD;&#x6570;&#x3002;&#x5426;&#x5219;&#xFF0C;the destructor is considered to be trivial and is therefore neither synthesized nor invoked in practice.</p>
+<p>&#x5982;&#x4E0B;&#x7684;Point class&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x65F6;&#x4E0D;&#x4F1A;&#x7ED9;&#x5176;&#x5408;&#x6210;&#x6790;&#x6784;&#x51FD;&#x6570;&#x7684;&#xFF0C;&#x5C3D;&#x7BA1;&#x5176;&#x6709;virtual function</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point {
+<span class="hljs-keyword">public</span>:
+  Point( <span class="hljs-keyword">float</span> x = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> y = <span class="hljs-number">0.0</span> );
+  Point( <span class="hljs-keyword">const</span> Point&amp; );
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">float</span> <span class="hljs-title">z</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">float</span> _x, _y;
+};
+</code></pre>
+<p>&#x5982;&#x4E0B;&#x7684;Line&#x7C7B;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4E5F;&#x4E0D;&#x4F1A;&#x7ED9;&#x5176;&#x5408;&#x6210;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x56E0;&#x4E3A;Point&#x7C7B;&#x6CA1;&#x6709;&#x6790;&#x6784;&#x51FD;&#x6570;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Line {
+<span class="hljs-keyword">public</span>:
+  Line( <span class="hljs-keyword">const</span> Point&amp;, <span class="hljs-keyword">const</span> Point&amp; );
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-title">draw</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">protected</span>:
+  Point _begin, _end;
+};
+</code></pre>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x4ECE;Point&#x6D3E;&#x751F;&#x51FA;Point3d,&#x54EA;&#x6015;&#x662F;&#x865A;&#x62DF;&#x6D3E;&#x751F;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x7ED9;Point3d&#x58F0;&#x660E;&#x4E00;&#x4E2A;destructor&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4E5F;&#x4E0D;&#x4F1A;&#x4E3A;&#x5176;&#x5408;&#x6210;&#x4E00;&#x4E2A;destructor&#xFF0E;</p>
+<p>&#x8003;&#x8651;&#x5982;&#x4E0B;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-c++">{
+  Point pt;
+  Point *p = <span class="hljs-keyword">new</span> Point3d;
+  foo( &amp;pt, p );
+  ...
+  <span class="hljs-keyword">delete</span> p;
+}
+</code></pre>
+<p>&#x5728;&#x8C03;&#x7528;<code>foo( &amp;pt, p );</code>&#x4E4B;&#x524D;&#xFF0C;pt &#x548C; p&#x6307;&#x5411;&#x7684;Point3d&#x90FD;&#x5FC5;&#x987B;&#x521D;&#x59CB;&#x5316;&#x597D;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x6709;&#x5FC5;&#x8981;&#x4E3A;&#x5176;&#x63D0;&#x4F9B;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;
+&#x5426;&#x5219;&#x7684;&#x8BDD;&#xFF0C;&#x5176;&#x503C;&#x4E0D;&#x4EC5;&#x6CA1;&#x6709;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x800C;&#x4E14;&#x662F;&#x968F;&#x673A;&#x7684;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x96F6;&#x503C;&#xFF0C;&#x4E5F;&#x5C31;&#x65E0;&#x6CD5;&#x6839;&#x636E;&#x5176;&#x662F;&#x5426;&#x662F;&#x96F6;&#x503C;&#x6765;&#x5224;&#x65AD;&#x662F;&#x5426;&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x4E86;&#x3002;</p>
+<p>&#x800C;&#x6700;&#x540E;&#x7684;<code>delete p</code>,&#x9700;&#x4E0D;&#x9700;&#x8981;&#x63D0;&#x4F9B;&#x6790;&#x6784;&#x51FD;&#x6570;&#x5462;&#xFF1F;object&#x5360;&#x7528;&#x7684;&#x5185;&#x5B58;&#x76F4;&#x63A5;&#x91CA;&#x653E;&#x6389;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x5BF9;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#x505A;&#x4EFB;&#x4F55;&#x7279;&#x6B8A;&#x5904;&#x7406;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x6790;&#x6784;&#x51FD;&#x6570;&#x3002; </p>
+<p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x6709;&#x4E2A;Vertex&#x7C7B;&#xFF0C;&#x6570;&#x636E;&#x6210;&#x5458;&#x662F;vertices&#x5BF9;&#x8C61;&#x7684;list&#xFF0C;&#x6790;&#x6784;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x6309;&#x7167;&#x987A;&#x5E8F;&#x904D;&#x5386;&#x94FE;&#x8868;&#xFF0C;&#x5E76;&#x91CA;&#x653E;&#x6BCF;&#x4E00;&#x4E2A;vertices.&#x56E0;&#x6B64;&#xFF0C;&#x5176;&#x6790;&#x6784;&#x51FD;&#x6570;&#x662F;&#x663E;&#x793A;&#x63D0;&#x4F9B;&#x7684;&#x3002;
+&#x5982;&#x679C;Vertex3d&#x6D3E;&#x751F;&#x81EA;Point3d&#x548C;Vertex,&#x5982;&#x679C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x7ED9;Vertex3d&#x663E;&#x793A;&#x63D0;&#x4F9B;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5408;&#x6210;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x5728;&#x5176;&#x4E2D;&#x8C03;&#x7528;Vertex&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x3002;</p>
+<p>If we provide a Vertex3d destructor, the compiler augments it to invoke the Vertex destructor after the user supplied code is executed. A user-defined destructor is augmented in much the same way as are the constructors, except in reverse order:</p>
+<ol>
+<li>If the object contains a vptr, it is reset to the virtual table associated with the class.</li>
+<li>The body of the destructor is then executed; that is, the vptr is reset prior to evaluating the user-supplied code.</li>
+<li>If the class has member class objects with destructors, these are invoked in the reverse order of their declaration.</li>
+<li>If there are any immediate nonvirtual base classes with destructors, these are invoked in the reverse order of their declaration.</li>
+<li>If there are any virtual base classes with destructors and this class represents the most-derived class, these are invoked in the reverse order of their original construction.</li>
+</ol>
+<p>&#x4E00;&#x4E2A;&#x6D3E;&#x751F;&#x5BF9;&#x8C61;&#x5728;&#x6790;&#x6784;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x968F;&#x7740;&#x4ECE;&#x6D3E;&#x751F;&#x7C7B;&#x5230;&#x57FA;&#x7C7B;&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x5176;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;&#x4E8B;&#x5B9E;&#x4E0A;&#x4E5F;&#x53D8;&#x6210;&#x6B63;&#x5728;&#x88AB;&#x91CA;&#x653E;&#x7684;&#x57FA;&#x7C7B;&#x7684;&#x7C7B;&#x578B;&#x3002; A PVertex object, for example, becomes in turn a Vertex3d object, a Vertex object, a Point3d object&#xFF0C; and then a Point object before its actual storage is reclaimed.</p>
+<p>&#x6BCF;&#x4E00;&#x5C42;&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x9996;&#x5148;&#x90FD;&#x662F;reset vptr pointer&#xFF0C;&#x5982;&#x679C;&#x6790;&#x6784;&#x51FD;&#x6570;&#x4E2D;&#x6709;virtual function&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x90FD;&#x662F;&#x8C03;&#x7528;&#x7684;&#x5F53;&#x524D;&#x6B63;&#x5728;&#x88AB;&#x6790;&#x6784;&#x7684;&#x7C7B;&#x578B;&#x7684;virtual function.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Chapter 4. The Semantics of Function.html" class="navigation navigation-prev " aria-label="Previous page: Chapter 4. The Semantics of Function">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Chapter 6. Runtime Semantics.html" class="navigation navigation-next " aria-label="Next page: Chapter 6. Runtime Semantics">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Chapter 5. Semantics of Construction, Destruction, and Copy","level":"1.2.1.5","depth":3,"next":{"title":"Chapter 6. Runtime Semantics","level":"1.2.1.6","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 6. Runtime Semantics.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 6. Runtime Semantics.md","articles":[]},"previous":{"title":"Chapter 4. The Semantics of Function","level":"1.2.1.4","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 4. The Semantics of Function.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 4. The Semantics of Function.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"posts/c&c++/inside the c++ object model/Chapter 5. Semantics of Construction, Destruction, and Copy.md","mtime":"2023-05-31T08:41:59.457Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-06-04T00:09:45.242Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

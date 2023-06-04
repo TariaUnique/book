@@ -29,7 +29,7 @@ Point3d::magnitude() const
   ```
 * Rewrite the member function into an external function, mangling its name so that it's lexically unique within the program:
 ```c++
-extern magnitude__7Point3dFv(register const Point3d *const this );
+extern magnitude__7Point3dFv( const Point3d *const this );
 ```
 
 Now that the function has been transformed, each of its invocations must also be transformed. Hence
@@ -53,7 +53,7 @@ magnitude__7Point3dFv( ptr );
 ```c++
 Point3d Point3d::normalize() const
 {
-  register float mag = magnitude();
+  float mag = magnitude();
   Point3d normal;
   normal._x = _x/mag;
   normal._y = _y/mag;
@@ -67,10 +67,10 @@ Point3d Point3d::normalize() const
 // with application of named return value
 // Pseudo C++ Code
 void
-normalize__7Point3dFv( register const Point3d *const this,
+normalize__7Point3dFv( const Point3d *const this,
 Point3d &__result )
 {
-register float mag = this->magnitude();
+float mag = this->magnitude();
 // default constructor
 __result.Point3d::Point3d();
 __result._x = this->_x/mag;
@@ -86,7 +86,7 @@ return;
 Point3d
 Point3d::normalize() const
 {
-register float mag = magnitude();
+float mag = magnitude();
 return Point3d( _x/mag, _y/mag, _x/mag );
 }
 ```
@@ -95,10 +95,10 @@ return Point3d( _x/mag, _y/mag, _x/mag );
 // Representing internal transformation
 // Pseudo C++ Code
 void
-normalize__7Point3dFv( register const Point3d *const this,
+normalize__7Point3dFv(  const Point3d *const this,
 Point3d &__result )
 {
-register float mag = this->magnitude();
+float mag = this->magnitude();
 // __result substituted for return value
 __result.Point3d::Point3d(
 this->_x/mag, this->_y/mag, this->_z/mag );
@@ -405,7 +405,7 @@ into
 ```
 where faddr held the virtual function address and offset held the necessary this pointer adjustment.
 
-这个做法的缺点是，它相当于连带处罚了所有的virtual function调用操作,不它们是否需要this指针的调整·我所谓的处罚，包括offset的额外存取及其加法，以及每一个virtual table slot的大小改变。
+这个做法的缺点是，它相当于连带处罚了所有的virtual function调用操作,不管它们是否需要this指针的调整·我所谓的处罚，包括offset的额外存取及其加法，以及每一个virtual table slot的大小改变。
 
 另一种方法，是使用所谓的thunk技术，所谓的thunk就是一小段assembly code，其中包括调整this指针和跳转virtual function去执行。
 
@@ -446,7 +446,7 @@ The Derived class object contains a vptr for each associated virtual table. The 
 vtbl__Derived; // the primary table
 vtbl__Base2__Derived; // the secondary table
 ```
-于是当你将一个Derived对象地址指定给一个Base指针或Derived指针时，被处理的virtual table是vtbl__Derived。而当你将一个Derived对象地址指定给一个Base2指针时，被处理的virtual table是vtbl__Base2__Derived.
+于是当你将一个Derived对象地址指定给一个Base1指针或Derived指针时，被处理的virtual table是vtbl__Derived。而当你将一个Derived对象地址指定给一个Base2指针时，被处理的virtual table是vtbl__Base2__Derived.
 
 **被继承下来的Base2::mumble()**
 
@@ -546,7 +546,7 @@ and
 
 如果是pointer to static member function,其指针类型就是普通的函数指针。
 
-Use of a pointer to member function would be no more expensive than a pointer to  nonmember  function if it weren't for virtual functions and multiple inheritance (including, of course, virtual base classes), which complicate both the type and invocation of a pointer to member function. In practice, for those classes without virtual functions or virtual or multiple base classes, the compiler can provide equivalent performance. 
+
 
 #### **Supporting Pointer-to-Virtual-Member Functions**
 Consider the following code fragment:
@@ -554,7 +554,7 @@ Consider the following code fragment:
 float (Point::*pmf)() = &Point::z;
 Point *ptr = new Point3d;
 ```
-pmf是指向class member function的指针，但是Pointer::z却是个虚函数。
+pmf是指向class member function的指针，但是Point::z却是个虚函数。
 Point3d实现了该虚函数z();
 如果我们通过ptr调用虚函数
 ```c++

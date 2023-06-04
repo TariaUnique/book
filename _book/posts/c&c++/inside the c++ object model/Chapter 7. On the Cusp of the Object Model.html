@@ -1,0 +1,871 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Chapter 7. On the Cusp of the Object Model · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="Chapter 6. Runtime Semantics.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../readme.html">
+            
+                <a href="../readme.html">
+            
+                    
+                    c&c++
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    inside the c++ object model
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="Chapter 1. Object Lessons.html">
+            
+                <a href="Chapter 1. Object Lessons.html">
+            
+                    
+                    chapter 1. object lessions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="Chapter 2. The Semantics of Constructors.html">
+            
+                <a href="Chapter 2. The Semantics of Constructors.html">
+            
+                    
+                    Chapter 2. The Semantics of Constructors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="Chapter 3. The Semantics of Data.html">
+            
+                <a href="Chapter 3. The Semantics of Data.html">
+            
+                    
+                    Chapter 3. The Semantics of Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.4" data-path="Chapter 4. The Semantics of Function.html">
+            
+                <a href="Chapter 4. The Semantics of Function.html">
+            
+                    
+                    Chapter 4. The Semantics of Function
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.5" data-path="Chapter 5. Semantics of Construction, Destruction, and Copy.html">
+            
+                <a href="Chapter 5. Semantics of Construction, Destruction, and Copy.html">
+            
+                    
+                    Chapter 5. Semantics of Construction, Destruction, and Copy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.6" data-path="Chapter 6. Runtime Semantics.html">
+            
+                <a href="Chapter 6. Runtime Semantics.html">
+            
+                    
+                    Chapter 6. Runtime Semantics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.1.7" data-path="Chapter 7. On the Cusp of the Object Model.html">
+            
+                <a href="Chapter 7. On the Cusp of the Object Model.html">
+            
+                    
+                    Chapter 7. On the Cusp of the Object Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >Chapter 7. On the Cusp of the Object Model</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p><strong>Template</strong>
+&#x539F;&#x672C;template&#x88AB;&#x89C6;&#x4E3A;&#x662F;&#x5BF9;container classes such as Lists and Arrays&#x7684;&#x4E00;&#x9805;&#x652F;&#x6301;&#xFF0C;&#x4F46;&#x73B0;&#x5728;&#x5B83;&#x5DF2;&#x7ECF;&#x6210;&#x4E3A;STL&#x7684;&#x57FA;&#x7840;&#xFF0C;They also are used as idioms for attribute mix-in where, for example, memory allocation strategies ([BOOCH93]) or mutual exclusion mechanisms for synchronizing threads ([SCHMIDT94]) are parameterized.</p>
+<p>&#x5B83;&#x751A;&#x81F3;&#x88AB;&#x4F7F;&#x7528;&#x4E8E;&#x4E00;&#x9805;&#x6240;&#x8C13;&#x7684;template metaprograms&#x6280;&#x672F;&#xFF1A; in which class expression templates are evaluated at compile time rather than runtime, thereby providing significant performance improvements </p>
+<p>instantiation(&#x5B9E;&#x4F8B;&#x5316;)&#x6307;&#x7684;&#x662F;&#xFF0C;&#x5C06;&#x5177;&#x4F53;&#x7684;&#x7C7B;&#x578B;&#x7ED1;&#x5B9A;&#x5230;&#x6A21;&#x677F;&#x53C2;&#x6570;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x6BD4;&#x5982;&#xFF0C;&#x6709;&#x6A21;&#x677F;&#x51FD;&#x6570;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> Type&gt;
+<span class="hljs-function">Type <span class="hljs-title">min</span><span class="hljs-params">( <span class="hljs-keyword">const</span> Type &amp;t1, <span class="hljs-keyword">const</span> Type &amp;t2 )</span> </span>{ ... }
+</code></pre>
+<p>&#x548C;&#x5176;&#x4F7F;&#x7528;</p>
+<pre><code class="lang-c++">min( <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> );
+</code></pre>
+<p>the instantiation process binds Type to double and creates a program text instance of min() (suitably mangled to give it a unique name within the executable) in which t1 and t2 are of type double.</p>
+<h4 id="template-instantiation"><strong>Template Instantiation</strong></h4>
+<p>Consider the following template Point class:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> Type&gt;
+<span class="hljs-keyword">class</span> Point
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-keyword">enum</span> Status { unallocated, normalized };
+  Point( Type x = <span class="hljs-number">0.0</span>, Type y = <span class="hljs-number">0.0</span>, Type z = <span class="hljs-number">0.0</span> );
+  ~Point();
+  <span class="hljs-function"><span class="hljs-keyword">void</span>* <span class="hljs-keyword">operator</span> <span class="hljs-title">new</span><span class="hljs-params">( size_t )</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-keyword">operator</span> <span class="hljs-title">delete</span><span class="hljs-params">( <span class="hljs-keyword">void</span>*, size_t )</span></span>;
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">static</span> Point&lt; Type &gt; *freeList;
+  <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> chunkSize;
+  Type _x, _y, _z;
+};
+</code></pre>
+<p>&#x9996;&#x5148;&#xFF0C;&#x5F53;&#x7F16;&#x8BD1;&#x5668;&#x770B;&#x5230;&#x8FD9;&#x4E2A;&#x6A21;&#x677F;&#x7C7B;&#x58F0;&#x660E;&#x65F6;&#x4F1A;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#xFF1F;&#x5C31;&#x5B9E;&#x9645;&#x7A0B;&#x5E8F;&#x800C;&#x8A00;&#xFF0C;&#x4EC0;&#x4E48;&#x4E5F;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x9759;&#x6001;&#x6570;&#x636E;&#x6210;&#x5458;&#x4E0D;&#x53EF;&#x7528;&#x3002;&#x5D4C;&#x5957;&#x7684;&#x679A;&#x4E3E;&#x6216;&#x5176;&#x679A;&#x4E3E;&#x503C;&#x4E5F;&#x4E0D;&#x53EF;&#x7528;&#x3002;</p>
+<p>&#x5C3D;&#x7BA1; enum Status &#x7684;&#x5B9E;&#x9645;&#x7C7B;&#x578B;&#x5728;&#x6240;&#x6709; Point &#x5B9E;&#x4F8B;&#x5316;&#x4E2D;&#x90FD;&#x662F;&#x4E0D;&#x53D8;&#x7684;&#xFF0C;&#x5176;&#x679A;&#x4E3E;&#x503C;&#x4E5F;&#x662F;&#x5982;&#x6B64;&#xFF0C;&#x4F46;&#x6BCF;&#x4E2A;&#x679A;&#x4E3E;&#x503C;&#x53EA;&#x80FD;&#x901A;&#x8FC7;&#x7279;&#x5B9A;&#x7684;&#x6A21;&#x677F;&#x7C7B; Point &#x5B9E;&#x4F8B;&#x8BBF;&#x95EE;&#x3002;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5199;&#x6210;&#xFF1A;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// ok:</span>
+Point&lt; <span class="hljs-keyword">float</span> &gt;::Status s;
+</code></pre>
+<p>but not</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// error:</span>
+Point::Status s;
+</code></pre>
+<p>&#x867D;&#x7136;&#x4ECE;&#x62BD;&#x8C61;&#x7684;&#x89D2;&#x5EA6;&#x6765;&#x770B;&#xFF0C;&#x8FD9;&#x4E24;&#x79CD;&#x7C7B;&#x578B;&#x662F;&#x76F8;&#x540C;&#x7684;&#x3002;&#xFF08;&#x5E76;&#x4E14;&#xFF0C;&#x6700;&#x7406;&#x60F3;&#x7684;&#x60C5;&#x51B5;&#x662F;&#x53EA;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x679A;&#x4E3E;&#x5B9E;&#x4F8B;&#x3002;&#x5982;&#x679C;&#x65E0;&#x6CD5;&#x505A;&#x5230;&#x8FD9;&#x4E00;&#x70B9;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x5C06;&#x679A;&#x4E3E;&#x56E0;&#x5B50;&#x63D0;&#x53D6;&#x5230;&#x975E;&#x6A21;&#x677F;&#x57FA;&#x7C7B;&#x4E2D;&#xFF0C;&#x4EE5;&#x9632;&#x6B62;&#x591A;&#x4E2A;&#x526F;&#x672C;&#x51FA;&#x73B0;&#x3002;&#xFF09;</p>
+<p>&#x540C;&#x6837;&#x5730;&#xFF0C; the static data members freeList and chunkSize are not yet available to the program. We cannot write</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// error:</span>
+Point::freeList;
+</code></pre>
+<p>but must specify the explicit template Point class instantiation with which the freeList member is associated:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// ok:</span>
+Point&lt; <span class="hljs-keyword">float</span> &gt;::freeList;
+</code></pre>
+<p>&#x7F16;&#x8BD1;&#x5668;&#x5728;&#x9047;&#x5230;&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x4F1A;&#x5B9E;&#x4F8B;&#x5316;Point<float> &#x7C7B;&#xFF0C;&#x7136;&#x540E;&#x751F;&#x6210;&#x8BE5;&#x7C7B;&#x7684;freeList&#x9759;&#x6001;&#x6570;&#x636E;&#x6210;&#x5458;</float></p>
+<pre><code class="lang-c++"><span class="hljs-comment">// ok: another instance</span>
+Point&lt; <span class="hljs-keyword">double</span> &gt;::freeList;
+</code></pre>
+<p>a second freeList instance is generated, this one associated with the double instantiation of the Point class.</p>
+<p>&#x5982;&#x679C;&#x7F16;&#x8BD1;&#x5668;&#x9047;&#x5230;&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#x5462;&#xFF1F;&#x4F1A;&#x4E0D;&#x4F1A;&#x5177;&#x8C61;&#x5316;&#x4E00;&#x4E2A;Point<float>&#x7C7B;&#x58F0;&#x660E;&#x51FA;&#x6765;&#xFF1F;</float></p>
+<pre><code class="lang-c++">Point&lt; <span class="hljs-keyword">float</span> &gt; *ptr = <span class="hljs-number">0</span>;
+</code></pre>
+<p>&#x5E76;&#x4E0D;&#x4F1A;&#xFF0C;&#x4EC0;&#x4E48;&#x4E5F;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x3002;&#x56E0;&#x4E3A;&#x6307;&#x5411;&#x7C7B;&#x5BF9;&#x8C61;&#x7684;&#x6307;&#x9488;&#x672C;&#x8EAB;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x7C7B;&#x5BF9;&#x8C61;&#xFF1B;&#x7F16;&#x8BD1;&#x5668;&#x4E0D;&#x9700;&#x8981;&#x77E5;&#x9053;&#x7C7B;&#x7684;&#x5E03;&#x5C40;&#x6216;&#x6210;&#x5458;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x751F;&#x6210;Point<float>&#x7C7B;&#x662F;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x3002;</float></p>
+<p>&#x4F46;&#x5982;&#x679C;&#x662F;&#x5F15;&#x7528;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">const</span> Point&lt; <span class="hljs-keyword">float</span> &gt; &amp;ref = <span class="hljs-number">0</span>;
+</code></pre>
+<p>does result in the instantiation of a float instance of Point. </p>
+<p>The actual semantics of this definition expand as follows:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// internal expansion</span>
+Point&lt; <span class="hljs-keyword">float</span> &gt; temporary( <span class="hljs-keyword">float</span> (<span class="hljs-number">0</span>) );
+<span class="hljs-keyword">const</span> Point&lt; <span class="hljs-keyword">float</span> &gt; &amp;ref = temporary;
+</code></pre>
+<p>Why? Because a reference cannot be an alias to &quot;no object.&quot; The 0 is treated as an integer value that must be converted into an object of the type</p>
+<pre><code class="lang-c++">Point&lt; <span class="hljs-keyword">float</span> &gt;
+</code></pre>
+<p>If there is no conversion possible, then the definition is in error and is flagged at compile time.</p>
+<p>&#x6240;&#x4EE5;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x7C7B;&#x5BF9;&#x8C61;&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x7531;&#x7F16;&#x8BD1;&#x5668;&#x9690;&#x5F0F;&#x5B9A;&#x4E49;&#x7684;&#x4E34;&#x65F6;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD8;&#x662F;&#x7A0B;&#x5E8F;&#x5458;&#x663E;&#x793A;&#x5B9A;&#x4E49;&#x7684;&#xFF0C;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">const</span> Point&lt; <span class="hljs-keyword">float</span> &gt; origin;
+</code></pre>
+<p>&#x4F1A;&#x5B9E;&#x4F8B;&#x5316;&#x4E00;&#x4E2A;Point<float>&#x7C7B;&#xFF0C;&#x5E76;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;origin&#x5BF9;&#x8C61;&#x3002;Point<float>&#x7C7B;&#x5BF9;&#x8C61;&#x6709;3&#x4E2A;float&#x6570;&#x636E;&#x6210;&#x5458;&#x3002;</float></float></p>
+<p>&#x7136;&#x800C;&#xFF0C;&#x4EE5;&#x4E0A;&#x7684;&#x6240;&#x6709;&#x60C5;&#x51B5;&#xFF0C;member functions&#x2014;at least those that are not used&#xFF0C;&#x90FD;&#x4E0D;&#x4F1A;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x3002;Standard C++ requires that member functions be instantiated only if they are used (current implementations do not strictly follow this requirement).  There are two main reasons for the use-directed instantiation rule:</p>
+<ol>
+<li><p>Space and time efficiency. If there are a hundred member functions associated with a class, but your program uses only two for one type and five for a second type, then instantiating the additional 193 can be a significant time and space hit.</p>
+</li>
+<li><p>Unimplemented functionality. Not all types with which a template is instantiated support all the operators (such as i/o and the relational operators) required by the complete set of member functions. By instantiating only those member functions actually used, a template is able to support types that otherwise would generate compile-time errors.</p>
+</li>
+</ol>
+<p>&#x4EE5;&#x4E0A;origin&#x7684;&#x5B9A;&#x4E49;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">const</span> Point&lt; <span class="hljs-keyword">float</span> &gt; origin;
+</code></pre>
+<p>&#x53EA;&#x9700;&#x8981;&#x5B9E;&#x4F8B;&#x5316;Point<float> &#x7684;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x6790;&#x6784;&#x51FD;&#x6570;&#x3002;</float></p>
+<p>&#x5982;&#x4E0B;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-c++">Point&lt; <span class="hljs-keyword">float</span> &gt; *p = <span class="hljs-keyword">new</span> Point&lt; <span class="hljs-keyword">float</span> &gt;;
+</code></pre>
+<p>&#x4F1A;&#x5B9E;&#x4F8B;&#x5316;Point<float>,operator new&#xFF0C; default constructor&#x4F1A;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;&#x3002;
+(It&apos;s interesting to note that although operator new is implicitly a static member of the class and so may not directly access any of its nonstatic members, it is still dependent on the actual template parameter type because its size_t first argument is passed the class size.)</float></p>
+<p>&#x90A3;&#x4E48;&#x51FD;&#x6570;&#x662F;&#x4F55;&#x65F6;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x5462;&#xFF1F;&#x6709;2&#x79CD;&#x5B9E;&#x73B0;&#x7B56;&#x7565;</p>
+<ul>
+<li>&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x3002;In which case the functions are instantiated within the file in which origin and p are defined.</li>
+<li>&#x5728;&#x8FDE;&#x63A5;&#x65F6;&#x3002;In which case the compiler is reinvoked by some auxiliary tool. The template function instances may be placed within this file, some other file, or a separate repository.</li>
+</ul>
+<h4 id="error-reporting-within-a-template"><strong>Error Reporting within a Template</strong></h4>
+<p>&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x7684;&#x6A21;&#x677F;&#x7C7B;&#x58F0;&#x660E;</p>
+<pre><code class="lang-c++"><span class="hljs-number">1.</span> <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> T&gt;
+<span class="hljs-number">2.</span> <span class="hljs-keyword">class</span> Mumble
+<span class="hljs-number">3.</span> {
+<span class="hljs-number">4.</span> <span class="hljs-keyword">public</span>$:
+<span class="hljs-number">5.</span>    Mumble( T t = <span class="hljs-number">1024</span> )
+<span class="hljs-number">6.</span>      : <span class="hljs-keyword">_t</span>( t )
+<span class="hljs-number">7.</span>    {
+<span class="hljs-number">8.</span>      <span class="hljs-keyword">if</span> ( tt != t )
+<span class="hljs-number">9.</span>          <span class="hljs-keyword">throw</span> ex ex;
+<span class="hljs-number">10.</span>   }
+<span class="hljs-number">11.</span> <span class="hljs-keyword">private</span>:
+<span class="hljs-number">12.</span>   T tt;
+<span class="hljs-number">13.</span> }
+</code></pre>
+<p>Mumble&#x6A21;&#x677F;&#x7C7B;&#x7684;&#x58F0;&#x660E;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x7CFB;&#x5217;&#x660E;&#x663E;&#x548C;&#x6F5C;&#x5728;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<ol>
+<li>&#x7B2C;4&#x884C;&#xFF1A;&#x4F7F;&#x7528;$&#x5B57;&#x7B26;&#x662F;&#x4E0D;&#x6B63;&#x786E;&#x7684;&#x3002;&#x8FD9;&#x4E2A;&#x9519;&#x8BEF;&#x6709;&#x4E24;&#x4E2A;&#x65B9;&#x9762;&#xFF1A;(1) $&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x6709;&#x6548;&#x7684;&#x6807;&#x8BC6;&#x7B26;&#xFF0C;(2) &#x5728;&#x7C7B;&#x58F0;&#x660E;&#x4F53;&#x4E2D;&#x53EA;&#x5141;&#x8BB8;public&#x3001;protected&#x548C;private&#x6807;&#x7B7E; (&#x5B58;&#x5728;$&#x65F6;&#x5B83;&#x4E0D;&#x518D;&#x88AB;&#x8BC6;&#x522B;&#x4E3A;&#x5173;&#x952E;&#x5B57;public)&#x3002;</li>
+<li>&#x7B2C;5&#x884C;&#xFF1A;&#x5C06;t&#x521D;&#x59CB;&#x5316;&#x4E3A;&#x6574;&#x6570;&#x5E38;&#x91CF;1024&#x53EF;&#x80FD;&#x5408;&#x6CD5;&#x4E5F;&#x53EF;&#x80FD;&#x4E0D;&#x5408;&#x6CD5;&#xFF0C;&#x5177;&#x4F53;&#x53D6;&#x51B3;&#x4E8E;T&#x7684;&#x5B9E;&#x9645;&#x7C7B;&#x578B;&#x3002;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FD9;&#x53EA;&#x80FD;&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x5B9E;&#x4F8B;&#x8FDB;&#x884C;&#x8BCA;&#x65AD;&#x3002;</li>
+<li>&#x7B2C;6&#x884C;&#xFF1A;_t&#x5E76;&#x975E;&#x6210;&#x5458;&#x540D;&#x79F0;&#xFF1B;tt&#x624D;&#x662F;&#x3002;&#x8FD9;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#x9519;&#x8BEF;&#x901A;&#x5E38;&#x5728;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x9636;&#x6BB5;&#x53D1;&#x73B0;&#xFF0C;during which each name is either bound to a definition or an error is generated.</li>
+<li>&#x7B2C;8&#x884C;&#xFF1A;&#x4E0D;&#x7B49;&#x8FD0;&#x7B97;&#x7B26;(!= )&#x662F;&#x5426;&#x88AB;&#x5B9A;&#x4E49;&#x4E86;&#x53D6;&#x51B3;&#x4E8E;T&#x7684;&#x5B9E;&#x9645;&#x7C7B;&#x578B;&#x3002;&#x4E0E;&#x7B2C;&#x4E8C;&#x9879;&#x76F8;&#x540C;&#xFF0C;&#x8FD9;&#x53EA;&#x80FD;&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;&#x6A21;&#x677F;&#x5B9E;&#x4F8B;&#x8FDB;&#x884C;&#x8BCA;&#x65AD;&#x3002;</li>
+<li>&#x7B2C;9&#x884C;: &#x6211;&#x4EEC;&#x610F;&#x5916;&#x5730;&#x8F93;&#x5165;&#x4E86;&#x4E24;&#x6B21;ex&#x3002;&#x8FD9;&#x662F;&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x4E2D;&#x89E3;&#x6790;&#x9636;&#x6BB5;&#x53D1;&#x73B0;&#x7684;&#x9519;&#x8BEF;&#xFF08;&#x8BED;&#x8A00;&#x4E2D;&#x5408;&#x6CD5;&#x201C;&#x53E5;&#x5B50;&#x201D;&#x4E0D;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x6807;&#x8BC6;&#x7B26;&#x8DDF;&#x968F;&#x53E6;&#x4E00;&#x4E2A;&#xFF09;&#x3002;</li>
+<li>&#x7B2C;13&#x884C;: &#x6211;&#x4EEC;&#x5FD8;&#x8BB0;&#x7528;&#x5206;&#x53F7;&#x7ED3;&#x675F;&#x7C7B;&#x58F0;&#x660E;&#x3002;&#x540C;&#x6837;&#xFF0C;&#x5728;&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x4E2D;&#x89E3;&#x6790;&#x9636;&#x6BB5;&#x53D1;&#x73B0;&#x4E86;&#x8FD9;&#x4E2A;&#x9519;&#x8BEF;&#x3002;</li>
+</ol>
+<p>&#x5728;&#x975E;&#x6A21;&#x677F;&#x7C7B;&#x58F0;&#x660E;&#x4E2D;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5728;&#x770B;&#x5230;&#x7C7B;&#x58F0;&#x660E;&#x65F6;&#x5C31;&#x4F1A;&#x5BF9;&#x8FD9;&#x516D;&#x4E2A;&#x660E;&#x663E;&#x548C;&#x6F5C;&#x5728;&#x7684;&#x9519;&#x8BEF;&#x505A;&#x9488;&#x5BF9;&#x5904;&#x7406;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x5728;&#x6A21;&#x677F;&#x4E2D;&#x5E76;&#x975E;&#x5982;&#x6B64;&#x3002;&#x9996;&#x5148;&#xFF0C;&#x6D89;&#x53CA;&#x6A21;&#x677F;&#x53C2;&#x6570;&#x7684;&#x6240;&#x6709;&#x7C7B;&#x578B;&#x76F8;&#x5173;&#x68C0;&#x67E5;&#x90FD;&#x5FC5;&#x987B;&#x63A8;&#x8FDF;&#x5230;&#x5B9E;&#x4F8B;&#x5316;&#x53D1;&#x751F;&#x65F6;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x793A;&#x4F8B;&#x4E2D;&#x7B2C;5&#x884C;&#x548C;&#x7B2C;8&#x884C;&#xFF08;&#x4E0A;&#x9762;&#x7684;2&#x548C;4&#x9879;&#xFF09;&#x7684;&#x6F5C;&#x5728;&#x9519;&#x8BEF;&#x5C06;&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;&#x5B9E;&#x4F8B;&#x8FDB;&#x884C;&#x68C0;&#x67E5;&#x548C;&#x62A5;&#x544A;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;&#x6309;&#x7C7B;&#x578B;&#x9010;&#x4E2A;&#x89E3;&#x51B3;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5BF9;&#x4E8E;</p>
+<pre><code class="lang-c++">Mumble&lt; <span class="hljs-keyword">int</span> &gt; mi;
+</code></pre>
+<p>&#x7B2C;5&#x884C;&#x548C;&#x7B2C;8&#x884C;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x6B63;&#x786E;&#x7684;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x5982;&#x679C;&#x662F;</p>
+<pre><code class="lang-c++">Mumble&lt; <span class="hljs-keyword">int</span>* &gt; pmi;
+</code></pre>
+<p>line 8 is correct, but line 5 is a type error&#x2014;you cannot assign a pointer an integer constant (other than 0).</p>
+<p>With the declaration</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> SmallInt
+{
+<span class="hljs-keyword">public</span>:
+  SmallInt( <span class="hljs-keyword">int</span> );
+  <span class="hljs-comment">// ...</span>
+};
+</code></pre>
+<p>within which the not-equal operator is not defined, the instance</p>
+<pre><code class="lang-c++">Mumble&lt; SmallInt &gt; smi;
+</code></pre>
+<p>generates an error for line 8, while line 5 is correct. Of course,</p>
+<pre><code class="lang-c++">Mumble&lt; SmallInt* &gt; psmi;
+</code></pre>
+<p>once again reverses that: Line 8 is again correct, but line 5 is again in error.</p>
+<p>&#x90A3;&#x4E48;&#xFF0C;&#x5728;&#x5904;&#x7406;&#x6A21;&#x677F;&#x58F0;&#x660E;&#x65F6;&#x4F1A;&#x51FA;&#x73B0;&#x54EA;&#x4E9B;&#x9519;&#x8BEF;&#x5462;&#xFF1F;&#x8FD9;&#x5728;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#x53D6;&#x51B3;&#x4E8E;&#x6A21;&#x677F;&#x7684;&#x5904;&#x7406;&#x7B56;&#x7565;&#x3002;&#x5728;&#x6700;&#x521D;&#x7684;cfront&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x6A21;&#x677F;&#x88AB;&#x5B8C;&#x5168;&#x89E3;&#x6790;&#x4F46;&#x672A;&#x8FDB;&#x884C;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x3002;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x4EC5;&#x5E94;&#x7528;&#x4E8E;&#x6BCF;&#x4E2A;&#x7279;&#x5B9A;&#x5B9E;&#x4F8B;&#x5316;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x89E3;&#x6790;&#x7B56;&#x7565;&#x4E0B;&#xFF0C;&#x6240;&#x6709;&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x548C;&#x8BED;&#x6CD5;&#x5206;&#x6790;&#x9519;&#x8BEF;&#x90FD;&#x5C06;&#x5728;&#x5904;&#x7406;&#x6A21;&#x677F;&#x58F0;&#x660E;&#x671F;&#x95F4;&#x88AB;&#x6807;&#x8BB0;&#x51FA;&#x6765;&#x3002;</p>
+<p>&#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x5668;&#x4F1A;&#x6355;&#x83B7;&#x7B2C;4&#x884C;&#x7684;&#x975E;&#x6CD5;&#x5B57;&#x7B26;&#x3002; The parser itself would likely flag the</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">public</span>$: <span class="hljs-comment">// caught</span>
+</code></pre>
+<p>as an illegal label within the class declaration</p>
+<p>&#x7B2C;6&#x884C;&#x7684;&#x9519;&#x8BEF;&#x4E0D;&#x4F1A;&#x88AB;&#x6807;&#x8BB0;&#x51FA;&#x6765;,&#x8FD9;&#x79CD;&#x9519;&#x8BEF;&#x5728;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x9636;&#x6BB5;&#x88AB;&#x53D1;&#x73B0;&#xFF0C;&#x5BF9;&#x4E8E;&#x6A21;&#x677F;&#x7C7B;&#xFF0C;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x88AB;&#x5EF6;&#x8FDF;&#x5230;&#x5B9E;&#x4F8B;&#x5316;&#x671F;&#x95F4;&#x8FDB;&#x884C;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">_t</span>( t ) <span class="hljs-comment">// not caught</span>
+</code></pre>
+<p>It would catch the presence of ex twice in the throw expression of line 9 and the missing semicolon on line 13.</p>
+<p>&#x53E6;&#x4E00;&#x79CD;&#x5B9E;&#x73B0;&#x7B56;&#x7565;&#xFF0C;&#x6A21;&#x677F;&#x58F0;&#x660E;&#x88AB;&#x6536;&#x96C6;&#x4E3A;&#x4E00;&#x7CFB;&#x5217;&#x7684;lexical tokens&#x3002;&#x5BF9;&#x8FD9;&#x4E9B;token&#x7684;&#x89E3;&#x6790;&#x88AB;&#x5EF6;&#x8FDF;&#x5230;&#x5B9E;&#x4F8B;&#x5316;&#x671F;&#x95F4;&#x3002; &#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF0C;&#x6BCF;&#x4E2A;tokens&#x88AB;push&#x5230;&#x89E3;&#x6790;&#x5668;&#x4E2D;&#x89E3;&#x6790;&#xFF0C;&#x5E76;&#x5E94;&#x7528;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#xFF0C;&#x7B49;&#x7B49;&#x64CD;&#x4F5C;&#x3002;
+What errors does a lexical tokenizing of the template declaration flag? Very few, in fact; only the illegal character used in line 4. The rest of the template declaration breaks up into a legal collection of tokens.</p>
+<p>&#x975E;&#x6210;&#x5458;&#x548C;&#x6210;&#x5458;&#x6A21;&#x677F;&#x51FD;&#x6570;&#x5728;&#x5B9E;&#x4F8B;&#x5316;&#x4E4B;&#x524D;&#x4E5F;&#x6CA1;&#x6709;&#x5B8C;&#x5168;&#x8FDB;&#x884C;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#x3002;&#x5728;&#x5F53;&#x524D;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x8FD9;&#x4F1A;&#x5BFC;&#x81F4;&#x4E00;&#x4E9B;&#x660E;&#x663E;&#x4E0D;&#x6B63;&#x786E;&#x7684;&#x6A21;&#x677F;&#x58F0;&#x660E;&#x7F16;&#x8BD1;&#x65F6;&#x6CA1;&#x6709;&#x9519;&#x8BEF;&#x3002;For example, given the following template declaration of Foo:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">template</span> &lt; <span class="hljs-keyword">class</span> type &gt;
+<span class="hljs-keyword">class</span> Foo {
+<span class="hljs-keyword">public</span>:
+  Foo();
+  <span class="hljs-function">type <span class="hljs-title">val</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">val</span><span class="hljs-params">( type v )</span></span>;
+<span class="hljs-keyword">private</span>:
+  type _val;
+};
+</code></pre>
+<p>cfront, the Sun compiler, and Borland all compile this without complaint:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// current implementations do not flag this definition</span>
+<span class="hljs-comment">// syntactically legal; semantically in error:</span>
+<span class="hljs-comment">// (a) bogus_member not a member function of class Foo</span>
+<span class="hljs-comment">// (b) dbx not a data member of class</span>
+<span class="hljs-keyword">template</span> &lt; <span class="hljs-keyword">class</span> type &gt;
+<span class="hljs-keyword">double</span> Foo&lt; type &gt;::bogus_member() { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;dbx; }
+</code></pre>
+<p>&#x518D;&#x6B21;&#x5F3A;&#x8C03;&#xFF0C;&#x8FD9;&#x662F;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#x5B9E;&#x73B0;&#x51B3;&#x7B56;&#x3002;&#x6A21;&#x677F;&#x673A;&#x5236;&#x672C;&#x8EAB;&#x5E76;&#x4E0D;&#x6392;&#x9664;&#x5BF9;&#x6A21;&#x677F;&#x58F0;&#x660E;&#x7684;&#x975E;&#x7C7B;&#x578B;&#x76F8;&#x5173;&#x90E8;&#x5206;&#x8FDB;&#x884C;&#x66F4;&#x4E25;&#x683C;&#x7684;&#x9519;&#x8BEF;&#x68C0;&#x67E5;&#x3002;&#x6B64;&#x7C7B;&#x9519;&#x8BEF;&#x53EF;&#x4EE5;&#x88AB;&#x53D1;&#x73B0;&#x548C;&#x6807;&#x8BB0;&#x3002;&#x4F46;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;&#x6CA1;&#x6709;&#x7F16;&#x8BD1;&#x5668;&#x8FD9;&#x6837;&#x505A;&#x3002;</p>
+<h4 id="name-resolution-within-a-template"><strong>Name Resolution within a Template</strong></h4>
+<p>There is a distinction between the program site at which a template is defined (called in the Standard the scope of the template definition) and the program site at which a template is actually instantiated (called the scope of the template instantiation). </p>
+<p>An example of the first is</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// scope of the template definition</span>
+<span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">double</span> <span class="hljs-title">foo</span> <span class="hljs-params">( <span class="hljs-keyword">double</span> )</span></span>;
+<span class="hljs-keyword">template</span> &lt; <span class="hljs-keyword">class</span> type &gt;
+<span class="hljs-keyword">class</span> ScopeRules
+{
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">invariant</span><span class="hljs-params">()</span> </span>{
+    _member = foo( _val );
+  }
+  <span class="hljs-function">type <span class="hljs-title">type_dependent</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> foo( _member );
+  }
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">int</span> _val;
+  type _member;
+};
+</code></pre>
+<p>and an example of the second is</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//scope of the template instantiation</span>
+<span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> <span class="hljs-title">foo</span><span class="hljs-params">( <span class="hljs-keyword">int</span> )</span></span>;
+<span class="hljs-comment">// ...</span>
+ScopeRules&lt; <span class="hljs-keyword">int</span> &gt; sr0;
+</code></pre>
+<p>&#x5728;&#x4E0A;&#x8FF0;&#x7684;&#x4E24;&#x4E2A;scope&#x4E2D;&#xFF0C;&#x6709;2&#x4E2A;foo&#x7684;&#x8C03;&#x7528;&#xFF0C;&#x5176;&#x4E2D;&#x5728;&#x7B2C;&#x4E00;&#x4E2A;scope&#x4E2D;&#xFF0C;one declaration of foo()&#xFF0C;<code>extern double foo ( double );</code>,&#x800C;&#x5728;&#x7B2C;&#x4E8C;&#x4E2A;scope&#x4E2D;&#xFF0C;however, two declarations are in scope. </p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x6709;&#x5982;&#x4E0B;&#x7684;&#x8C03;&#x7528;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// scope of the template instantiation</span>
+sr0.invariant();
+</code></pre>
+<p>the question is, which instance of foo() is invoked for the call:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// which instance of foo()?</span>
+_member = foo( _val )
+</code></pre>
+<p>The two instances in scope at this point in the program are</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// scope of the template declaration</span>
+<span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">double</span> <span class="hljs-title">foo</span> <span class="hljs-params">( <span class="hljs-keyword">double</span> )</span></span>;
+<span class="hljs-comment">// scope of the template instantiation</span>
+<span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> <span class="hljs-title">foo</span><span class="hljs-params">( <span class="hljs-keyword">int</span> )</span></span>;
+</code></pre>
+<p>and the type of _val is int.</p>
+<p>So which do you think is chosen?  Obviously, the instance chosen is the nonintuitive one:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// scope of the template declaration</span>
+<span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">double</span> <span class="hljs-title">foo</span> <span class="hljs-params">( <span class="hljs-keyword">double</span> )</span></span>;
+</code></pre>
+<p>&#x7F16;&#x8BD1;&#x5668;&#x5728;&#x89E3;&#x6790;&#x6A21;&#x677F;&#x4E2D;&#x7684;nonmember name&#x65F6;&#xFF0C;&#x5177;&#x4F53;&#x89E3;&#x6790;&#x5230;&#x54EA;&#x4E2A;&#x5B9A;&#x4E49;&#xFF0C;&#x53D6;&#x51B3;&#x4E8E; whether the use
+of the name is dependent on the parameter types used to instantiate the template. &#x5982;&#x679C;&#x5BF9;&#x8FD9;&#x4E2A;name&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x8DDF;&#x6A21;&#x677F;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x7C7B;&#x578B;&#x53C2;&#x6570;&#x65E0;&#x5173;&#xFF0C;&#x5219;&#x4F7F;&#x7528;template declaration scope&#x4E2D;&#x7684;&#x5B9A;&#x4E49;&#x3002; &#x5426;&#x5219;&#x7684;&#x8BDD;&#xFF0C;&#x4F7F;&#x7528;scope of the template instantiation</p>
+<p>&#x4E0A;&#x8FF0;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;foo&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x5176;&#x53C2;&#x6570;&#x662F;_val,&#x662F;&#x4E2A;int&#x7C7B;&#x578B;&#x7684;&#xFF0C;&#x4E0E;&#x6A21;&#x677F;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x7C7B;&#x578B;&#x53C2;&#x6570;&#x65E0;&#x5173;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x51FD;&#x6570;&#x7684;&#x89E3;&#x6790;&#x53EA;&#x53D6;&#x51B3;&#x4E8E;&#x5176;&#x7B7E;&#x540D;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5176;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#xFF0C;&#x8DDF;&#x8FD4;&#x56DE;&#x503C;&#x65E0;&#x5173;&#x3002; &#x56E0;&#x6B64;&#xFF0C;&#x89E3;&#x6790;&#x8BE5;&#x51FD;&#x6570;&#xFF0C;&#x53EA;&#x80FD;&#x4F7F;&#x7528;the scope of the template declaration&#xFF0C; within this scope is only the one candidate instance of foo() from which to choose.</p>
+<p>Let&apos;s look at a type-dependent usage:</p>
+<pre><code class="lang-c++">sr0.type_dependent();
+</code></pre>
+<p>Which foo() does its call resolve to?</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">return</span> foo( _member );
+</code></pre>
+<p>This instance clearly is dependent on the template argument that determines the actual type of _member . So this instance of foo() must be resolved from the scope of the template instantiation, which in this case includes both declarations of foo() . Since _member is of type int in this instance, it&apos;s the integer instance of foo() that is invoked.</p>
+<h4 id="member-function-instantiation"><strong>Member Function Instantiation</strong></h4>
+<p>&#x4E00;&#x822C;&#x6A21;&#x677F;&#x51FD;&#x6570;&#x7684;&#x5B9A;&#x4E49;&#x88AB;&#x653E;&#x5728;&#x5934;&#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
+<p>&#x6709;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x5728;&#x7C7B;&#x6A21;&#x677F;&#x5B9E;&#x4F8B;&#x5316;&#x65F6;&#xFF0C;&#x5176;&#x6240;&#x6709;&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;&#x90FD;&#x4F1A;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x6709;&#x7684;&#x4EC5;&#x5B9E;&#x4F8B;&#x5316;&#x7528;&#x5230;&#x7684;&#x51FD;&#x6570;</p>
+<p>&#x6A21;&#x677F;&#x7684;&#x4F7F;&#x7528;&#x4F1A;&#x5BFC;&#x81F4;&#x7F16;&#x8BD1;&#x65F6;&#x95F4;&#x589E;&#x52A0;&#x3002;</p>
+<p>&#x7A0B;&#x5E8F;&#x5458;&#x53EF;&#x4EE5;&#x663E;&#x793A;&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x4E00;&#x4E2A;&#x7C7B;&#x6A21;&#x677F;,&#x5305;&#x62EC;&#x5176;&#x6240;&#x6709;&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">template</span> <span class="hljs-keyword">class</span> Point3d&lt; <span class="hljs-keyword">float</span> &gt;;
+</code></pre>
+<p>&#x663E;&#x793A;&#x5B9E;&#x4F8B;&#x5316;&#x7C7B;&#x6A21;&#x677F;&#x7684;&#x67D0;&#x4E2A;&#x6210;&#x5458;&#x51FD;&#x6570;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">template</span> <span class="hljs-keyword">float</span> Point3d&lt;<span class="hljs-keyword">float</span>&gt;::X() <span class="hljs-keyword">const</span>;
+</code></pre>
+<p>&#x663E;&#x793A;&#x5B9E;&#x4F8B;&#x5316;&#x67D0;&#x4E2A;&#x51FD;&#x6570;&#x6A21;&#x677F;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">template</span> Point3d&lt;<span class="hljs-keyword">float</span>&gt; <span class="hljs-keyword">operator</span>+(
+<span class="hljs-keyword">const</span> Point3d&lt;<span class="hljs-keyword">float</span>&gt;&amp;, <span class="hljs-keyword">const</span> Point3d&lt;<span class="hljs-keyword">float</span>&gt;&amp; );
+</code></pre>
+<h3 id="exception-handling"><strong>Exception Handling</strong></h3>
+<h4 id="exception-handling-overview"><strong>Exception Handling Overview</strong></h4>
+<p>Exception handling under C++ consists of the following three main syntactic components:</p>
+<ol>
+<li>A throw clause. A throw clause raises an exception at some point within the program. The exception thrown can be of a built-in or user-defined type.</li>
+<li>One or more catch clauses. Each catch clause is the exception handler. It indicates a type of exception the clause is prepared to handle and gives the actual handler code enclosed in braces.</li>
+<li>A try block. A try block surrounds a sequence of statements for which an associated set of catch clauses is active.</li>
+</ol>
+<p>When an exception is thrown, control passes up the function call sequence until either an appropriate catch clause is matched or main() is reached without a handler&apos;s being found, at which point the default handler, terminate(), is invoked. As control passes up the call sequence, each function in turn is popped from the program stack (this process is called unwinding the stack). Prior to the popping of each function, the destructors of the function&apos;s local class objects are invoked.</p>
+<p>What is slightly nonintuitive about EH is the impact it has on functions that seemingly have nothing to do with exceptions. For example, consider the following:</p>
+<pre><code class="lang-c++"><span class="hljs-number">1.</span> Point*
+<span class="hljs-number">2.</span> mumble()
+<span class="hljs-number">3.</span> {
+<span class="hljs-number">4.</span>    Point *pt1, *pt2;
+<span class="hljs-number">5.</span>    pt1 = foo();
+<span class="hljs-number">6.</span>    <span class="hljs-keyword">if</span> ( !pt1 )
+<span class="hljs-number">7.</span>      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+<span class="hljs-number">8.</span>
+<span class="hljs-number">9.</span>    Point p;
+<span class="hljs-number">10.</span>
+<span class="hljs-number">11.</span>   pt2 = foo();
+<span class="hljs-number">12.</span>   <span class="hljs-keyword">if</span> ( !pt2 )
+<span class="hljs-number">13.</span>     <span class="hljs-keyword">return</span> pt1;
+<span class="hljs-number">14.</span>
+<span class="hljs-number">15.</span> <span class="hljs-comment">//...</span>
+<span class="hljs-number">16</span> }
+</code></pre>
+<p>&#x5982;&#x679C;&#x5728;&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;foo()&#xFF08;&#x7B2C;5&#x884C;&#xFF09;&#x65F6;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x5219;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x4ECE;&#x7A0B;&#x5E8F;&#x6808;&#x4E2D;&#x7B80;&#x5355;&#x5730;&#x5F39;&#x51FA;&#x3002;&#x8BE5;&#x8BED;&#x53E5;&#x4E0D;&#x5728;try&#x5757;&#x5185;&#xFF0C;&#x56E0;&#x6B64;&#x65E0;&#x9700;&#x5C1D;&#x8BD5;&#x4E0E;catch&#x5B50;&#x53E5;&#x5339;&#x914D;&#xFF1B;&#x4E5F;&#x6CA1;&#x6709;&#x9700;&#x8981;&#x9500;&#x6BC1;&#x7684;&#x672C;&#x5730;&#x7C7B;&#x5BF9;&#x8C61;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x7B2C;&#x4E8C;&#x6B21;&#x8C03;&#x7528;foo()&#xFF08;&#x7B2C;11&#x884C;&#xFF09;&#x65F6;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x5219;EH&#x673A;&#x5236;&#x5FC5;&#x987B;&#x5728;&#x5C06;&#x51FD;&#x6570;&#x4ECE;&#x7A0B;&#x5E8F;&#x5806;&#x6808;&#x5C55;&#x5F00;&#x4E4B;&#x524D;&#x8C03;&#x7528;p&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x5728;EH&#x4E0B;&#xFF0C;&#x7B2C;4-8&#x884C;&#x548C;&#x7B2C;9-16&#x884C;&#x88AB;&#x89C6;&#x4E3A;&#x51FD;&#x6570;&#x7684;&#x8BED;&#x4E49;&#x4E0A;&#x4E0D;&#x540C;&#x533A;&#x57DF;&#xFF0C;&#x5728;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x65F6;&#x5177;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x8BED;&#x4E49;&#x3002;&#x6B64;&#x5916;&#xFF0C;EH&#x652F;&#x6301;&#x9700;&#x8981;&#x989D;&#x5916;&#x7684;&#x7C3F;&#x8BB0;&#x5DE5;&#x4F5C;&#x3002;&#x5B9E;&#x73B0;&#x53EF;&#x4EE5;&#x5C06;&#x8FD9;&#x4E24;&#x4E2A;&#x533A;&#x57DF;&#x5206;&#x522B;&#x4E0E;&#x8981;&#x9500;&#x6BC1;&#x7684;&#x672C;&#x5730;&#x5BF9;&#x8C61;&#x5217;&#x8868;&#x76F8;&#x5173;&#x8054;&#xFF08;&#x8FD9;&#x4E9B;&#x5217;&#x8868;&#x5C06;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x8BBE;&#x7F6E;&#xFF09;&#xFF0C;&#x6216;&#x8005;&#x5171;&#x4EAB;&#x4E00;&#x4E2A;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x52A8;&#x6001;&#x6DFB;&#x52A0;&#x548C;&#x7F29;&#x5C0F;&#x7684;&#x5217;&#x8868;&#x3002;</p>
+<p>On the programmer level, EH also alters the semantics of functions that manage resources. The following function includes, for example, both a locking and unlocking of a shared memory region and is no longer guaranteed to run correctly under EH even though it seemingly has nothing to do with exceptions:</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mumble</span><span class="hljs-params">( <span class="hljs-keyword">void</span> *arena )</span>
+</span>{
+  Point *p = <span class="hljs-keyword">new</span> Point;
+  smLock( arena ); <span class="hljs-comment">// function call</span>
+  <span class="hljs-comment">// problem if an exception is thrown here</span>
+  <span class="hljs-comment">// ...</span>
+  smUnLock( arena ); <span class="hljs-comment">// function call</span>
+  <span class="hljs-keyword">delete</span> p;
+}
+</code></pre>
+<p>In this case, the EH facility views the entire function as a single region requiring no processing other than unwinding the function from the program stack. Semantically, however, we need to both unlock shared memory and delete p prior to the function being popped. The most straightforward (if not the most effective) method of making the function &quot;exception proof&quot; is to insert a default catch clause, as follows:</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mumble</span><span class="hljs-params">( <span class="hljs-keyword">void</span> *arena )</span>
+</span>{
+  Point *p;
+  p = <span class="hljs-keyword">new</span> Point;
+  <span class="hljs-keyword">try</span> {
+    smLock( arena );
+    <span class="hljs-comment">// ...</span>
+  }
+  <span class="hljs-keyword">catch</span> ( ... ) {
+    smUnLock( arena );
+    <span class="hljs-keyword">delete</span> p;
+    <span class="hljs-keyword">throw</span>;
+  }
+  smUnLock( arena );
+  <span class="hljs-keyword">delete</span> p;
+}
+</code></pre>
+<p>Notice that the invocation of <code>operator new</code> is not within the try block. Is this an error on my part? If either <code>operator new</code> or the <code>Point constructor</code>invoked after the allocation of memory should throw an exception, neither the unlocking of memory nor the deletion of p following the catch clause is invoked. Is this the correct semantics?</p>
+<p>Yes, it is. If operator new throws an exception, memory from the heap would not have been allocated and the Point constructor would not have been invoked. So, there would be no reason to invoke operator delete.</p>
+<p>If, however, the exception were thrown within the Point constructor following allocation from the heap, any constructed composite or subobject within Point (that is, a member class or base class object) would automatically be destructed and then the heap memory freed. In either case, there is no need to invoke operator delete. <font color="red"> ???</font></p>
+<p>The recommended idiom for handling these sorts of resource management is to encapsulate the resource acquisition within a class object, the destructor of which frees the resource:</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">void</span>
+<span class="hljs-title">mumble</span><span class="hljs-params">( <span class="hljs-keyword">void</span> *arena )</span>
+</span>{
+<span class="hljs-built_in">auto_ptr</span> &lt;Point&gt; ph ( <span class="hljs-keyword">new</span> Point );
+<span class="hljs-function">SMLock <span class="hljs-title">sm</span><span class="hljs-params">( arena )</span></span>;
+<span class="hljs-comment">// no problem now if an exception is thrown here</span>
+<span class="hljs-comment">// ...</span>
+<span class="hljs-comment">// no need to explicitly unlock &amp; delete</span>
+<span class="hljs-comment">// local destructors invoked here</span>
+<span class="hljs-comment">// sm.SMLock::~SMLock();</span>
+<span class="hljs-comment">// ph.auto_ptr &lt;Point&gt;::~auto_ptr &lt;Point&gt; ()</span>
+}
+</code></pre>
+<h4 id="exception-handling-support"><strong>Exception Handling Support</strong></h4>
+<p>When an exception is thrown, the compilation system must do the following:</p>
+<ol>
+<li>Examine the function in which the throw occurred.</li>
+<li>Determine if the throw occurred in a try block.</li>
+<li>If so, then the compilation system must compare the type of the exception against the type of each catch clause.</li>
+<li>If the types match, control must pass to the body of the catch clause.</li>
+<li>If either it is not within a try block or none of the catch clauses match, then the system must (a) destruct any active local objects, (b) unwind the current function from the stack, and (c) go to the next active function on the stack and repeat items 2&#x2013;5.</li>
+</ol>
+<h5 id="determine-if-the-throw-occurred-within-a-try-block"><strong>Determine if the Throw Occurred within a try Block</strong></h5>
+<p>A function, recall, can be thought of as a set of regions:</p>
+<ul>
+<li>A region outside a try block with no active local objects</li>
+<li>A region outside a try block but with one or more active local objects requiring destruction</li>
+<li>A region within an active try block</li>
+</ul>
+<p>The compiler needs to mark off these regions and make these markings available to the runtime EH system. A predominant strategy for doing this is the construction of program counter range tables.</p>
+<p>Recall that the program counter holds the address of the next program instruction to be executed. To mark off a region of the function within an active try block, the beginning and ending program counter value (or the beginning program counter value and its range value) can be stored in a table.</p>
+<p>When a throw occurs, the current program counter value is matched against the associated range table to determine whether the region active at the time is within a try block. If it is, the associated catch clauses need to be examined. If the exception is not handled (or if it is rethrown), the current function is popped from the program stack and the value of the program counter is restored to the value of the call site and the cycle begins again.</p>
+<h5 id="compare-the-type-of-the-exception-against-the-type-of-each-catch-clause"><strong>Compare the Type of the Exception against the Type of Each Catch Clause</strong></h5>
+<p>For each throw expression, the compiler must create a type descriptor encoding the type of the exception. If the type is a derived type, the encoding must include information on all of its base class types. </p>
+<p>The type descriptor is necessary because the actual exception is handled at runtime when the object itself otherwise has no type information associated with it. RTTI is a necessary side effect of support for EH.</p>
+<p>The compiler must also generate a type descriptor for each catch clause. The runtime exception handler compares the type descriptor of the object thrown with that of each catch clause&apos;s type descriptor until either a match is found or the stack has been unwound and terminate() invoked.</p>
+<p>An exception table is generated for each function. It describes the regions associated with the function, the location of any necessary cleanup code (invocation of local class object destructors), and the location of
+catch clauses if a region is within an active try block.</p>
+<h5 id="what-happens-when-an-actual-object-is-thrown-during-program-execution"><strong>What Happens When an Actual Object Is Thrown during Program Execution?</strong></h5>
+<p>When an exception is thrown, the exception object is created and placed generally on some form of exception data stack. Propagated from the throw site to each catch clause are the address of the exception object, the type descriptor (or the address of a function that returns the type descriptor object associated with the exception type), and possibly the address of the destructor for the exception object, if one is defined.</p>
+<p>Consider a catch clause of the form</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">catch</span>( exPoint p )
+{
+  <span class="hljs-comment">// do something</span>
+  <span class="hljs-keyword">throw</span>;
+}
+</code></pre>
+<p>and an exception object of type exVertex derived from exPoint. The two types match and the catch clause block becomes active. What happens with p?</p>
+<ul>
+<li>p is initialized by value with the exception object the same as if it were a formal argument of a function. This means a copy constructor and destructor, if defined or synthesized by the compiler, are applied to the local copy.</li>
+<li>Because p is an object and not a reference, the non-exPoint portion of the exception object is sliced off when the values are copied. In addition, if virtual functions are provided for the exception hierarchy, the vptr of p is set to exPoint&apos;s virtual table; the exception object&apos;s vptr is not copied.</li>
+</ul>
+<p>What happens when the exception is rethrown? Is p now the object propagated or the exception object originally generated at the throw site? </p>
+<p>p is a local object destroyed at the close of the catch clause. Throwing p would require the generation of another temporary. It also would mean losing the exVertex portion of the original exception. The original exception object is rethrown; any modifications to p are discarded.</p>
+<p>A catch clause of the form</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">catch</span>( exPoint &amp;rp )
+{
+  <span class="hljs-comment">// do something</span>
+  <span class="hljs-keyword">throw</span>;
+}
+</code></pre>
+<p>refers to the actual exception object. Any virtual invocations resolve to the instances active for exVertex, the actual type of the exception object. Any changes made to the object are propagated to the next catch clause.</p>
+<p>Finally, here is an interesting puzzle. If we have the following throw expression:</p>
+<pre><code class="lang-c++">exVertex errVer;
+<span class="hljs-comment">// ...</span>
+mumble()
+{
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-keyword">if</span> ( mumble_cond ) {
+    errVer.fileName( <span class="hljs-string">&quot;mumble()&quot;</span> );
+    <span class="hljs-keyword">throw</span> errVer;
+  }
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Is the actual exception errVer propagated or is a copy of errVer constructed on the exception stack and propagated? A copy is constructed; the global errVer is not propagated. This means that any changes made to the exception object within a catch clause are local to the copy and are not reflected within errVer. The actual exception object is destroyed only after the evaluation of a catch clause that does not rethrow the exception.</p>
+<h3 id="runtime-type-identification"><strong>Runtime Type Identification</strong></h3>
+<h4 id="introducing-a-type-safe-downcast"><strong>Introducing a Type-Safe Downcast</strong></h4>
+<p>Downcasts are potentially dangerous because they circumvent the type system and if incorrectly applied may misinterpret (if it&apos;s a read operation) or corrupt program memory (if it&apos;s a write operation).</p>
+<p>One criticism of C++ had been its lack of support for a type-safe downcast mechanism&#x2014;one that performs the downcast only if the actual type being cast is appropriate . A type-safe downcast requires a runtime query of the pointer as to the actual type of the object it addresses. Thus support for a type-safe downcast mechanism brings with it both space and execution time overhead:</p>
+<ul>
+<li><p>It requires additional space to store type information, usually a pointer to some type information node.(type_info )</p>
+</li>
+<li><p>It requires additional time to determine the runtime type, since, as the name makes explicit, the determination can be done only at runtime.</p>
+</li>
+</ul>
+<p>&#x90A3;&#x4E48;&#xFF0C;&#x5982;&#x679C;&#x6DFB;&#x52A0;&#x8FD9;&#x79CD;&#x673A;&#x5236;&#xFF0C;&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x4E0D;&#x9700;&#x8981;&#x591A;&#x6001;&#xFF0C;&#x4E0D;&#x9700;&#x8981;cast&#x6765;cast&#x53BB;&#x7684;&#x7A0B;&#x5E8F;&#x800C;&#x8A00;&#xFF0C;&#x4EE5;&#x4E0A;&#x7684;overhead&#x4E0D;&#x5E94;&#x8BE5;&#x5B58;&#x5728;&#x7684;&#x3002;&#x5C24;&#x5176;&#x662F;&#xFF0C;&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x7A0B;&#x5E8F;</p>
+<ul>
+<li>Programmers who use polymorphism heavily and who therefore have a legitimate need for a type-safe downcast mechanism</li>
+<li>Programmers who use the built-in data types and nonpolymorphic facilities and who therefore have a legitimate need not to be penalized with the overhead of a mechanism that does not come into play in their code</li>
+</ul>
+<p>&#x4E3A;&#x524D;&#x8005;&#x5B9E;&#x73B0;RTTI&#x662F;&#x6700;&#x597D;&#x7684;&#xFF0C;&#x4F46;RTTI&#x4E0D;&#x5E94;&#x8BE5;&#x5BF9;&#x540E;&#x8005;&#x9020;&#x6210;&#x4E0D;&#x5FC5;&#x8981;&#x7684;performance penalty.</p>
+<p>The C++ RTTI mechanism provides a type-safe downcast facility but only for those types exhibiting polymorphism . Within C++, a polymorphic class is one that contains either an inherited or declared virtual function</p>
+<p>&#x5B9E;&#x73B0;&#x4E0A;&#xFF0C;RTTI&#x5C31;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x4E86;&#x7684;&#x865A;&#x51FD;&#x6570;&#x673A;&#x5236;&#x3002;&#x6BCF;&#x4E2A;polymorphism class&#x90FD;&#x4F1A;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x751F;&#x6210;&#x865A;&#x51FD;&#x6570;&#x8868;&#xFF0C;&#x865A;&#x51FD;&#x6570;&#x8868;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;slot&#x5B58;&#x653E;&#x6307;&#x5411;type_info object&#x7684;&#x6307;&#x9488;&#x3002;&#x8FD9;&#x79CD;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x7684;&#x597D;&#x5904;&#x662F;&#xFF0C;&#x4E00;&#x662F;&#x5176;&#x989D;&#x5916;&#x7684;&#x7A7A;&#x95F4;&#x4F7F;&#x7528;&#x5F88;&#x5C11;&#xFF0C;&#x6BCF;&#x4E2A;class&#x591A;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x548C;&#x8BE5;class&#x5BF9;&#x5E94;&#x7684;type_info oject.&#x6B64;&#x5916;&#xFF0C;&#x5728;&#x7F16;&#x8BD1;&#x671F;&#x5C31;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x597D;&#x8BE5;&#x6307;&#x9488;&#x3002;&#x5728;&#x8FD0;&#x884C;&#x671F;&#xFF0C;class object&#x88AB;construct&#x65F6;&#xFF0C;&#x8BBE;&#x7F6E;&#x7684;&#x662F;class object&#x4E2D;&#x7684;vptr.</p>
+<h4 id="a-type-safe-dynamic-cast"><strong>A Type-Safe Dynamic Cast</strong></h4>
+<p>The dynamic_cast operator determines at runtime the actual type being addressed. If the downcast is safe (that is, if the base type pointer actually addresses an object of the derived class), the operator returns the appropriately cast pointer. If the downcast is not safe, the operator returns 0.</p>
+<pre><code class="lang-c++">
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Dynamic_Cast</span><span class="hljs-params">( Base * pb )</span>
+</span>{
+  <span class="hljs-keyword">if</span> ( Derived *pd  = <span class="hljs-keyword">dynamic_cast</span>&lt; Derived * &gt;( pb )) {
+      <span class="hljs-comment">// ... process pd</span>
+  }
+  <span class="hljs-keyword">else</span> { ... }
+}
+</code></pre>
+<p>dynamic_cast&#x5B9E;&#x9645;&#x7684;&#x6267;&#x884C;&#x5C31;&#x662F;&#x9996;&#x5148;&#x901A;&#x8FC7;<code>((type_info*)(pb-&gt;vptr[0]))-&gt;_type_descriptor</code>&#x83B7;&#x53D6;pb&#x6307;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#x7684;&#x5B9E;&#x9645;&#x7C7B;&#x578B;&#x7684;&#x7C7B;&#x578B;&#x63CF;&#x8FF0;&#x7B26;&#xFF0C;&#x7136;&#x540E;&#x83B7;&#x53D6; Derived type&#x7684;&#x7C7B;&#x578B;&#x63CF;&#x8FF0;&#x7B26;&#xFF0C;&#x6700;&#x540E;&#x5C06;&#x4E24;&#x8005;&#x6BD4;&#x8F83;&#xFF0C;&#x5982;&#x679C;&#x76F8;&#x540C;&#xFF0C;&#x5219;&#x8F6C;&#x6362;&#x6210;&#x529F;&#x3002;</p>
+<p>&#x8FD9;&#x79CD;&#x505A;&#x6CD5;&#xFF0C;&#x76F8;&#x6BD4;&#x4E8E;&#x76F4;&#x63A5;downcast&#xFF0C;&#x662F;&#x8981;&#x8017;&#x65F6;&#x5F88;&#x591A;&#x7684;&#xFF0C;&#x4F46;&#x4FDD;&#x8BC1;&#x4E86;&#x5B89;&#x5168;&#x6027;&#x3002;</p>
+<h4 id="references-are-not-pointers"><strong>References Are Not Pointers</strong></h4>
+<p>The dynamic_cast operator can also be applied to a reference. The result of a non&#x2013;type-safe cast, however,cannot be the same as for a pointer. Why? A reference cannot refer to &quot;no object&quot; the way a pointer does by having its value be set to 0. Initializing a reference with 0 causes a temporary of the referenced type to be generated. This temporary is initialized with 0. The reference is then initialized to alias the temporary. </p>
+<p>Thus the dynamic_cast operator, when applied to a reference, cannot provide an equivalent true/false pair of alternative pathways as it does with a pointer. Rather, the following occurs:</p>
+<ul>
+<li>If the reference is actually referring to the appropriate derived class or an object of a class subsequently derived from that class, the downcast is performed and the program may proceed.</li>
+<li>If the reference is not actually a kind of the derived class, then because returning 0 is not viable, a bad_cast exception is thrown.</li>
+</ul>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Dynamic_Cast</span><span class="hljs-params">( Base &amp; pb )</span>
+</span>{
+  <span class="hljs-keyword">try</span>{
+    Derived &amp; pd = <span class="hljs-keyword">dynamic_cast</span>&lt; Derived &amp; &gt;( pb );
+    <span class="hljs-comment">//...</span>
+  }
+  <span class="hljs-keyword">catch</span> (bad_cast){
+    <span class="hljs-comment">//....</span>
+  }
+}
+</code></pre>
+<h4 id="typeid-operator"><strong>Typeid Operator</strong></h4>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;typeid &#x64CD;&#x4F5C;&#x7B26;&#x5B9E;&#x73B0;&#x5B89;&#x5168;&#x7684;downcast</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Safe_DownCast</span><span class="hljs-params">( Base &amp; pb )</span>
+</span>{
+  <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">typeid</span>( Derived ) == <span class="hljs-keyword">typeid</span>( pb ))
+  {
+      Derived &amp;pd = <span class="hljs-keyword">static_cast</span>&lt; Derived &amp;  &gt;( pb );
+      <span class="hljs-comment">// ...</span>
+  }
+  <span class="hljs-keyword">else</span> { 
+    <span class="hljs-comment">//... </span>
+  }
+}
+</code></pre>
+<p>The typeid operator returns a const reference of type type_info. In the previous test, the equality operator is an overloaded instance:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">bool</span> type_info::<span class="hljs-keyword">operator</span>==( <span class="hljs-keyword">const</span> type_info&amp; ) <span class="hljs-keyword">const</span>;
+</code></pre>
+<p>and returns true if the two type_info objects are the same.</p>
+<p>What does the type_info object consist of? The Standard (Section 18.5.1) defines the type_info class as follows:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> type_info {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-keyword">virtual</span> ~type_info();
+  <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>==( <span class="hljs-keyword">const</span> type_info&amp; ) <span class="hljs-keyword">const</span>;
+  <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>!=( <span class="hljs-keyword">const</span> type_info&amp; ) <span class="hljs-keyword">const</span>;
+  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">before</span><span class="hljs-params">( <span class="hljs-keyword">const</span> type_info&amp; )</span> <span class="hljs-keyword">const</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* <span class="hljs-title">name</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-comment">// prevent memberwise init and copy</span>
+  type_info( <span class="hljs-keyword">const</span> type_info&amp; );
+  type_info&amp; <span class="hljs-keyword">operator</span>=( <span class="hljs-keyword">const</span> type_info&amp; );
+  <span class="hljs-comment">// data members</span>
+};
+</code></pre>
+<p>The minimum information an implementation needs to provide is the actual name of the class, some ordering  algorithm between type_info objects (this is the purpose of the before() member function), and some form of type descriptor representing both the explicit class type and any subtypes of the class. In the original paper describing the EH mechanism (see [KOENIG90b]), a suggested type descriptor implementation is that of an encoded string. (For alternative strategies, see [SUN94a] and [LENKOV92].)</p>
+<p>While RTTI as provided by the type_info class is necessary for EH support, in practice it is insufficient to fully support EH. Additional derived type_info classes providing detailed information on pointers, functions, classes, and so on are provided under an EH mechanism. MetaWare, for example, defines the following additional classes:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Pointer_type_info: <span class="hljs-keyword">public</span> type_info { ... };
+<span class="hljs-keyword">class</span> Member_pointer_info: <span class="hljs-keyword">public</span> type_info { ... };
+<span class="hljs-keyword">class</span> Modified_type_info: <span class="hljs-keyword">public</span> type_info { ... };
+<span class="hljs-keyword">class</span> Array_type_info: <span class="hljs-keyword">public</span> type_info { ... };
+<span class="hljs-keyword">class</span> Func_type_info: <span class="hljs-keyword">public</span> type_info { ... };
+<span class="hljs-keyword">class</span> Class_type_info: <span class="hljs-keyword">public</span> type_info { ... };
+</code></pre>
+<p>and permits users to access them. Unfortunately, neither the naming conventions nor the extent of these derived classes is standardized, and they vary widely across implementations.</p>
+<p>Although I have said that RTTI is available only for polymorphic classes, in practice, type_info objects are also generated for both built-in and nonpolymorphic user-defined types. This is necessary for EH support. For  example, consider</p>
+<pre><code>int ex_errno;
+...
+throw ex_errno;
+</code></pre><p>where a type_info object supporting the int type is generated. </p>
+<p>&#x5BF9;&#x6B64;&#x7684;&#x652F;&#x6301;&#x5EF6;&#x4F38;&#x5230;&#x7528;&#x6237;&#x7A0B;&#x5E8F;&#xFF1A;</p>
+<pre><code>int *ptr;
+...
+if ( typeid( ptr ) == typeid( int* ))
+   ...
+</code></pre><p>Use of <code>typeid( expression )</code> within a program, such as</p>
+<pre><code>int ival;
+...
+typeid( ival ) ... ;
+</code></pre><p>or of <code>typeid( type )</code>, such as</p>
+<pre><code>typeid( double ) ... ;
+</code></pre><p>returns a <code>const type_info&amp;</code>. The difference between the use of typeid on a <code>nonpolymorphic expression</code> or <code>type</code> is that the type_info object is retrieved <strong>statically</strong> rather than at runtime. &#x5F53;&#x7136;&#xFF0C;type_info&#x5BF9;&#x8C61;&#x53EA;&#x5728;&#x9700;&#x8981;&#x65F6;&#x624D;&#x4F1A;&#x751F;&#x6210;&#x3002;</p>
+<h3 id="efficient-but-inflexible"><strong>Efficient, but Inflexible?</strong></h3>
+<h4 id="dynamic-shared-libraries"><strong>Dynamic Shared Libraries</strong></h4>
+<p>&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5728;&#x8FDE;&#x63A5;&#x65B0;&#x7248;&#x672C;&#x7684;&#x52A8;&#x6001;&#x5171;&#x4EAB;&#x5E93;&#x65F6;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x76F4;&#x63A5;&#x66FF;&#x6362;&#x5E93;&#x6587;&#x4EF6;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x65B0;&#x7684;&#x7248;&#x672C;&#x7684;&#x5171;&#x4EAB;&#x5E93;&#x662F;&#x9ED8;&#x8BA4;&#x76F4;&#x63A5;&#x8FDE;&#x63A5;&#x7684;&#x3002;&#x4F46;&#x662F;&#xFF0C;under the C++
+Object Model if the data layout of a class object changes in the new library version&#xFF0C;&#x5219;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x7F16;&#x8BD1;&#x7528;&#x6237;&#x4EE3;&#x7801;&#xFF0C;
+This is because the size of the class and the offset location of each of its direct and inherited members is fixed at compile time (except
+for virtually inherited members). This results in efficient but inflexible binaries; a change in the object layout requires recompilation. Both [GOLD94] and [PALAY92] describe interesting efforts in pushing the C++ Object Model to provide increased drop-in support. Of course, the tradeoff is a loss of runtime speed and size efficiency.</p>
+<h4 id="shared-memory"><strong>Shared Memory</strong></h4>
+<p>When a shared library is dynamically loaded, its placement in memory is handled by a runtime linker and generally is of no concern to the executing process. </p>
+<p>This is not true, however, under the C++ Object Model when a class object supported by a dynamically shared library and containing virtual functions is placed in shared memory. </p>
+<p>&#x5728;&#x865A;&#x51FD;&#x6570;&#x8868;&#x4E2D;&#xFF0C;&#x865A;&#x51FD;&#x6570;&#x7684;&#x5730;&#x5740;&#x5E94;&#x8BE5;&#x662F;&#x865A;&#x62DF;&#x5730;&#x5740;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x5982;&#x679C;&#x540E;&#x7EED;&#x7684;&#x8FDB;&#x7A0B;&#x8FDE;&#x63A5;&#x8BE5;&#x5171;&#x4EAB;&#x5E93;&#xFF0C;&#x4F46;&#x662F;&#x5C06;&#x5176;&#x6620;&#x5C04;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x865A;&#x62DF;&#x5730;&#x5740;&#x5904;&#xFF0C;&#x5219;&#x4F1A;&#x6709;&#x5F88;&#x5927;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>The problem is not with the process that is placing the object in shared memory but with a second or any subsequent process wanting to attach to and invoke a virtual function through the shared object. </p>
+<p>Unless the dynamic shared library is loaded at exactly the same virtual memory location as the process that loaded the shared object, the virtual function invocation fails badly. The likely result is either a segment fault or bus error. </p>
+<p>The problem is caused by the hardcoding within the virtual table of each virtual function. </p>
+<p>The current solution is program-based. It is the programmer who must guarantee placement of the shared libraries across processes at the same locations. </p>
+<p>A compilation system-based solution that preserves the efficiency of the virtual table implementation model is required. Whether that will be forthcoming is another issue.</p>
+<p>&#x8FD9;&#x672C;&#x4E66;&#x7684;&#x6210;&#x4E66;&#x65F6;&#x95F4;&#x662F;1996&#x5E74;&#xFF0C;&#x8FC7;&#x53BB;&#x5FEB;30&#x5E74;&#x4E86;&#xFF0C;&#x4EE5;&#x4E0A;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#x5E94;&#x8BE5;&#x5DF2;&#x7ECF;&#x89E3;&#x51B3;&#x4E86;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Chapter 6. Runtime Semantics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Chapter 6. Runtime Semantics">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Chapter 7. On the Cusp of the Object Model","level":"1.2.1.7","depth":3,"previous":{"title":"Chapter 6. Runtime Semantics","level":"1.2.1.6","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 6. Runtime Semantics.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 6. Runtime Semantics.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"posts/c&c++/inside the c++ object model/Chapter 7. On the Cusp of the Object Model.md","mtime":"2023-06-02T12:27:54.184Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-06-04T00:08:50.467Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

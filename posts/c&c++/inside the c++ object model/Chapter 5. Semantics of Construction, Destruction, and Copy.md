@@ -759,7 +759,7 @@ protected:
   Point _begin, _end;
 };
 ```
-当我们从Point派生出Point3d,哪怕时虚拟派生，如果我们没有给Point3d声明一个destructor，编译器也不会为其合成一个destructor．
+当我们从Point派生出Point3d,哪怕是虚拟派生，如果我们没有给Point3d声明一个destructor，编译器也不会为其合成一个destructor．
 
 考虑如下代码
 ```c++
@@ -776,7 +776,7 @@ protected:
 
 而最后的`delete p`,需不需要提供析构函数呢？object占用的内存直接释放掉就可以了，并不需要对这块内存做任何特殊处理，所以不需要析构函数。 
 
-假设我们有个Vertex类，数据成员是vertices对象的list，析构时，需要按照顺序遍历链表，并释放每一个vertex.因此，其析构函数是显示提供的。
+假设我们有个Vertex类，数据成员是vertices对象的list，析构时，需要按照顺序遍历链表，并释放每一个vertices.因此，其析构函数是显示提供的。
 如果Vertex3d派生自Point3d和Vertex,如果我们没有给Vertex3d显示提供析构函数，编译器会合成析构函数，在其中调用Vertex的析构函数。
 
 If we provide a Vertex3d destructor, the compiler augments it to invoke the Vertex destructor after the user supplied code is executed. A user-defined destructor is augmented in much the same way as are the constructors, except in reverse order:

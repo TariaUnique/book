@@ -1,0 +1,1024 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Chapter 4. The Semantics of Function · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Chapter 5. Semantics of Construction, Destruction, and Copy.html" />
+    
+    
+    <link rel="prev" href="Chapter 3. The Semantics of Data.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../readme.html">
+            
+                <a href="../readme.html">
+            
+                    
+                    c&c++
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    inside the c++ object model
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="Chapter 1. Object Lessons.html">
+            
+                <a href="Chapter 1. Object Lessons.html">
+            
+                    
+                    chapter 1. object lessions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="Chapter 2. The Semantics of Constructors.html">
+            
+                <a href="Chapter 2. The Semantics of Constructors.html">
+            
+                    
+                    Chapter 2. The Semantics of Constructors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="Chapter 3. The Semantics of Data.html">
+            
+                <a href="Chapter 3. The Semantics of Data.html">
+            
+                    
+                    Chapter 3. The Semantics of Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.1.4" data-path="Chapter 4. The Semantics of Function.html">
+            
+                <a href="Chapter 4. The Semantics of Function.html">
+            
+                    
+                    Chapter 4. The Semantics of Function
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.5" data-path="Chapter 5. Semantics of Construction, Destruction, and Copy.html">
+            
+                <a href="Chapter 5. Semantics of Construction, Destruction, and Copy.html">
+            
+                    
+                    Chapter 5. Semantics of Construction, Destruction, and Copy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.6" data-path="Chapter 6. Runtime Semantics.html">
+            
+                <a href="Chapter 6. Runtime Semantics.html">
+            
+                    
+                    Chapter 6. Runtime Semantics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.7" data-path="Chapter 7. On the Cusp of the Object Model.html">
+            
+                <a href="Chapter 7. On the Cusp of the Object Model.html">
+            
+                    
+                    Chapter 7. On the Cusp of the Object Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >Chapter 4. The Semantics of Function</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="member-function&#x7684;&#x5404;&#x79CD;&#x8C03;&#x7528;&#x65B9;&#x5F0F;"><strong>Member Function&#x7684;&#x5404;&#x79CD;&#x8C03;&#x7528;&#x65B9;&#x5F0F;</strong></h3>
+<h4 id="nonstatic-member-function"><strong>Nonstatic member function</strong></h4>
+<p>&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x7684;Nonstatic member function</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">float</span>
+Point3d::magnitude() <span class="hljs-keyword">const</span>
+{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(_x * _x + _y * _y + _z * _z);
+}
+</code></pre>
+<p>&#x5176;&#x5185;&#x90E8;&#x8F6C;&#x6362;&#x8FC7;&#x7A0B;&#x5982;&#x4E0B;</p>
+<ul>
+<li>&#x6539;&#x5199;&#x51FD;&#x6570;&#x7B7E;&#x540D;&#xFF0C;&#x52A0;&#x5165;this&#x6307;&#x9488;<pre><code class="lang-c++"><span class="hljs-keyword">float</span> Point::magnitude(<span class="hljs-keyword">const</span> Point* <span class="hljs-keyword">const</span> <span class="hljs-keyword">this</span>)
+</code></pre>
+&#x5982;&#x679C;&#x4E0D;&#x662F;const&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF0C;&#x5219;&#x52A0;&#x5165;&#x7684;this&#x6307;&#x9488;&#x5982;&#x4E0B;<pre><code class="lang-c++"><span class="hljs-keyword">float</span> Point::magnitude(Point* <span class="hljs-keyword">const</span> <span class="hljs-keyword">this</span>)
+</code></pre>
+</li>
+<li>&#x5BF9;&#x6BCF;&#x4E00;&#x4E2A;non static data member&#x7684;&#x64CD;&#x4F5C;&#x6539;&#x4E3A;&#x7ECF;&#x7531;this&#x6307;&#x9488;&#x6765;&#x5B58;&#x53D6;<pre><code class="lang-c++">{
+<span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(
+<span class="hljs-keyword">this</span>-&gt;_x * <span class="hljs-keyword">this</span>-&gt;_x +
+<span class="hljs-keyword">this</span>-&gt;_y * <span class="hljs-keyword">this</span>-&gt;_y +
+<span class="hljs-keyword">this</span>-&gt;_z * <span class="hljs-keyword">this</span>-&gt;_z );
+}
+</code></pre>
+</li>
+<li>Rewrite the member function into an external function, mangling its name so that it&apos;s lexically unique within the program:<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-title">magnitude__7Point3dFv</span><span class="hljs-params">( <span class="hljs-keyword">const</span> Point3d *<span class="hljs-keyword">const</span> <span class="hljs-keyword">this</span> )</span></span>;
+</code></pre>
+</li>
+</ul>
+<p>Now that the function has been transformed, each of its invocations must also be transformed. Hence</p>
+<pre><code class="lang-c++">obj.magnitude();
+</code></pre>
+<p>becomes</p>
+<pre><code class="lang-c++">magnitude__7Point3dFv( &amp;obj );
+</code></pre>
+<p>and</p>
+<pre><code class="lang-c++">ptr-&gt;magnitude();
+</code></pre>
+<p>becomes</p>
+<pre><code class="lang-c++">magnitude__7Point3dFv( ptr );
+</code></pre>
+<p>&#x5047;&#x8BBE;Point3d&#x7684;nonstatic member function</p>
+<pre><code class="lang-c++">Point3d Point3d::normalize() <span class="hljs-keyword">const</span>
+{
+  <span class="hljs-keyword">float</span> mag = magnitude();
+  Point3d normal;
+  normal._x = _x/mag;
+  normal._y = _y/mag;
+  normal._z = _z/mag;
+  <span class="hljs-keyword">return</span> normal;
+}
+</code></pre>
+<p>&#x4F1A;&#x88AB;&#x5185;&#x90E8;&#x8F6C;&#x6362;&#x4E3A;(&#x5047;&#x8BBE;Point3d&#x58F0;&#x660E;&#x4E86;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5E94;&#x7528;&#x4E86;NRV&#x4F18;&#x5316;)</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Representing internal transformation</span>
+<span class="hljs-comment">// with application of named return value</span>
+<span class="hljs-comment">// Pseudo C++ Code</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span>
+<span class="hljs-title">normalize__7Point3dFv</span><span class="hljs-params">( <span class="hljs-keyword">const</span> Point3d *<span class="hljs-keyword">const</span> <span class="hljs-keyword">this</span>,
+Point3d &amp;__result )</span>
+</span>{
+<span class="hljs-keyword">float</span> mag = <span class="hljs-keyword">this</span>-&gt;magnitude();
+<span class="hljs-comment">// default constructor</span>
+__result.Point3d::Point3d();
+__result._x = <span class="hljs-keyword">this</span>-&gt;_x/mag;
+__result._y = <span class="hljs-keyword">this</span>-&gt;_y/mag;
+__result._z = <span class="hljs-keyword">this</span>-&gt;_z/mag;
+<span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>&#x5047;&#x5982;normalize&#x662F;&#x8FD9;&#x6837;&#x88AB;&#x5B9A;&#x4E49;&#x7684;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// slightly more efficient user implementation</span>
+Point3d
+Point3d::normalize() <span class="hljs-keyword">const</span>
+{
+<span class="hljs-keyword">float</span> mag = magnitude();
+<span class="hljs-keyword">return</span> Point3d( _x/mag, _y/mag, _x/mag );
+}
+</code></pre>
+<p>&#x5219;&#x5176;&#x7684;&#x5185;&#x90E8;&#x8F6C;&#x6362;&#x4F1A;&#x66F4;&#x9AD8;&#x6548;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5148;&#x8C03;&#x7528;&#x9ED8;&#x8BA4;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x518D;&#x91CD;&#x5199;&#x7684;&#x6D6A;&#x8D39;.</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Representing internal transformation</span>
+<span class="hljs-comment">// Pseudo C++ Code</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span>
+<span class="hljs-title">normalize__7Point3dFv</span><span class="hljs-params">(  <span class="hljs-keyword">const</span> Point3d *<span class="hljs-keyword">const</span> <span class="hljs-keyword">this</span>,
+Point3d &amp;__result )</span>
+</span>{
+<span class="hljs-keyword">float</span> mag = <span class="hljs-keyword">this</span>-&gt;magnitude();
+<span class="hljs-comment">// __result substituted for return value</span>
+__result.Point3d::Point3d(
+<span class="hljs-keyword">this</span>-&gt;_x/mag, <span class="hljs-keyword">this</span>-&gt;_y/mag, <span class="hljs-keyword">this</span>-&gt;_z/mag );
+<span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<h4 id="name-mangling"><strong>Name Mangling</strong></h4>
+<p>&#x5BF9;&#x7C7B;&#x7684;&#x6570;&#x636E;&#x6210;&#x5458;&#x7684;name mangling&#x901A;&#x5E38;&#x662F;&#x5C06;&#x6570;&#x636E;&#x6210;&#x5458;&#x7684;&#x540D;&#x5B57;&#x52A0;&#x4E0A;&#x7C7B;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Bar { <span class="hljs-keyword">public</span>: <span class="hljs-keyword">int</span> ival; ... };
+</code></pre>
+<p>a possible data member name-mangling<code>ival__3Bar</code>;</p>
+<p>&#x8FD9;&#x6837;&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x6709;&#x5982;&#x4E0B;&#x7684;&#x7EE7;&#x627F;&#x5173;&#x7CFB;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Foo : <span class="hljs-keyword">public</span> Bar { <span class="hljs-keyword">public</span>: <span class="hljs-keyword">int</span> ival; ... };
+</code></pre>
+<p>Remember that the internal representation of a Foo object is the concatenation of its base and derived class members:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+<span class="hljs-comment">// internal representation of Foo</span>
+<span class="hljs-keyword">class</span> Foo { 
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-keyword">int</span> ival__3Bar;
+  <span class="hljs-keyword">int</span> ival__3Foo;
+...
+};
+</code></pre>
+<p>&#x800C;&#x5728;user code&#x4E2D;&#xFF0C;&#x5BF9;&#x4E8E;&#x91CD;&#x540D;&#x7684;&#x6570;&#x636E;&#x6210;&#x5458;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x5C31;&#x662F;&#x52A0;&#x4E0A;&#x6210;&#x5458;&#x9009;&#x62E9;&#x64CD;&#x4F5C;&#x7B26;&#xFF1A;</p>
+<pre><code class="lang-c++">Foo f;
+f.Bar::ival=<span class="hljs-number">1</span>; <span class="hljs-comment">//&#x8BBF;&#x95EE;&#x7684;&#x662F;ival__3Bar;</span>
+f.ival=<span class="hljs-number">2</span>; <span class="hljs-comment">//&#x8BBF;&#x95EE;&#x7684;&#x662F;ival__3Foo;</span>
+</code></pre>
+<p>&#x56E0;&#x4E3A;&#x51FD;&#x6570;&#x6210;&#x5458;&#x53EF;&#x4EE5;&#x88AB;&#x91CD;&#x8F7D;&#xFF0C;&#x56E0;&#x6B64;&#x5176;name mangling&#x7684;&#x89C4;&#x5219;&#x8981;&#x66F4;&#x590D;&#x6742;&#x4E9B;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point { 
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">x</span><span class="hljs-params">( <span class="hljs-keyword">float</span> newX )</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">x</span><span class="hljs-params">()</span></span>;
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x4EC5;&#x4EC5;&#x662F;&#x52A0;&#x4E0A;&#x7C7B;&#x540D;&#xFF0C;&#x662F;&#x4E0D;&#x591F;&#x7684;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point { 
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">x__5Point</span><span class="hljs-params">( <span class="hljs-keyword">float</span> newX )</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">x__5Point</span><span class="hljs-params">()</span></span>;
+...
+};
+</code></pre>
+<p>&#x8FD8;&#x9700;&#x8981;&#x52A0;&#x4E0A;&#x5176;&#x53C2;&#x6570;&#x5217;&#x8868;&#x4E00;&#x8D77;mangle</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point { 
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">x__5PointFf</span><span class="hljs-params">( <span class="hljs-keyword">float</span> newX )</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">x__5PointFv</span><span class="hljs-params">()</span></span>;
+...
+};
+</code></pre>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x662F;&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF0C;&#x4E5F;&#x9700;&#x8981;name mangling,&#x53EA;&#x4E0D;&#x8FC7;&#x6CA1;&#x6709;&#x7C7B;&#x540D;&#x5C31;&#x662F;&#x4E86; &#x3002;&#x800C; <code>extern &quot;C&quot;</code>&#x7684;&#x58F0;&#x660E;&#xFF0C;&#x4F1A;&#x8BA9;global function &#x7684;&#x540D;&#x79F0;&#x4E0D;&#x88AB;mangle</p>
+<h4 id="virtual-member-function"><strong>virtual member function</strong></h4>
+<p>&#x5982;&#x679C;normalize&#x662F;&#x4E00;&#x4E2A;virtual member function</p>
+<pre><code class="lang-c++">ptr-&gt;normalize();
+</code></pre>
+<p>&#x5C06;&#x4F1A;&#x88AB;&#x5185;&#x90E8;&#x8F6C;&#x5316;&#x4E3A;&#xFF1A;</p>
+<pre><code class="lang-c++">(*ptr-&gt;vptr[<span class="hljs-number">1</span>])(ptr);
+</code></pre>
+<p>&#x5176;&#x4E2D;&#xFF1A;</p>
+<ul>
+<li>vptr&#x8868;&#x793A;&#x7531;&#x7F16;&#x8BD1;&#x5668;&#x4EA7;&#x751F;&#x7684;&#x6307;&#x9488;&#x6307;&#x5411;virtual table&#x3002;&#x4E8B;&#x5B9E;&#x4E0A;&#x5176;&#x540D;&#x79F0;&#x4E5F;&#x4F1A;&#x88AB;mangled,&#x56E0;&#x4E3A;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x6709;&#x591A;&#x4E2A;vptrs.</li>
+<li>1&#x662F;virtual table slot&#x7684;&#x7D22;&#x5F15;&#x503C;&#xFF0C;&#x5173;&#x8054;&#x5230;normalize()&#x51FD;&#x6570;</li>
+<li>&#x7B2C;&#x4E8C;&#x4E2A;ptr&#x8868;&#x793A;this&#x6307;&#x9488;&#xB7;</li>
+</ul>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;object&#x8C03;&#x7528;virtual function</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Point3d obj;</span>
+obj.normalize();
+</code></pre>
+<p>&#x5982;&#x679C;&#x7F16;&#x8BD1;&#x5668;&#x4E5F;&#x5185;&#x90E8;&#x8F6C;&#x6362;&#x4E3A;&#x5982;&#x4E0B;&#x901A;&#x8FC7;&#x865A;&#x51FD;&#x6570;&#x8868;&#x7684;&#x8C03;&#x7528;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// unnecessary internal transformation!</span>
+( * obj.vptr[ <span class="hljs-number">1</span> ])( &amp;obj );
+</code></pre>
+<p>&#x8FD9;&#x662F;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x5E76;&#x4E14;&#x4F4E;&#x6548;&#x7684;&#x3002;&#x56E0;&#x4E3A;object&#x662F;&#x4E2A;Point3d class object&#xFF0C;&#x5176;&#x7C7B;&#x578B;&#x5DF2;&#x7ECF;&#x786E;&#x5B9A;&#x4E86;&#xFF0C;&#x56E0;&#x6B64;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x518D;&#x901A;&#x8FC7;&#x865A;&#x51FD;&#x6570;&#x8868;&#x8C03;&#x7528;&#xFF0C;&#x76F4;&#x63A5;&#x5728;&#x7F16;&#x8BD1;&#x5668;&#x4E2D;&#x88AB;&#x8F6C;&#x6362;&#x6210;</p>
+<pre><code class="lang-c++">normalize__7Point3dFv( &amp;obj );
+</code></pre>
+<p>&#x6548;&#x7387;&#x66F4;&#x9AD8;&#x3002;&#x5E76;&#x4E14;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x662F;inline&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x8F6C;&#x6362;&#x53EF;&#x4EE5;&#x5E94;&#x7528;inline&#x51FD;&#x6570;&#x539F;&#x5730;&#x62D3;&#x5C55;&#x3002;</p>
+<h4 id="static-member-function"><strong>static member function</strong></h4>
+<p>If Point3d::normalize() were a static member function, both its invocations</p>
+<pre><code class="lang-c++">obj.normalize();
+ptr-&gt;normalize();
+</code></pre>
+<p>would be internally transformed into &quot;ordinary&quot; nonmember function calls such as</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// obj.normalize();</span>
+normalize__7Point3dSFv();
+<span class="hljs-comment">// ptr-&gt;normalize();</span>
+normalize__7Point3dSFv();
+</code></pre>
+<p>static member function &#x76F8;&#x5BF9;&#x4E8E;non static member function&#x5C31;&#x662F;&#x6CA1;&#x6709;this&#x6307;&#x9488;&#xFF0C;&#x53EA;&#x80FD;&#x8BBF;&#x95EE;static data member&#xFF0C;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;nonstatic data member </p>
+<p>&#x540C;&#x65F6;&#xFF0C; static member function&#x4E0D;&#x80FD;&#x88AB;&#x58F0;&#x660E;&#x4E3A;const,volatile,virtual</p>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528;&#x6210;&#x5458;&#x9009;&#x62E9;&#x7B26;&#x76F4;&#x63A5;&#x8C03;&#x7528;static member function</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">if</span> ( Point3d::object_count() &gt; <span class="hljs-number">1</span> ) ...
+</code></pre>
+<p>member selection&#x7684;&#x4F7F;&#x7528;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x7B26;&#x53F7;&#x4E0A;&#x7684;&#x4FBF;&#x5229;&#xFF0C;&#x5B83;&#x4F1A;&#x88AB;&#x8F6C;&#x5316;&#x4E3A;&#x4E00;&#x4E2A;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x64CD;&#x4F5C;</p>
+<p>What if the class object is obtained as a side effect of some expression, such as a function call:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">if</span> ( foo().object_count() &gt; <span class="hljs-number">1</span> ) ...
+</code></pre>
+<p>The expression still needs to be evaluated:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// transformation to preserve side-effects</span>
+(<span class="hljs-keyword">void</span>) foo();
+<span class="hljs-keyword">if</span> ( Point3d::object_count() &gt; <span class="hljs-number">1</span> ) ...
+</code></pre>
+<p>A static member function, of course, is also lifted out of the class declaration and given a suitably mangled name. For example,</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> Point3d::object_count()
+{
+    <span class="hljs-keyword">return</span> _object_count;
+}
+</code></pre>
+<p>under cfront is transformed internally into</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// internal transformaton under cfront</span>
+<span class="hljs-function"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> <span class="hljs-title">object_count__5Point3dSFv</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> _object_count__5Point3d;
+}
+</code></pre>
+<p>where <code>SFv</code> indicates it is a static member function with an empty (void) argument list.</p>
+<pre><code class="lang-c++">&amp;Point3d::object_count();
+</code></pre>
+<p>yields a value of type</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">unsigned</span> <span class="hljs-title">int</span> <span class="hljs-params">(*)</span><span class="hljs-params">()</span></span>;
+</code></pre>
+<p>not of type</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">unsigned</span> <span class="hljs-title">int</span> <span class="hljs-params">( Point3d::* )</span><span class="hljs-params">()</span></span>;
+</code></pre>
+<h3 id="virtual-member-function"><strong>Virtual Member Function</strong></h3>
+<p>&#x4E00;&#x4E2A;class &#x7684;&#x865A;&#x51FD;&#x6570;&#x8868;&#x4E2D;&#x7684;&#x865A;&#x51FD;&#x6570;&#x5305;&#x62EC;</p>
+<ul>
+<li>&#x8FD9;&#x4E2A;class&#x5B9A;&#x4E49;&#x7684;&#x865A;&#x51FD;&#x6570;&#x3002;&#x5B83;&#x53EF;&#x80FD;&#x91CD;&#x5199;&#x4E86;&#x57FA;&#x7C7B;&#x7684;&#x865A;&#x51FD;&#x6570;</li>
+<li>&#x7EE7;&#x627F;&#x81EA;&#x57FA;&#x7C7B;&#x7684;&#x865A;&#x51FD;&#x6570;&#xFF0C;&#x6CA1;&#x6709;&#x88AB;&#x8FD9;&#x4E2A;class&#x91CD;&#x5199;</li>
+<li>A pure_virtual_called() library instance that serves as both a placeholder for a pure virtual function and a runtime exception should the instance somehow be invoked</li>
+</ul>
+<p>Each virtual function is assigned a fixed index in the virtual table. This index remains associated with the particular virtual function throughout the inheritance hierarchy. In our Point class hierarchy, for example,</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-keyword">virtual</span> ~Point();
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> Point&amp; <span class="hljs-title">mult</span><span class="hljs-params">( <span class="hljs-keyword">float</span> )</span> </span>= <span class="hljs-number">0</span>;
+  <span class="hljs-comment">// ... other operations ...</span>
+  <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">x</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> _x; }
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">float</span> <span class="hljs-title">y</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; }
+  <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">float</span> <span class="hljs-title">z</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; }
+  <span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">protected</span>:
+  Point( <span class="hljs-keyword">float</span> x = <span class="hljs-number">0.0</span> );
+  <span class="hljs-keyword">float</span> _x;
+};
+</code></pre>
+<p>the virtual destructor is likely to be assigned slot 1 and mult() assigned slot 2. (In this case, there is no mult() definition, so the address of the library function pure_virtual_called() is placed within the slot. If that instance should by some accident get invoked, generally it would terminate the program.) y() is assigned slot 3 and z() slot 4.</p>
+<p>&#x5F53;Point2d&#x7EE7;&#x627F;&#x81EA;Point&#x65F6;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point2d : <span class="hljs-keyword">public</span> Point {
+<span class="hljs-keyword">public</span>:
+  Point2d( <span class="hljs-keyword">float</span> x = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> y = <span class="hljs-number">0.0</span> )
+  : Point( x ), _y( y ) {}
+  ~Point2d();
+  <span class="hljs-comment">// overridden base class virtual functions</span>
+  <span class="hljs-function">Point2d&amp; <span class="hljs-title">mult</span><span class="hljs-params">( <span class="hljs-keyword">float</span> )</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">y</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> _y; }
+  <span class="hljs-comment">// ... other operations ...</span>
+<span class="hljs-keyword">protected</span>:
+  <span class="hljs-keyword">float</span> _y;
+};
+</code></pre>
+<p>There are three possibilities:</p>
+<ol>
+<li>It can inherit the instance of the virtual function declared within the base class. Literally, the address of that instance is copied into the associated slot in the derived class&apos;s virtual table.</li>
+<li>It can override the instance with one of its own. In this case, the address of its instance is placed within the associated slot.</li>
+<li>It can introduce a new virtual function not present in the base class. In this case, the virtual table is grown by a slot and the address of the function is placed within that slot.</li>
+</ol>
+<p>Point2d&apos;s virtual table addresses its destructor in slot 1 and its instance of mult() in slot 2 (replacing the pure virtual instance). It addresses its instance of y() in slot 3 and retains Point&apos;s inherited instance of z() in slot 4.</p>
+<p>&#x6700;&#x540E;Point3d&#x7EE7;&#x627F;&#x81EA;Point2d</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point3d: <span class="hljs-keyword">public</span> Point2d {
+<span class="hljs-keyword">public</span>:
+   Point3d( <span class="hljs-keyword">float</span> x = <span class="hljs-number">0.0</span>,
+   <span class="hljs-keyword">float</span> y = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> z = <span class="hljs-number">0.0</span> )
+   : Point2d( x, y ), _z( z ) {}
+   ~Point3d();
+   <span class="hljs-comment">// overridden base class virtual functions</span>
+   <span class="hljs-function">Point3d&amp; <span class="hljs-title">mult</span><span class="hljs-params">( <span class="hljs-keyword">float</span> )</span></span>;
+   <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">z</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> _z; }
+   <span class="hljs-comment">// ... other operations ...</span>
+<span class="hljs-keyword">protected</span>:
+  <span class="hljs-keyword">float</span> _z;
+};
+</code></pre>
+<p>generates a virtual table with Point3d&apos;s destructor in slot 1 and Point3d&apos;s instance of mult() in slot 2. It
+places Point2d&apos;s inherited instance of y() in slot 3 and Point3d&apos;s instance of z() in slot 4.</p>
+<p>&#x4EE5;&#x4E0A;&#x4E09;&#x4E2A;class object&#x4EE5;&#x53CA;&#x5176;virtual table&#x7684;&#x5E03;&#x5C40;&#x5982;&#x4E0B;&#xFF0C;&#x5047;&#x8BBE;&#x7F16;&#x8BD1;&#x5668;&#x5C06;vptr&#x653E;&#x7F6E;&#x5728;&#x5BF9;&#x8C61;&#x5C3E;&#x90E8;
+<img src="../../../images/c&amp;c++/50.png" alt=""></p>
+<h4 id="&#x591A;&#x91CD;&#x7EE7;&#x627F;&#x4E0B;&#x7684;virtual-function"><strong>&#x591A;&#x91CD;&#x7EE7;&#x627F;&#x4E0B;&#x7684;Virtual Function</strong></h4>
+<pre><code class="lang-c++"><span class="hljs-comment">// hierarchy to illustrate MI complications</span>
+<span class="hljs-comment">// of virtual function support</span>
+<span class="hljs-keyword">class</span> Base1 {
+<span class="hljs-keyword">public</span>:
+   Base1();
+   <span class="hljs-keyword">virtual</span> ~Base1();
+   <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">speakClearly</span><span class="hljs-params">()</span></span>;
+   <span class="hljs-function"><span class="hljs-keyword">virtual</span> Base1 *<span class="hljs-title">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+<span class="hljs-keyword">protected</span>:
+   <span class="hljs-keyword">float</span> data_Base1;
+};
+
+<span class="hljs-keyword">class</span> Base2 {
+<span class="hljs-keyword">public</span>:
+   Base2();
+   <span class="hljs-keyword">virtual</span> ~Base2();
+   <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mumble</span><span class="hljs-params">()</span></span>;
+   <span class="hljs-function"><span class="hljs-keyword">virtual</span> Base2 *<span class="hljs-title">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+<span class="hljs-keyword">protected</span>:
+   <span class="hljs-keyword">float</span> data_Base2;
+};
+
+<span class="hljs-keyword">class</span> Derived : <span class="hljs-keyword">public</span> Base1, <span class="hljs-keyword">public</span> Base2 {
+<span class="hljs-keyword">public</span>:
+   Derived();
+   <span class="hljs-keyword">virtual</span> ~Derived();
+   <span class="hljs-function"><span class="hljs-keyword">virtual</span> Derived *<span class="hljs-title">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+<span class="hljs-keyword">protected</span>:
+   <span class="hljs-keyword">float</span> data_Derived;
+};
+</code></pre>
+<p>Derived&#x652F;&#x6301;virtual functions&#x7684;&#x56F0;&#x96BE;&#x5EA6;&#x7EDF;&#x7EDF;&#x843D;&#x5728;Base2 subobject&#x8EAB;&#x4E0A;&#x3002;&#x6709;&#x4E09;&#x4E2A;&#x95EE;&#x9898;&#x9700;&#x8981;&#x89E3;&#x51B3;&#xFF0C;&#x4EE5;&#x6B64;&#x4F8B;&#x800C;&#x8A00;&#x5206;&#x522B;&#x662F;(1)virtual destructor&#xFF08;2&#xFF09;&#x88AB;&#x7EE7;&#x627F;&#x4E0B;&#x6765;&#x7684;Base2::mumble()&#xFF0C;&#xFF08;3&#xFF09;&#x4E00;&#x7EC4;clone()&#x51FD;&#x6570;&#x5B9E;&#x4F53;. &#x8BA9;&#x6211;&#x4F9D;&#x6B21;&#x89E3;&#x51B3;&#x6BCF;&#x4E00;&#x4E2A;&#x95EE;&#x9898;</p>
+<p><strong>virtual destructor</strong></p>
+<p>First, let&apos;s assign a Base2 pointer the address of a Derived class object allocated on the heap:</p>
+<pre><code class="lang-c++">Base2 *pbase2 = <span class="hljs-keyword">new</span> Derived;
+</code></pre>
+<p>The address of the new Derived object must be adjusted to address its Base2 subobject. The code to accomplish this is generated at compile time:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// transformation to support second base class</span>
+Derived *temp = <span class="hljs-keyword">new</span> Derived;
+Base2 *pbase2 = temp ? temp + <span class="hljs-keyword">sizeof</span>( Base1 ) : <span class="hljs-number">0</span>;
+</code></pre>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4EE5;&#x4E0A;&#x7684;&#x8F6C;&#x6362;&#xFF0C;&#x5219;&#x4E0B;&#x9762;&#x7684;&#x8BBF;&#x95EE;&#x64CD;&#x4F5C;&#x4F1A;&#x5931;&#x8D25;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// ok even if pbase2 assigned Derived object</span>
+pbase2-&gt;data_Base2;
+</code></pre>
+<p>&#x800C;&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8C03;&#x7528;delete &#x51FD;&#x6570;&#x5BF9;&#x8C61;&#x65F6;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">delete</span> pbase2;
+</code></pre>
+<p>pbase2&#x6307;&#x9488;&#x5FC5;&#x987B;&#x518D;&#x4E00;&#x6B21;&#x88AB;&#x8C03;&#x6574;&#xFF0C;&#x4EE5;&#x6307;&#x5411;Derived&#x7684;&#x8D77;&#x59CB;&#x5904;&#x3002;</p>
+<p>&#x7136;&#x800C;&#x5F53;&#x6211;&#x4EEC;&#x8C03;&#x7528;delete pbase2&#x65F6;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x8FD8;&#x80FD;&#x786E;&#x5B9A;pbase2&#x8FD8;&#x6307;&#x5411;&#x539F;&#x6765;&#x7684;Derived&#x5BF9;&#x8C61;&#x4E2D;&#x7684;Base2 subobject&#x4E48;&#xFF1F;&#x663E;&#x7136;&#x662F;&#x4E0D;&#x80FD;&#x7684;&#x3002;&#x6B64;&#x65F6;pbase2&#x4E5F;&#x53EF;&#x80FD;&#x5C31;&#x6307;&#x5411;&#x4E00;&#x4E2A;Base2&#x5BF9;&#x8C61;&#xFF0C;&#x6307;&#x9488;&#x538B;&#x6839;&#x4E0D;&#x9700;&#x8981;&#x8C03;&#x6574;&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x8FD9;&#x4E2A;this&#x6307;&#x9488;&#x7684;&#x8C03;&#x6574;&#x503C;&#x53EA;&#x80FD;&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x624D;&#x80FD;&#x786E;&#x5B9A;&#x3002;&#x56E0;&#x4E3A;&#x53EA;&#x6709;&#x8FD0;&#x884C;&#x65F6;&#x624D;&#x77E5;&#x9053;pbase2&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#x5230;&#x5E95;&#x4EC0;&#x4E48;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#xFF0C;&#x8FD9;&#x4E2A;&#x8C03;&#x6574;&#x503C;&#xFF0C;&#x8981;&#x5B58;&#x50A8;&#x5728;&#x5BF9;&#x8C61;&#x7684;&#x67D0;&#x4E2A;&#x5730;&#x65B9;&#xFF0C;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#xFF0C;&#x5728;&#x865A;&#x51FD;&#x6570;&#x8868;&#x4E2D;&#xFF0C;&#x548C;&#x6307;&#x5411;&#x865A;&#x51FD;&#x6570;&#x7684;&#x6307;&#x9488;&#x5B58;&#x50A8;&#x5728;&#x4E00;&#x8D77;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x865A;&#x51FD;&#x6570;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x5BF9;&#x8C61;&#x4E0D;&#x5355;&#x5355;&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x8FD8;&#x5305;&#x62EC;&#x4E00;&#x4E2A;&#x504F;&#x79FB;&#x91CF;&#xFF0C;&#x8FD9;&#x4E2A;&#x504F;&#x79FB;&#x91CF;&#x9700;&#x8981;&#x5728;&#x8C03;&#x7528;&#x65F6;&#x52A0;&#x5230;this&#x6307;&#x9488;&#x4E0A;&#x3002;</p>
+<p>The virtual function call changed from</p>
+<pre><code class="lang-c++">( *pbase2-&gt;vptr[<span class="hljs-number">1</span>])( pbase2 );
+</code></pre>
+<p>into</p>
+<pre><code class="lang-c++">( *pbase2-&gt;vptr[<span class="hljs-number">1</span>].faddr)( pbase2 + pbase2-&gt;vptr[<span class="hljs-number">1</span>].offset );
+</code></pre>
+<p>where faddr held the virtual function address and offset held the necessary this pointer adjustment.</p>
+<p>&#x8FD9;&#x4E2A;&#x505A;&#x6CD5;&#x7684;&#x7F3A;&#x70B9;&#x662F;&#xFF0C;&#x5B83;&#x76F8;&#x5F53;&#x4E8E;&#x8FDE;&#x5E26;&#x5904;&#x7F5A;&#x4E86;&#x6240;&#x6709;&#x7684;virtual function&#x8C03;&#x7528;&#x64CD;&#x4F5C;,&#x4E0D;&#x7BA1;&#x5B83;&#x4EEC;&#x662F;&#x5426;&#x9700;&#x8981;this&#x6307;&#x9488;&#x7684;&#x8C03;&#x6574;&#xB7;&#x6211;&#x6240;&#x8C13;&#x7684;&#x5904;&#x7F5A;&#xFF0C;&#x5305;&#x62EC;offset&#x7684;&#x989D;&#x5916;&#x5B58;&#x53D6;&#x53CA;&#x5176;&#x52A0;&#x6CD5;&#xFF0C;&#x4EE5;&#x53CA;&#x6BCF;&#x4E00;&#x4E2A;virtual table slot&#x7684;&#x5927;&#x5C0F;&#x6539;&#x53D8;&#x3002;</p>
+<p>&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x662F;&#x4F7F;&#x7528;&#x6240;&#x8C13;&#x7684;thunk&#x6280;&#x672F;&#xFF0C;&#x6240;&#x8C13;&#x7684;thunk&#x5C31;&#x662F;&#x4E00;&#x5C0F;&#x6BB5;assembly code&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x62EC;&#x8C03;&#x6574;this&#x6307;&#x9488;&#x548C;&#x8DF3;&#x8F6C;virtual function&#x53BB;&#x6267;&#x884C;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x865A;&#x51FD;&#x6570;&#x8868;&#x4E2D;&#x7684;&#x67D0;&#x4E2A;&#x51FD;&#x6570;&#x5728;&#x88AB;&#x8C03;&#x7528;&#x65F6;&#x9700;&#x8981;&#x8C03;&#x6574;this&#x6307;&#x9488;&#xFF0C;&#x865A;&#x51FD;&#x6570;&#x8868;&#x4E2D;&#x5C31;&#x5B58;&#x50A8;&#x8BE5;thunk&#x7684;&#x6307;&#x9488;&#xFF0C;&#x5426;&#x5219;&#x5B58;&#x50A8;&#x51FD;&#x6570;&#x7684;&#x6307;&#x9488;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x8C03;&#x6574;this&#x6307;&#x9488;&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x989D;&#x5916;&#x8D1F;&#x62C5;&#x5C31;&#x662F;&#xFF0C;&#x7531;&#x4E8E;&#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x53EF;&#x80FD;&#xFF1A;(1)&#x7ECF;&#x7531;derived class&#xFF08;&#x6216;&#x7B2C;&#x4E00;&#x4E2A;base class&#xFF09;&#x8C03;&#x7528;&#xFF0C;&#xFF08;2&#xFF09;&#x7ECF;&#x7531;&#x7B2C;&#x4E8C;&#x4E2A;&#xFF08;&#x6216;&#x5176;&#x540E;&#x7EE7;&#xFF09;base class&#x8C03;&#x7528;&#xFF0C;&#x540C;&#x51FD;&#x6570;&#x5728;virtual table&#x4E2D;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x591A;&#x7B14;&#x5BF9;&#x5E94;&#x7684;slots&#xB7;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-c++">Base1 *pbase1 = <span class="hljs-keyword">new</span> Derived;
+Base2 *pbase2 = <span class="hljs-keyword">new</span> Derived;
+<span class="hljs-keyword">delete</span> pbase1;
+<span class="hljs-keyword">delete</span> pbase2;
+</code></pre>
+<p>&#x867D;&#x7136;&#x4E24;&#x4E2A;delete&#x64CD;&#x4F5C;&#x5BFC;&#x81F4;&#x76F8;&#x540C;&#x7684;Derived destructor&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x4F46;&#x5B83;&#x4EEC;&#x9700;&#x8981;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;virtual table slots</p>
+<ol>
+<li><p>pbase1 does not require a this pointer adjustment (being leftmost, it already points to the beginning of the Derived class object). Its virtual table slot requires the actual destructor address.</p>
+</li>
+<li><p>pbase2 does require a this pointer adjustment. Its virtual table slot requires the address of the associated thunk.</p>
+</li>
+</ol>
+<font color="red">&#x4EE5;&#x4E0B;&#x5E94;&#x8BE5;&#x4E0D;&#x51C6;&#x786E;</font>
+&#x5728;&#x591A;&#x91CD;&#x7EE7;&#x627F;&#x4E4B;&#x4E0B;&#xFF0C;&#x4E00;&#x4E2A;derived class&#x5185;&#x542B;n&#x4E2A;virtual tables&#xFF0C;n&#x8868;&#x793A;&#x5176;&#x4E0A;&#x4E00;&#x5C42;base classes&#x7684;&#x6570;&#x76EE;&#xFF0C;&#x5F53;&#x7136;&#xFF0C;&#x5176;&#x6BCF;&#x4E00;&#x4E2A;base class&#x4E2D;&#x8981;&#x6709;&#x865A;&#x51FD;&#x6570;&#xFF0C;&#x4E0D;&#x7BA1;&#x8FD9;&#x4E2A;&#x865A;&#x51FD;&#x6570;&#x662F;&#x81EA;&#x5DF1;&#x7684;&#x8FD8;&#x662F;&#x7EE7;&#x627F;&#x7684;&#x3002;
+
+&#x5728;&#x5355;&#x4E00;&#x7EE7;&#x627F;&#x4E0B;&#xFF0C;&#x4E0D;&#x4F1A;&#x4EA7;&#x751F;&#x989D;&#x5916;&#x7684;virtual tables.
+
+&#x4EE5;&#x4E0A;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#x5747;&#x4E0D;&#x5305;&#x62EC;&#x865A;&#x62DF;&#x7EE7;&#x627F;&#x3002;
+<font color="red">&#x4EE5;&#x4E0A;</font>
+
+
+<p>&#x5BF9;&#x4E8E;&#x672C;&#x4F8B;Derived class&#x800C;&#x8A00;&#xFF0C;&#x4F1A;&#x6709;&#x4E24;&#x4E2A;virtual tables&#x88AB;&#x7F16;&#x8BD1;&#x5668;&#x4EA7;&#x751F;&#x51FA;&#x6765;&#xFF1A;</p>
+<ol>
+<li>The primary instance shared with Base1, its leftmost base class</li>
+<li>A secondary instance associated with Base2, the second base class</li>
+</ol>
+<p>The Derived class object contains a vptr for each associated virtual table. The vptrs are initialized within the constructor(s) through code generated by the compiler.
+<img src="../../../images/c%26c%2B%2B/51.png" alt=""></p>
+<p>&#x7528;&#x4EE5;&#x652F;&#x6301;&#x201C;&#x4E00;&#x4E2A;class&#x62E5;&#x6709;&#x591A;&#x4E2A;virtual tables&quot;&#x7684;&#x4F20;&#x7EDF;&#x65B9;&#x6CD5;&#x662F;&#xFF0C;&#x5C06;&#x6BCF;&#x4E00;&#x4E2A;tables&#x4EE5;&#x5916;&#x90E8;&#x5BF9;&#x8C61;&#x7684;&#x5F62;&#x5F0F;&#x4EA7;&#x751F;&#x51FA;&#x6765;&#xFF0C;&#x5E76;&#x7ED9;&#x4E88;&#x72EC;&#x4E00;&#x65E0;&#x4E8C;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF0C;Derived&#x6240;&#x5173;&#x8054;&#x7684;&#x4E24;&#x4E2A;tables&#x53EF;&#x80FD;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x540D;&#x79F0;&#xFF1A;</p>
+<pre><code class="lang-c++">vtbl__Derived; <span class="hljs-comment">// the primary table</span>
+vtbl__Base2__Derived; <span class="hljs-comment">// the secondary table</span>
+</code></pre>
+<p>&#x4E8E;&#x662F;&#x5F53;&#x4F60;&#x5C06;&#x4E00;&#x4E2A;Derived&#x5BF9;&#x8C61;&#x5730;&#x5740;&#x6307;&#x5B9A;&#x7ED9;&#x4E00;&#x4E2A;Base1&#x6307;&#x9488;&#x6216;Derived&#x6307;&#x9488;&#x65F6;&#xFF0C;&#x88AB;&#x5904;&#x7406;&#x7684;virtual table&#x662F;vtbl<strong>Derived&#x3002;&#x800C;&#x5F53;&#x4F60;&#x5C06;&#x4E00;&#x4E2A;Derived&#x5BF9;&#x8C61;&#x5730;&#x5740;&#x6307;&#x5B9A;&#x7ED9;&#x4E00;&#x4E2A;Base2&#x6307;&#x9488;&#x65F6;&#xFF0C;&#x88AB;&#x5904;&#x7406;&#x7684;virtual table&#x662F;vtbl</strong>Base2__Derived.</p>
+<p><strong>&#x88AB;&#x7EE7;&#x627F;&#x4E0B;&#x6765;&#x7684;Base2::mumble()</strong></p>
+<p>&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x201C;&#x6307;&#x5411;derived class&#x201D;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x8C03;&#x7528;&#x7B2C;&#x4E8C;&#x4E2A;base class&#x4E2D;&#x4E00;&#x4E2A;&#x7EE7;&#x627F;&#x800C;&#x6765;&#x7684;virtual function&#x3002;&#x5728;&#x6B64;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;derived class&#x6307;&#x9488;&#x5FC5;&#x987B;&#x518D;&#x6B21;&#x8C03;&#x6574;&#xFF0C;&#x4EE5;&#x6307;&#x5411;&#x7B2C;&#x4E8C;&#x4E2A;base class subobject&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-c++">Derived *pder = <span class="hljs-keyword">new</span> Derived;
+<span class="hljs-comment">// invokes Base2::mumble()</span>
+<span class="hljs-comment">// pder must be adjusted forward by sizeof( Base1 )</span>
+pder-&gt;mumble();
+</code></pre>
+<p>&#x53EF;&#x80FD;&#x7684;&#x8F6C;&#x6362;&#x5982;&#x4E0B;&#xFF0C;&#x5982;&#x679C;&#x5176;&#x5B9E;&#x73B0;&#x662F;&#x4FEE;&#x6539;&#x865A;&#x51FD;&#x6570;&#x8868;&#x4E2D;&#x6BCF;&#x4E2A;slot&#x4E2D;&#x7684;&#x683C;&#x5F0F;&#x7684;&#x8BDD;&#xFF1A;</p>
+<pre><code class="lang-c++">(*pder-&gt;vtbl__Derived[<span class="hljs-number">4</span>].faddr)(pder+pder-&gt;vtbl__Derived[<span class="hljs-number">4</span>].offset)
+</code></pre>
+<p><strong>&#x4E00;&#x7EC4;clone()&#x51FD;&#x6570;&#x5B9E;&#x4F53;</strong>
+&#x7B2C;&#x4E09;&#x79CD;&#x60C5;&#x51B5;&#x53D1;&#x751F;&#x4E8E;&#x4E00;&#x4E2A;&#x8BED;&#x8A00;&#x7684;&#x6269;&#x5145;&#x6027;&#x8D28;&#x4E4B;&#x4E0B;&#xFF1A;&#x5141;&#x8BB8;&#x4E00;&#x4E2A;virtual function&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B;&#x6709;&#x6240;&#x53D8;&#x5316;&#xFF0C;&#x53EF;&#x80FD;&#x662F;base type&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x662F;publicly derived type&#x3002;&#x8FD9;&#x4E00;&#x70B9;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Derived::clone()&#x51FD;&#x6570;&#x5B9E;&#x4F53;&#x6765;&#x8BF4;&#x660E;&#x3002;clone&#x51FD;&#x6570;&#x7684;Derived&#x7248;&#x672C;&#x4F20;&#x56DE;&#x4E00;&#x4E2A;Derived class&#x6307;&#x9488;&#xFF0C;&#x9ED8;&#x9ED8;&#x5730;&#x6539;&#x5199;&#x4E86;&#x5B83;&#x7684;&#x4E24;&#x4E2A;base class&#x4E2D;&#x7684;&#x51FD;&#x6570;&#x5B9E;&#x4F53;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x201C;&#x6307;&#x5411;&#x7B2C;&#x4E8C;&#x4E2A;base&#x201D;&#x7684;&#x6307;&#x9488;&#x6765;&#x8C03;&#x7528;clone&#x65F6;&#xFF0C;this&#x6307;&#x9488;&#x53C8;&#x9700;&#x8981;&#x8C03;&#x6574;&#x4E86;&#xFF1A;</p>
+<pre><code class="lang-c++">Base2 *pb2 = <span class="hljs-keyword">new</span> Derived;
+<span class="hljs-comment">// invokes Derived* Derived::clone()</span>
+<span class="hljs-comment">// return must be adjusted to address Base2 subobject</span>
+Base2 *pb2_2 = pb2-&gt;clone();
+</code></pre>
+<p>The Derived class instance of clone() is invoked and uses the thunk to readjust pb2 to address the beginning of the Derived class object. Now clone() returns a pointer to a new Derived class object, and the address must be adjusted to point to the Base2 subobject before being assigned to pb2_2.</p>
+<p>Sun&#x7F16;&#x8BD1;&#x5668;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x79CD;&#x201C;split functions&#x201D;&#x7684;&#x7B56;&#x7565;&#xFF0C;&#x5F53;&#x51FD;&#x6570;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;&#x201C;small&#x201D;&#x65F6;&#xFF1A;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x7B97;&#x6CD5;&#x4EE3;&#x7801;&#x751F;&#x6210;&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#x5B9E;&#x4F8B;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x5B9E;&#x4F8B;&#x5728;&#x8FD4;&#x56DE;&#x6307;&#x9488;&#x4E4B;&#x524D;&#x6DFB;&#x52A0;&#x5FC5;&#x8981;&#x7684;&#x504F;&#x79FB;&#x91CF;&#x3002;</p>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x901A;&#x8FC7;Base1&#x6216;Derived&#x6307;&#x9488;&#x8C03;&#x7528;&#x4F1A;&#x8C03;&#x7528;&#x6CA1;&#x6709;&#x8FD4;&#x56DE;&#x503C;&#x8C03;&#x6574;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x800C;&#x901A;&#x8FC7;Base2&#x6307;&#x9488;&#x8C03;&#x7528;&#x5219;&#x4F1A;&#x8C03;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x3002;</p>
+<p>&#x5176;&#x4ED6;&#x5B9E;&#x73B0;&#x7565;&#xFF0C;&#x770B;&#x4E0D;&#x61C2;</p>
+<h4 id="&#x865A;&#x62DF;&#x7EE7;&#x627F;&#x4E0B;&#x7684;virtual-function"><strong>&#x865A;&#x62DF;&#x7EE7;&#x627F;&#x4E0B;&#x7684;Virtual Function</strong></h4>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point2d {
+<span class="hljs-keyword">public</span>:
+   Point2d( <span class="hljs-keyword">float</span> = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> = <span class="hljs-number">0.0</span> );
+   <span class="hljs-keyword">virtual</span> ~Point2d();
+   <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mumble</span><span class="hljs-params">()</span></span>;
+   <span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">float</span> <span class="hljs-title">z</span><span class="hljs-params">()</span></span>;
+   <span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">protected</span>:
+   <span class="hljs-keyword">float</span> _x, _y;
+};
+<span class="hljs-keyword">class</span> Point3d : <span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> Point2d{
+<span class="hljs-keyword">public</span>:
+   Point3d( <span class="hljs-keyword">float</span> = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> = <span class="hljs-number">0.0</span>, <span class="hljs-keyword">float</span> = <span class="hljs-number">0.0</span> );
+   ~Point3d();
+   <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">z</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">protected</span>:
+   <span class="hljs-keyword">float</span> _z;
+};
+</code></pre>
+<p>Although Point3d has a single leftmost base class&#x2014;Point2d&#x2014;the beginning of Point3d and Point2d is no longer&#x3000;coincident (as they are under nonvirtual single inheritance). Since the Point2d&#x3000;and Point3d objects are no longer coincident, conversion between the two also requires a this pointer adjustment. Efforts to eliminate thunks under virtual inheritance in general have proved much more difficult.</p>
+<p><img src="../../../images/c%26c%2B%2B/53.png" alt="">
+&#x8FD9;&#x5F20;&#x56FE;&#x4E2D;&#xFF0C;p3d&#x5BF9;&#x8C61;&#x7684;&#x4E24;&#x4E2A;vtbl&#x4E2D;&#xFF0C;mumble&#x5E94;&#x8BE5;&#x662F;point2d::mumble(). &#x9700;&#x8981;&#x8C03;&#x6574;this&#x6307;&#x9488;&#x7684;&#x51FD;&#x6570;&#x6709;&#xFF0C;<strong>vptr</strong>Point3d&#x4E2D;&#x7684;<code>Point2d::mumble()</code>,<strong>vptr</strong>Point2d&#x4E2D;&#x7684;<code>Point3d::~Point3d()</code>,<code>Point3d::z()</code></p>
+<h3 id="pointer-to-member-function"><strong>Pointer to Member Function</strong></h3>
+<p>&#x53D6;&#x4E00;&#x4E2A;non static data member&#x7684;&#x5730;&#x5740;&#xFF0C;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x8BE5;member&#x5728;class object&#x4E2D;&#x7684;&#x504F;&#x79FB;&#x518D;&#x52A0;1&#xB7;&#x4F60;&#x53EF;&#x4EE5;&#x60F3;&#x8C61;&#x5B83;&#x662F;&#x4E2A;&#x4E0D;&#x5B8C;&#x6574;&#x7684;&#x503C;&#xFF0C;&#x5B83;&#x9700;&#x8981;&#x88AB;&#x7ED1;&#x5B9A;&#x4E8E;&#x67D0;&#x4E2A;class object&#x7684;&#x5730;&#x5740;&#x4E0A;&#xFF0C;&#x624D;&#x80FD;&#x591F;&#x88AB;&#x5B58;&#x53D6;&#x3002;</p>
+<p>&#x53D6;&#x4E00;&#x4E2A;non static member function&#x7684;&#x5730;&#x5740;&#xFF0C;&#x5982;&#x679C;&#x8BE5;&#x51FD;&#x6570;&#x662F;non virtual&#xFF0C;&#x5219;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x662F;&#x5B83;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x771F;&#x6B63;&#x7684;&#x5730;&#x5740;&#xB7;&#x7136;&#x800C;&#x8FD9;&#x4E2A;&#x503C;&#x4E5F;&#x662F;&#x4E0D;&#x5B8C;&#x5168;&#x7684;&#xFF0C;&#x5B83;&#x4E5F;&#x9700;&#x8981;&#x88AB;&#x7ED1;&#x5B9A;&#x4E8E;&#x67D0;&#x4E2A;object&#x7684;&#x5730;&#x5740;&#x4E0A;&#xFF0C;&#x624D;&#x80FD;&#x591F;&#x901A;&#x8FC7;&#x5B83;&#x8C03;&#x7528;&#x8BE5;&#x51FD;&#x6570;&#x3002;&#x6240;&#x6709;&#x7684;non static member functions&#x90FD;&#x9700;&#x8981;object&#x7684;&#x5730;&#x5740;&#xFF08;&#x4EE5;&#x53C2;&#x6570;this&#x6307;&#x51FA;&#xFF09;</p>
+<p>&#x4E00;&#x4E2A;&#x6307;&#x5411;member function&#x7684;&#x6307;&#x9488;&#xFF0C;&#x5176;&#x58F0;&#x660E;&#x8BED;&#x6CD5;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">double</span> (Point::* pmf)();
+</code></pre>
+<p>Thus one writes</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">double</span> (Point::*coord)() = &amp;Point::x;
+</code></pre>
+<p>to define and initialize a pointer to class member function and writes</p>
+<pre><code class="lang-c++">coord = &amp;Point::y;
+</code></pre>
+<p>to assign a value to it.</p>
+<p>&#x800C;&#x901A;&#x8FC7;Pointer to member function&#x7684;&#x6307;&#x9488;&#x6765;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x6210;&#x5458;&#xFF0C;&#x6709;&#x5982;&#x4E0B;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<pre><code class="lang-c++">( origin.*coord )();
+</code></pre>
+<p>or</p>
+<pre><code class="lang-c++">( ptr-&gt;*coord )();
+</code></pre>
+<p>These are converted internally by the compiler to, respectively,</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+( coord )( &amp; origin );
+</code></pre>
+<p>and</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// Pseudo C++ Code</span>
+( coord )( ptr );
+</code></pre>
+<p>&#x5982;&#x679C;&#x662F;pointer to static member function,&#x5176;&#x6307;&#x9488;&#x7C7B;&#x578B;&#x5C31;&#x662F;&#x666E;&#x901A;&#x7684;&#x51FD;&#x6570;&#x6307;&#x9488;&#x3002;</p>
+<h4 id="supporting-pointer-to-virtual-member-functions"><strong>Supporting Pointer-to-Virtual-Member Functions</strong></h4>
+<p>Consider the following code fragment:</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">float</span> (Point::*pmf)() = &amp;Point::z;
+Point *ptr = <span class="hljs-keyword">new</span> Point3d;
+</code></pre>
+<p>pmf&#x662F;&#x6307;&#x5411;class member function&#x7684;&#x6307;&#x9488;&#xFF0C;&#x4F46;&#x662F;Point::z&#x5374;&#x662F;&#x4E2A;&#x865A;&#x51FD;&#x6570;&#x3002;
+Point3d&#x5B9E;&#x73B0;&#x4E86;&#x8BE5;&#x865A;&#x51FD;&#x6570;z();
+&#x5982;&#x679C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;ptr&#x8C03;&#x7528;&#x865A;&#x51FD;&#x6570;</p>
+<pre><code class="lang-c++">ptr-&gt;z();
+</code></pre>
+<p>&#x8C03;&#x7528;&#x7684;&#x662F;<code>Point3d::z()</code>;</p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;pmf&#x8C03;&#x7528;&#x865A;&#x51FD;&#x6570;</p>
+<pre><code class="lang-c++">( ptr-&gt;*pmf)();
+</code></pre>
+<p>&#x8C03;&#x7528;&#x7684;&#x8FD8;&#x662F;<code>Point3d::z()</code>,&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;pointer to class member function &#x4F9D;&#x7136;&#x5BF9;virtual&#x673A;&#x5236;&#x6709;&#x6548;&#xFF0C;&#x8FD9;&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x7684;&#xFF1F;</p>
+<p>&#x5BF9;&#x4E00;&#x4E2A;non virtual function&#x53D6;&#x5730;&#x5740;&#xFF0C;&#x83B7;&#x53D6;&#x7684;&#x662F;&#x5176;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x5BF9;&#x4E00;&#x4E2A;virtual function&#x53D6;&#x5730;&#x5740;&#xFF0C;&#x83B7;&#x53D6;&#x7684;&#x662F;&#x5176;&#x5728;virtual table&#x4E2D;&#x7684;index</p>
+<p>&#x5047;&#x8BBE;Point&#x5B9A;&#x4E49;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point
+{
+<span class="hljs-keyword">public</span>:
+<span class="hljs-keyword">virtual</span> ~Point();
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">x</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">y</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">float</span> <span class="hljs-title">z</span><span class="hljs-params">()</span></span>;
+<span class="hljs-comment">// ...</span>
+};
+</code></pre>
+<p>Then taking the address of the destructor</p>
+<pre><code class="lang-c++">&amp;Point::~Point;
+</code></pre>
+<p>yields 1. Taking the address of either x() or y()</p>
+<pre><code class="lang-c++">&amp;Point::x;
+&amp;Point::y;
+</code></pre>
+<p>yields their actual memory locations, since they are not virtual. Taking the address of z()</p>
+<pre><code class="lang-c++">&amp;Point::z;
+</code></pre>
+<p>yields 2. </p>
+<p>The invocation of z() through pmf, then, becomes translated internally into a compile-time expression of the following general form:</p>
+<pre><code class="lang-c++">( * ptr-&gt;vptr[ (<span class="hljs-keyword">int</span>)pmf ])( ptr );
+</code></pre>
+<p>pmf&#x7684;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">float</span> (pointer::*pmf)();
+</code></pre>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x5BF9;&#x4E8E;&#x6307;&#x5411;class member function &#x6307;&#x9488;&#xFF0C;&#x4E0D;&#x7BA1;&#x5176;&#x6307;&#x5411;&#x7684;&#x662F;virtual,&#x8FD8;&#x662F;non virtual&#xFF0C;&#x6307;&#x9488;&#x7684;&#x7C7B;&#x578B;&#x90FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;pmf&#x6307;&#x5411;Point::x()</p>
+<pre><code class="lang-c++">pmf=&amp;Point::x()
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x5176;&#x6307;&#x5411;&#x7684;&#x5C31;&#x4E0D;&#x662F;virtual function&#x4E86;&#x3002;</p>
+<p>&#x800C;&#x5BF9;&#x4E8E;virtual function,&#x548C;non virtual function,&#x5176;&#x8C03;&#x7528;&#x65B9;&#x5F0F;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x7F16;&#x8BD1;&#x5668;&#x5982;&#x4F55;&#x533A;&#x5206;&#x8FD9;&#x4E24;&#x79CD;&#x503C;&#x5462;&#xFF1F;</p>
+<p>In the pre-Release 2.0 cfront implementation, it used the following trick:</p>
+<pre><code class="lang-c++">((( <span class="hljs-keyword">int</span> ) pmf ) &amp; ~<span class="hljs-number">127</span> )
+? <span class="hljs-comment">// non-virtual invocation</span>
+( *pmf )( ptr )
+: <span class="hljs-comment">// virtual invocation</span>
+( * ptr-&gt;vptr[ (<span class="hljs-keyword">int</span>) pmf ])( ptr );
+</code></pre>
+<p>Of course, this implementation assumes a limit of 128 virtual functions to an inheritance graph. This is not desirable, but in practice it has proved viable. The introduction of multiple inheritance, however, requires a more general implementation scheme and provides an opportunity to remove the limit on the number of virtual functions.</p>
+<h4 id="pointer-to-member-functions-under-&#x591A;&#x91CD;&#x7EE7;&#x627F;"><strong>Pointer-to-Member Functions under &#x591A;&#x91CD;&#x7EE7;&#x627F;</strong></h4>
+<p>For pointers to member function to support both multiple and virtual inheritances, Stroustrup designed the following aggregate structure</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// fully general structure to support</span>
+<span class="hljs-comment">// pointer to member functions under MI</span>
+<span class="hljs-keyword">struct</span> __mptr {
+<span class="hljs-keyword">int</span> delta;
+<span class="hljs-keyword">int</span> index;
+<span class="hljs-keyword">union</span> {
+ptrtofunc faddr;
+<span class="hljs-keyword">int</span> v_offset;
+};
+};
+</code></pre>
+<p>&#x5982;&#x679C;member function&#x4E3A;virtual function, index&#x4E3A;&#x5728;virtual function table&#x4E2D;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x662F;virtual function,&#x5219;faddr&#x4E3A;&#x5176;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5730;&#x5740;&#x3002;&#x800C;&#x6B64;&#x65F6;&#xFF0C;index&#x4E3A;-1.</p>
+<p>delta&#x4E3A;this&#x6307;&#x9488;&#x9700;&#x8981;&#x52A0;&#x4E0A;&#x7684;&#x504F;&#x79FB;&#x3002; v_offset member holds the location of the vptr of a virtual (or second or subsequent) base class</p>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x5219;</p>
+<pre><code class="lang-c++">( ptr-&gt;*pmf )()
+</code></pre>
+<p>becomes</p>
+<pre><code class="lang-c++">( pmf.index &lt; <span class="hljs-number">0</span> )
+? <span class="hljs-comment">// non-virtual invocation</span>
+( *pmf.faddr )( ptr )
+: <span class="hljs-comment">// virtual invocation</span>
+( * ptr-&gt;vptr[ pmf.index ])( ptr );
+</code></pre>
+<p>&#x800C;&#x8FD9;&#x4E9B;&#x5B57;&#x6BB5;&#x53EA;&#x5728;&#x591A;&#x91CD;&#x7EE7;&#x627F;&#x548C;&#x865A;&#x62DF;&#x7EE7;&#x627F;&#x5B58;&#x5728;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x624D;&#x6709;&#x5FC5;&#x8981;&#x5B58;&#x5728;&#x3002;</p>
+<p>so many compilers provide multiple internal pointer-to-member-function representations based on the characteristics of the class. Microsoft, for example, provides three flavors:</p>
+<ul>
+<li>A single inheritance instance (which simply holds either the vcall thunk or function address,vcall thunk only necessary for virtual function)</li>
+<li>A multiple inheritance instance (which holds the faddr and delta members)</li>
+<li>A virtual inheritance instance (which holds four members!)</li>
+</ul>
+<h3 id="inline-function"><strong>Inline Function</strong></h3>
+<p>&#x5047;&#x8BBE;&#x6709;&#x5982;&#x4E0B;&#x7684;Point&#x7C7B;&#x7684;&#x53CB;&#x5143;&#x51FD;&#x6570;</p>
+<pre><code class="lang-c++"><span class="hljs-keyword">class</span> Point {
+<span class="hljs-keyword">friend</span> Point <span class="hljs-keyword">operator</span>+( <span class="hljs-keyword">const</span> Point&amp;, <span class="hljs-keyword">const</span> Point&amp; );
+...
+};
+
+Point <span class="hljs-keyword">operator</span>+( <span class="hljs-keyword">const</span> Point &amp;lhs, <span class="hljs-keyword">const</span> Point &amp;rhs )
+{
+Point new_pt;
+new_pt._x = lhs._x + rhs._x;
+new_pt._y = lhs._y + rhs._y;
+<span class="hljs-keyword">return</span> new_pt;
+}
+</code></pre>
+<p>&#x7406;&#x8BBA;&#x4E0A;&#xFF0C;&#x4E00;&#x4E2A;&#x66F4;&#x597D;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x662F;&#x63D0;&#x4F9B;inline get &#x548C;set _x,_y&#x6570;&#x636E;&#x6210;&#x5458;&#x7684;&#x51FD;&#x6570;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// void Point::x( float new_x ) { _x = new_x; }</span>
+<span class="hljs-comment">// float Point::x() { return _x; }</span>
+new_pt.x( lhs.x() + rhs.x() );
+</code></pre>
+<p>&#x901A;&#x8FC7;get&#x548C;set&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF0C;&#x5BF9;&#x6570;&#x636E;&#x7684;&#x8BBF;&#x95EE;&#x63D0;&#x4F9B;&#x4E86;&#x5C01;&#x88C5;&#x3002;&#x65E5;&#x540E;&#x5982;&#x679C;data member&#x6709;&#x6539;&#x52A8;&#xFF0C;&#x8FD9;&#x79CD;&#x5C01;&#x88C5;&#x5C06;&#x6539;&#x52A8;&#x7684;&#x5F71;&#x54CD;&#x964D;&#x4F4E;&#x3002; &#x540C;&#x65F6;&#xFF0C;&#x56E0;&#x4E3A;&#x5C06;get&#x548C;set&#x58F0;&#x660E;&#x4E3A;inline&#xFF0C;we maintain the performance efficiency of direct member access&#x3002;&#x6700;&#x540E;&#xFF0C;&#x8FD9;&#x79CD;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#xFF0C;operator+()&#x4E0D;&#x518D;&#x9700;&#x8981;&#x88AB;&#x58F0;&#x660E;&#x4E3A;&#x53CB;&#x5143;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x4F46;inline&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x5B9E;&#x9645;&#x5728;&#x5904;&#x7406;&#x65F6;&#xFF0C;&#x6709;&#x53EF;&#x80FD;&#x5E76;&#x4E0D;inline. &#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x6839;&#x636E;&#x51FD;&#x6570;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x51B3;&#x5B9A;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x662F;&#x5426;inlineable. cfront&#x6709;&#x4E00;&#x5957;&#x590D;&#x6742;&#x7684;&#x6D4B;&#x8BD5;&#x6CD5;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x7528;&#x6765;&#x8BA1;&#x7B97;assignments&#x3001;function calls&#x3001;virtual function calls&#x7B49;&#x64CD;&#x4F5C;&#x7684;&#x6B21;&#x6570;&#xFF0C;&#x6BCF;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#xFF08;expression&#xFF09;&#x79CD;&#x7C7B;&#x6709;&#x4E00;&#x4E2A;&#x6743;&#x503C;&#xFF0C;&#x800C;inline&#x51FD;&#x6570;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x5C31;&#x4EE5;&#x8FD9;&#x4E9B;&#x64CD;&#x4F5C;&#x7684;&#x603B;&#x548C;&#x6765;&#x51B3;&#x5B9A;</p>
+<p>&#x4E00;&#x822C;&#x800C;&#x8A00;&#xFF0C;&#x5904;&#x7406;&#x4E00;&#x4E2A;inline&#x51FD;&#x6570;&#xFF0C;&#x6709;&#x4E24;&#x4E2A;&#x9636;&#x6BB5;&#xFF1A;</p>
+<ol>
+<li>&#x5206;&#x6790;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#xFF0C;&#x5224;&#x65AD;&#x51FD;&#x6570;&#x662F;&#x5426;&#x53EF;inline. &#x5982;&#x679C;&#x88AB;&#x5224;&#x65AD;&#x4E0D;&#x53EF;&#x6210;&#x4E3A;inline&#xFF0C;&#x5B83;&#x4F1A;&#x88AB;&#x8F6C;&#x4E3A;&#x4E00;&#x4E2A;static&#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x5728;&#x201C;&#x88AB;&#x7F16;&#x8BD1;&#x6A21;&#x5757;&quot;&#x5185;&#x4EA7;&#x751F;&#x5BF9;&#x5E94;&#x7684;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x3002;In an environment supporting separately compiled modules, there is little alternative for the compiler. Ideally, a linker cleans up the multiple instances generated. </li>
+<li>The actual inline expansion of the function at a point of call. This involves argument evaluation and management of temporaries.</li>
+</ol>
+<h4 id="formal-argument&#xFF08;&#x5F62;&#x5F0F;&#x53C2;&#x6570;&#xFF09;"><strong>Formal Argument&#xFF08;&#x5F62;&#x5F0F;&#x53C2;&#x6570;&#xFF09;</strong></h4>
+<p>&#x5728;inline&#x51FD;&#x6570;&#x62D3;&#x5C55;&#x65F6;&#xFF0C;&#x5176;&#x5F62;&#x5F0F;&#x53C2;&#x6570;&#x4F1A;&#x88AB;&#x5176;&#x5B9E;&#x9645;&#x53C2;&#x6570;&#x66FF;&#x4EE3;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x5982;&#x679C;&#x5B9E;&#x9645;&#x53C2;&#x6570;&#x6709;side effect, &#x9700;&#x8981;&#x5F15;&#x5165;temporary object,&#x9632;&#x6B62;&#x5B9E;&#x9645;&#x53C2;&#x6570;&#x88AB;&#x591A;&#x6B21;&#x8BA1;&#x7B97;&#x3002;</p>
+<p>&#x800C;&#x5982;&#x679C;&#x5B9E;&#x9645;&#x53C2;&#x6570;&#x662F;&#x5E38;&#x91CF;&#xFF0C;we&apos;d like it to be evaluated prior to its substitution&#xFF0C;subsequent constant folding may also be performed</p>
+<p>If it is neither a constant expression nor an
+expression with side effects, a straight substitution of each actual argument with the associated formal argument is carried out.</p>
+<p>For example, say we have the following simple inline function:</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span>
+<span class="hljs-title">min</span><span class="hljs-params">( <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j )</span>
+</span>{
+<span class="hljs-keyword">return</span> i &lt; j ? i : j;
+}
+</code></pre>
+<p>and the following three invocations of the inline function:</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">inline</span>  <span class="hljs-keyword">int</span> <span class="hljs-title">bar</span><span class="hljs-params">()</span>
+</span>{
+<span class="hljs-keyword">int</span> minval;
+<span class="hljs-keyword">int</span> val1 = <span class="hljs-number">1024</span>;
+<span class="hljs-keyword">int</span> val2 = <span class="hljs-number">2048</span>;
+<span class="hljs-comment">/*(1)*/</span>minval = min( val1, val2 );
+<span class="hljs-comment">/*(2)*/</span>minval = min( <span class="hljs-number">1024</span>, <span class="hljs-number">2048</span> );
+<span class="hljs-comment">/*(3)*/</span>minval = min( foo(), bar()+<span class="hljs-number">1</span> );
+<span class="hljs-keyword">return</span> minval;
+}
+</code></pre>
+<p>The inline expansion of the line marked (1) is a straightforward substitution:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//(1) simple argument substitution</span>
+minval = val1 &lt; val2 ? val1 : val2;
+</code></pre>
+<p>while the inline expansion of the line marked (2) involves constant folding:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//(2) constant folding following substitution</span>
+minval = <span class="hljs-number">1024</span>;
+</code></pre>
+<p>Finally, the inline expansion of the line marked (3) involves argument side effects and the introduction of a temporary object in order to avoid multiple evaluations:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//(3) side-effects and introduction of temporary</span>
+<span class="hljs-keyword">int</span> t1;
+<span class="hljs-keyword">int</span> t2;
+minval =
+( t1 = foo() ), ( t2 = bar() + <span class="hljs-number">1</span> ),
+t1 &lt; t2 ? t1 : t2;
+</code></pre>
+<h4 id="local-variables"><strong>Local Variables</strong></h4>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5C06;&#x4E0A;&#x8FF0;inline&#x51FD;&#x6570;&#x7684;&#x5B9A;&#x4E49;&#x6539;&#x4E3A;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">int</span>
+<span class="hljs-title">min</span><span class="hljs-params">( <span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> j )</span>
+</span>{
+<span class="hljs-keyword">int</span> minval = i &lt; j ? i : j;
+<span class="hljs-keyword">return</span> minval;
+}
+</code></pre>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x5728;&#x5176;&#x4E2D;&#x6DFB;&#x52A0;&#x4E86;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x3002;</p>
+<p>&#x800C;&#x5BF9;min&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++">{
+<span class="hljs-keyword">int</span> local_var;
+<span class="hljs-keyword">int</span> minval;
+<span class="hljs-comment">// ...</span>
+minval = min( val1, val2 );
+}
+</code></pre>
+<p>&#x8FD9;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x80FD;&#x7684;&#x62D3;&#x5C55;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-c++">{
+<span class="hljs-keyword">int</span> local_var;
+<span class="hljs-keyword">int</span> minval;
+<span class="hljs-comment">// mangled inline local variable</span>
+<span class="hljs-keyword">int</span> __min_lv_minval;
+
+minval =( __min_lv_minval = val1 &lt; val2 ? val1 : val2 ), __min_lv_minval;
+}
+</code></pre>
+<p>(in theory, in this example the local inline variable can be optimized out and the value directly computed on minval )</p>
+<p>In general, each local variable within the inline function must be introduced into the enclosing block of the call as a uniquely named variable. </p>
+<p>If the inline function is expanded multiple times within one expression, each expansion is likely to require its own set of the local variables. </p>
+<p>If the inline function is expanded multiple
+times in discrete statements, however, a single set of the local variables can probably be reused across the multiple expansions.</p>
+<p>&#x7ED3;&#x5408;&#x4E4B;&#x524D;&#x6240;&#x8BB2;&#x7684;&#xFF0C;&#x5F62;&#x5F0F;&#x53C2;&#x6570;&#x7684;&#x66FF;&#x4EE3;&#xFF0C;&#x5982;&#x679C;&#x5B9E;&#x9645;&#x53C2;&#x6570;&#x6709;side effect,&#x4F1A;&#x5F15;&#x5165;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x3002; &#x8FD9;&#x6837;&#xFF0C;&#x5728;inline&#x51FD;&#x6570;&#x62D3;&#x5C55;&#x65F6;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x662F; expanded multiple times within a single expression &#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x751F;&#x6210;&#x5F88;&#x591A;&#x4E34;&#x65F6;&#x53D8;&#x91CF;&#x3002;</p>
+<p>For example, the following call</p>
+<pre><code class="lang-c++">minval = min( val1, val2 ) + min( foo(), foo()+<span class="hljs-number">1</span> );
+</code></pre>
+<p>might be expanded as follows:</p>
+<pre><code class="lang-c++"><span class="hljs-comment">// generated temps for local variable</span>
+<span class="hljs-keyword">int</span> __min_lv_minval__00;
+<span class="hljs-keyword">int</span> __min_lv_minval__01;
+<span class="hljs-comment">// generated temps to hold side-effects</span>
+<span class="hljs-keyword">int</span> t1;
+<span class="hljs-keyword">int</span> t2;
+minval =
+(( __min_lv_minval__00 =
+val1 &lt; val2 ? val1 : val2 ),
+__min_lv_minval__00 )
++
+(( __min_lv_minval__01 = ( t1 = foo() ),
+( t2 = foo() + <span class="hljs-number">1</span> ),
+t1 &lt; t2 ? t1 : t2 ),
+__min_lv_minval__01 );
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Chapter 3. The Semantics of Data.html" class="navigation navigation-prev " aria-label="Previous page: Chapter 3. The Semantics of Data">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Chapter 5. Semantics of Construction, Destruction, and Copy.html" class="navigation navigation-next " aria-label="Next page: Chapter 5. Semantics of Construction, Destruction, and Copy">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Chapter 4. The Semantics of Function","level":"1.2.1.4","depth":3,"next":{"title":"Chapter 5. Semantics of Construction, Destruction, and Copy","level":"1.2.1.5","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 5. Semantics of Construction, Destruction, and Copy.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 5. Semantics of Construction, Destruction, and Copy.md","articles":[]},"previous":{"title":"Chapter 3. The Semantics of Data","level":"1.2.1.3","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 3. The Semantics of Data.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 3. The Semantics of Data.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold","livereload"],"pluginsConfig":{"chapter-fold":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"posts/c&c++/inside the c++ object model/Chapter 4. The Semantics of Function.md","mtime":"2023-05-30T12:55:49.134Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-06-04T00:08:50.467Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

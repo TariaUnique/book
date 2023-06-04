@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>chapter 2: object lessions · GitBook</title>
+        <title>Chapter 2. The Semantics of Constructors · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,6 +61,8 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="Chapter 3. The Semantics of Data.html" />
+    
     
     <link rel="prev" href="Chapter 1. Object Lessons.html" />
     
@@ -104,9 +106,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="../../../">
+        <li class="chapter " data-level="1.2" data-path="../readme.html">
             
-                <a href="../../../">
+                <a href="../readme.html">
             
                     
                     c&c++
@@ -118,9 +120,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="../../../">
+        <li class="chapter " data-level="1.2.1" data-path="readme.html">
             
-                <a href="../../../">
+                <a href="readme.html">
             
                     
                     inside the c++ object model
@@ -137,7 +139,7 @@
                 <a href="Chapter 1. Object Lessons.html">
             
                     
-                    chapter 1: object lessions
+                    chapter 1. object lessions
             
                 </a>
             
@@ -150,7 +152,72 @@
                 <a href="Chapter 2. The Semantics of Constructors.html">
             
                     
-                    chapter 2: object lessions
+                    Chapter 2. The Semantics of Constructors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="Chapter 3. The Semantics of Data.html">
+            
+                <a href="Chapter 3. The Semantics of Data.html">
+            
+                    
+                    Chapter 3. The Semantics of Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.4" data-path="Chapter 4. The Semantics of Function.html">
+            
+                <a href="Chapter 4. The Semantics of Function.html">
+            
+                    
+                    Chapter 4. The Semantics of Function
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.5" data-path="Chapter 5. Semantics of Construction, Destruction, and Copy.html">
+            
+                <a href="Chapter 5. Semantics of Construction, Destruction, and Copy.html">
+            
+                    
+                    Chapter 5. Semantics of Construction, Destruction, and Copy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.6" data-path="Chapter 6. Runtime Semantics.html">
+            
+                <a href="Chapter 6. Runtime Semantics.html">
+            
+                    
+                    Chapter 6. Runtime Semantics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.7" data-path="Chapter 7. On the Cusp of the Object Model.html">
+            
+                <a href="Chapter 7. On the Cusp of the Object Model.html">
+            
+                    
+                    Chapter 7. On the Cusp of the Object Model
             
                 </a>
             
@@ -198,7 +265,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../.." >chapter 2: object lessions</a>
+        <a href="../../.." >Chapter 2. The Semantics of Constructors</a>
     </h1>
 </div>
 
@@ -330,7 +397,7 @@ B::B(<span class="hljs-keyword">const</span> B&amp; b, <span class="hljs-keyword
 <pre><code class="lang-c++">Raccoon *ptr;
 RedPanda panda = *ptr
 </code></pre>
-<p>&#x8FD9;&#x65F6;&#x5019;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x65E0;&#x6CD5;&#x77E5;&#x9053;&#x662F;&#x5426;&quot;bitwise copy semantics&#x201D;&#x662F;&#x5426;&#x8FD8;&#x4FDD;&#x6301;&#x7740;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x65E0;&#x6CD5;&#x77E5;&#x9053;&#xFF08;&#x6CA1;&#x6709;&#x6D41;&#x7A0B;&#x5206;&#x6790;&#xFF09;Raccoon&#x6307;&#x9488;&#x662F;&#x5426;&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x771F;&#x6B63;&#x7684;Raccoon object&#xFF0C;&#x6216;&#x662F;&#x6307;&#x5411;&#x4E00;&#x4E2A;derived class object</p>
+<p>&#x8FD9;&#x65F6;&#x5019;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x65E0;&#x6CD5;&#x77E5;&#x9053;&#x662F;&#x5426;&quot;bitwise copy semantics&#x201D;&#x662F;&#x5426;&#x8FD8;&#x4FDD;&#x6301;&#x7740;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x65E0;&#x6CD5;&#x77E5;&#x9053;&#xFF08;&#x6CA1;&#x6709;&#x6D41;&#x7A0B;&#x5206;&#x6790;&#xFF09;Raccoon&#x6307;&#x9488;&#x662F;&#x5426;&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x771F;&#x6B63;&#x7684;Raccoon object&#xFF0C;&#x6216;&#x662F;&#x6307;&#x5411;&#x4E00;&#x4E2A;derived class object. &#x6CE8;&#x610F;&#xFF0C;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x5982;&#x679C;&#x4E0D;&#x5BF9; Raccoon &#x6307;&#x9488;&#x505A;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x7684;&#x8BDD;&#xFF0C;&#x5E94;&#x8BE5;&#x4F1A;&#x62A5;&#x9519;&#x7684;&#x3002;&#x9690;&#x5F0F;&#x8F6C;&#x6362;&#x53EA;&#x5728;&#x4ECE;&#x6D3E;&#x751F;&#x7C7B;&#x8F6C;&#x6362;&#x4E3A;&#x57FA;&#x7C7B;&#x65F6;&#x53D1;&#x751F;&#xFF0C;&#x57FA;&#x7C7B;&#x8F6C;&#x6362;&#x4E3A;&#x6D3E;&#x751F;&#x7C7B;&#x9700;&#x8981;&#x663E;&#x793A;&#x8F6C;&#x6362;&#x3002;</p>
 <h3 id="program-transformation-semantics"><strong>Program Transformation Semantics</strong></h3>
 <p>&#x5DF2;&#x77E5;&#x4E0B;&#x9762;&#x7A0B;&#x5E8F;&#x7247;&#x6BB5;</p>
 <pre><code class="lang-c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-string">&quot;X.h&quot;</span></span>
@@ -341,9 +408,9 @@ RedPanda panda = *ptr
     <span class="hljs-keyword">return</span> xx;
 }
 </code></pre>
-<p>&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x5458;&#x53EF;&#x80FD;&#x4F1A;&#x5047;&#x8BBE;&#xFF0C;</p>
+<p>&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x5458;&#x53EF;&#x80FD;&#x4F1A;&#x5047;&#x8BBE;&#xFF0C; </p>
 <ul>
-<li>every invocation of foo() return xx by value</li>
+<li>foo()&#x51FD;&#x6570;&#x7684;&#x6BCF;&#x6B21;&#x8C03;&#x7528;&#xFF0C;&#x90FD;&#x4F1A;&#x521B;&#x5EFA;xx local object,&#x5E76;&#x4E14;&#x4EE5;&#x4F20;&#x503C;&#x7684;&#x65B9;&#x5F0F;&#x62F7;&#x8D1D;&#x8FD4;&#x56DE;&#x3002;</li>
 <li>&#x5982;&#x679C;X&#x5B9A;&#x4E49;&#x4E86;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5219;&#x6BCF;&#x6B21;&#x8C03;&#x7528;foo()&#x65F6;&#xFF0C;&#x90FD;&#x4F1A;&#x8C03;&#x7528;X&#x7684;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;</li>
 </ul>
 <p>&#x7136;&#x800C;&#xFF0C;1&#x7684;&#x771F;&#x5B9E;&#x6027;&#x53D6;&#x51B3;&#x4E8E;&#x7C7B;X&#x7684;&#x5B9A;&#x4E49;&#x3002;2&#x5728;&#x67D0;&#x79CD;&#x7A0B;&#x5EA6;&#x4E0A;&#x4E5F;&#x4F9D;&#x8D56;&#x4E8E;&#x7C7B;X&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x4F46;&#x4E3B;&#x8981;&#x53D6;&#x51B3;&#x4E8E;C++&#x7F16;&#x8BD1;&#x5668;&#x63D0;&#x4F9B;&#x7684;&#x4F18;&#x5316;&#x7A0B;&#x5EA6;&#x3002;&#x4E3A;&#x4E86;&#x98A0;&#x8986;&#x8FD9;&#x4E9B;&#x89C2;&#x70B9;&#xFF0C;&#x751A;&#x81F3;&#x53EF;&#x4EE5;&#x65AD;&#x8A00;&#xFF0C;&#x5728;&#x9AD8;&#x8D28;&#x91CF;&#x7684;C++&#x7F16;&#x8BD1;&#x5668;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E24;&#x70B9;&#x90FD;&#x4E0D;&#x6210;&#x7ACB;</p>
@@ -392,8 +459,8 @@ foo( xx );
 __temp.X::X(xx); <span class="hljs-comment">//&#x8C03;&#x7528;&#x62F7;&#x8D1D;&#x521D;&#x59CB;&#x5316;</span>
 foo(__temp); <span class="hljs-comment">//&#x6CE8;&#x610F;&#x8FD9;&#x91CC;foo&#x88AB;&#x8F6C;&#x6362;&#x4E3A;void foo(X&amp; x0);</span>
 </code></pre>
-<p>&#x8FD9;&#x4E2A;__temp&#x4F1A;&#x5728;foo&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x540E;&#x8C03;&#x7528;&#x6790;&#x6784;&#x51FD;&#x6570;&#x9500;&#x6BC1;&#x3002;</p>
-<p>&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x5728;foo&#x51FD;&#x6570;&#x6808;&#x5185;&#x8C03;&#x7528;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x521B;&#x5EFA;x0,&#x5E76;&#x5728;foo&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x524D;&#x9500;&#x6BC1;&#x521B;&#x5EFA;&#x7684;x0.
+<p>&#x8FD9;&#x4E2A;__temp&#x4F1A;&#x5728;foo&#x51FD;&#x6570;&#x8FD4;&#x56DE;<strong>&#x540E;</strong>&#x8C03;&#x7528;&#x6790;&#x6784;&#x51FD;&#x6570;&#x9500;&#x6BC1;&#x3002;</p>
+<p>&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x5728;foo&#x51FD;&#x6570;&#x6808;&#x5185;&#x8C03;&#x7528;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x521B;&#x5EFA;x0,&#x5E76;&#x5728;foo&#x51FD;&#x6570;&#x8FD4;&#x56DE;<strong>&#x524D;</strong>&#x9500;&#x6BC1;&#x521B;&#x5EFA;&#x7684;x0.
 &#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;foo&#x4E5F;&#x4F1A;&#x88AB;&#x8F6C;&#x6362;&#x6210; void foo(X&amp; x); &#x5176;&#x8F6C;&#x6362;&#x7684;&#x4F2A;&#x4EE3;&#x7801;&#x5982;&#x4E0B;</p>
 <pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(X&amp; x)</span></span>{
     X x0; <span class="hljs-comment">//&#x4F2A;&#x5B9A;&#x4E49;&#x64CD;&#x4F5C;&#xFF0C;&#x53EA;&#x5206;&#x914D;&#x5185;&#x5B58;</span>
@@ -403,6 +470,8 @@ foo(__temp); <span class="hljs-comment">//&#x6CE8;&#x610F;&#x8FD9;&#x91CC;foo&#x
     <span class="hljs-keyword">return</span>;
 }
 </code></pre>
+<p>&#x4E4B;&#x524D;&#x4E86;&#x89E3;&#x5230;&#x7684;&#x51FD;&#x6570;&#x6808;&#x7684;&#x53C2;&#x6570;&#x548C;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#x4F20;&#x9012;&#xFF0C;&#x5176;&#x88AB;&#x8C03;&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x90FD;&#x662F;&#x5728;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x6808;&#x4E2D;&#x6784;&#x5EFA;&#x7684;&#xFF0C;&#x5F53;&#x7136;&#xFF0C;&#x90A3;&#x4E9B;&#x8BB2;&#x89E3;&#x90FD;&#x662F;&#x4E00;builtin type&#x4E3A;&#x4F8B;&#x3002;
+&#x51FD;&#x6570;&#x53C2;&#x6570;&#x5BF9;&#x8C61;&#x7684;&#x4F20;&#x9012;&#xFF0C;&#x5982;&#x679C;&#x53C2;&#x6570;&#x7C7B;&#x578B;&#x4E0D;&#x662F;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#xFF0C;&#x90FD;&#x662F;&#x9700;&#x8981;&#x8C03;&#x7528;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x3002;</p>
 <h4 id="return-value-initialization"><strong>Return Value Initialization</strong></h4>
 <p>&#x4E0B;&#x9762;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;bar&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x503C;X&#x662F;&#x5982;&#x4F55;&#x88AB;xx&#x62F7;&#x8D1D;&#x521D;&#x59CB;&#x5316;&#x7684;&#x5462;&#xFF1F;</p>
 <pre><code class="lang-c++"><span class="hljs-function">X <span class="hljs-title">bar</span><span class="hljs-params">()</span>
@@ -412,8 +481,10 @@ X xx;
 <span class="hljs-keyword">return</span> xx;
 }
 </code></pre>
-<p>1.Add an additional argument of type reference to the class object. This argument will hold the copy constructed &quot;return value.&quot;</p>
-<p>2.Insert an invocation of the copy constructor prior to the return statement to initialize the added argument with the value of the object being returned.</p>
+<ol>
+<li>&#x9996;&#x5148;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#xFF0C;&#x5F15;&#x7528;&#x5230;&#x8FD4;&#x56DE;&#x503C;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x9700;&#x8981;&#x5728;&#x51FD;&#x6570;&#x4E2D;&#x77E5;&#x9053;&#x8FD4;&#x56DE;&#x5BF9;&#x8C61;&#x6240;&#x5728;&#x7684;&#x5730;&#x5740;&#x3002;</li>
+<li>&#x5728;&#x8FD4;&#x56DE;&#x4E4B;&#x524D;&#xFF0C;&#x7ED9;&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x5904;&#x7684;&#x5BF9;&#x8C61;&#x505A;&#x62F7;&#x8D1D;&#x521D;&#x59CB;&#x5316;&#x3002;</li>
+</ol>
 <p>&#x6700;&#x540E;&#x7684;<code>return xx;</code> &#x5C31;&#x53D8;&#x6210;&#x4E86;<code>return;</code></p>
 <p>&#x8F6C;&#x6362;&#x7684;&#x4F2A;&#x4EE3;&#x7801;&#x5982;&#x4E0B;</p>
 <pre><code class="lang-c"><span class="hljs-comment">// function transformation to reflect</span>
@@ -433,13 +504,13 @@ __result.X::X( xx );
 <span class="hljs-keyword">return</span>;
 }
 </code></pre>
-<p><strong>&#x4EE5;&#x4E0A;&#x8BB2;&#x7684;&#x8FD9;&#x4E9B;&#xFF0C; &#x5176;&#x5B9E;&#x5C31;&#x662F;&#x51FD;&#x6570;&#x6808;&#x662F;&#x5982;&#x4F55;&#x4F20;&#x9012;&#x53C2;&#x6570;&#x548C;&#x8FD4;&#x56DE;&#x503C;&#x7684;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x5176;&#x4E2D;&#x52A0;&#x4E0A;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7F62;&#x4E86;&#x3002;&#x7F57;&#x91CC;&#x5427;&#x55E6;&#x7684;&#x3002;</strong></p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x8FD9;&#x4E00;&#x8FC7;&#x7A0B;&#xFF0C;&#x4E5F;&#x662F;&#x8981;&#x8C03;&#x7528;&#x62F7;&#x8D1D;&#x521D;&#x59CB;&#x5316;&#x7684;&#x3002;</p>
 <p>&#x5230;&#x76EE;&#x524D;&#x4E3A;&#x6B62;&#xFF0C;&#x6211;&#x4EEC;&#x770B;&#x5230;&#x4E00;&#x4E2A;&#x51FD;&#x6570;,&#x4EE5;&#x5982;&#x4E0B;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x88AB;&#x8C03;&#x7528;&#x65F6;</p>
 <pre><code class="lang-c++">X bar(X x0)&#xFF1B;
 
 X x1;
 //.....
-X x2=bar(x1);
+bar(x1);
 </code></pre>
 <p>&#x5176;&#x53C2;&#x6570;&#x548C;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x8C03;&#x7528;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E00;&#x8FC7;&#x7A0B;&#x5982;&#x4F55;&#x88AB;&#x4F18;&#x5316;&#x5462;&#xFF1F;</p>
 <h4 id="optimization-at-the-user-level"><strong>Optimization at the User Level</strong></h4>
@@ -519,6 +590,32 @@ test::test( <span class="hljs-keyword">const</span> test &amp;t )
 <img src="../../../images/c&amp;C++/40.png" alt="">
 &#x7136;&#x800C;&#x4E0D;&#x7BA1;&#x4F7F;&#x7528;memcpy,&#x6216;&#x8005;&#x662F;memset&#xFF0C;&#x90FD;&#x53EA;&#x6709;&#x5728;classes&#x4E0D;&#x542B;&#x4EFB;&#x4F55;&#x7531;&#x7F16;&#x8BD1;&#x5668;&#x4EA7;&#x751F;&#x7684;&#x5185;&#x90E8;members&#x65F6;&#x624D;&#x80FD;&#x6709;&#x6548;&#x8FD0;&#x884C;&#x3002;&#x5982;&#x679C;Point3d class &#x58F0;&#x660E;&#x4E00;&#x4E2A;&#x6216;&#x4E00;&#x4E2A;&#x4EE5;&#x4E0A;&#x7684;virtual functions&#xFF0C;&#x6216;&#x5185;&#x542B;&#x4E00;&#x4E2A;virtual base class&#xFF0C;&#x90A3;&#x4E48;&#x4F7F;&#x7528;&#x4E0A;&#x8FF0;&#x51FD;&#x6570;&#x5C06;&#x4F1A;&#x5BFC;&#x81F4;&#x90A3;&#x4E9B;&#x88AB;&#x7F16;&#x8BD1;&#x5668;&#x4EA7;&#x751F;&#x7684;&#x5185;&#x90E8;members&#x7684;&#x521D;&#x503C;&#x88AB;&#x6539;&#x5199;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5DF2;&#x77E5;&#x4E0B;&#x9762;&#x58F0;&#x660E;&#xFF1A;
 <img src="../../../images/c&amp;C++/41.png" alt=""></p>
+<p>&#x603B;&#x7ED3;&#x4E00;&#x4E0B;NRV&#x4F18;&#x5316;
+&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x7B26;&#x5408;&#x4EE5;&#x4E0B;&#x6A21;&#x5F0F;&#x7684;&#x51FD;&#x6570;</p>
+<pre><code class="lang-c++"><span class="hljs-function">X <span class="hljs-title">foo</span><span class="hljs-params">()</span></span>{
+    X xx;
+    <span class="hljs-comment">//....;</span>
+    <span class="hljs-keyword">return</span> xx;
+}
+</code></pre>
+<p>&#x6CA1;&#x6709;&#x4F18;&#x5316;&#x524D;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x62D3;&#x5C55;</p>
+<pre><code class="lang-c++"><span class="hljs-comment">//&#x4F2A;&#x4EE3;&#x7801;</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(X&amp; _result)</span></span>{
+    X xx; <span class="hljs-comment">//&#x5B9A;&#x4E49;&#xFF0C;&#x53EA;&#x5206;&#x914D;&#x5185;&#x5B58;</span>
+    xx.X::X();
+    <span class="hljs-comment">//....</span>
+    _result.X(xx); <span class="hljs-comment">//&#x8C03;&#x7528;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;</span>
+    <span class="hljs-keyword">return</span>;
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x7ED9;X&#x63D0;&#x4F9B;&#x4E86;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x5E94;&#x7528;NRV&#x4F18;&#x5316;&#x3002;&#x5982;&#x679C;&#x7F16;&#x8BD1;&#x5668;&#x5E94;&#x7528;&#x4E86;NRV&#x4F18;&#x5316;&#xFF0C;&#x4FBF;&#x4E0D;&#x518D;&#x5728;&#x51FD;&#x6570;&#x6808;&#x4E2D;&#x521B;&#x5EFA;xx local object,&#x800C;&#x662F;&#x76F4;&#x63A5;&#x5BF9;&#x8FD4;&#x56DE;&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;&#x3002;&#x5982;&#x4E0B;&#xFF0C;&#x7701;&#x53BB;&#x4E86;&#x8C03;&#x7528;&#x62F7;&#x8D1D;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;</p>
+<pre><code class="lang-c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(X&amp; _result)</span></span>{
+    _result.X::X();
+    <span class="hljs-comment">//....&#x76F4;&#x63A5;&#x64CD;&#x4F5C;_result</span>
+    <span class="hljs-keyword">return</span>;
+
+}
+</code></pre>
 
                                 
                                 </section>
@@ -546,10 +643,14 @@ test::test( <span class="hljs-keyword">const</span> test &amp;t )
 
             
                 
-                <a href="Chapter 1. Object Lessons.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: chapter 1: object lessions">
+                <a href="Chapter 1. Object Lessons.html" class="navigation navigation-prev " aria-label="Previous page: chapter 1. object lessions">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="Chapter 3. The Semantics of Data.html" class="navigation navigation-next " aria-label="Next page: Chapter 3. The Semantics of Data">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -558,7 +659,7 @@ test::test( <span class="hljs-keyword">const</span> test &amp;t )
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"chapter 2: object lessions","level":"1.2.1.2","depth":3,"previous":{"title":"chapter 1: object lessions","level":"1.2.1.1","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 1. Object Lessons.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 1. Object Lessons.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"posts/c&c++/inside the c++ object model/Chapter 2. The Semantics of Constructors.md","mtime":"2023-04-10T02:55:17.560Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-05-28T10:39:35.523Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Chapter 2. The Semantics of Constructors","level":"1.2.1.2","depth":3,"next":{"title":"Chapter 3. The Semantics of Data","level":"1.2.1.3","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 3. The Semantics of Data.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 3. The Semantics of Data.md","articles":[]},"previous":{"title":"chapter 1. object lessions","level":"1.2.1.1","depth":3,"path":"posts/c&c++/inside the c++ object model/Chapter 1. Object Lessons.md","ref":"./posts/c&c++/inside the c++ object model/Chapter 1. Object Lessons.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["chapter-fold"],"pluginsConfig":{"chapter-fold":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"posts/c&c++/inside the c++ object model/Chapter 2. The Semantics of Constructors.md","mtime":"2023-05-30T06:02:37.062Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-06-04T00:09:45.242Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

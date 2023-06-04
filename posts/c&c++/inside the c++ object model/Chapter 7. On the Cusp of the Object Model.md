@@ -59,6 +59,7 @@ but must specify the explicit template Point class instantiation with which the 
 Point< float >::freeList;
 ```
 编译器在遇到以上代码时，首先会实例化Point<float> 类，然后生成该类的freeList静态数据成员
+
 ```c++
 // ok: another instance
 Point< double >::freeList;
@@ -99,6 +100,7 @@ const Point< float > origin;
 然而，以上的所有情况，member functions—at least those that are not used，都不会实例化的。Standard C++ requires that member functions be instantiated only if they are used (current implementations do not strictly follow this requirement).  There are two main reasons for the use-directed instantiation rule:
 
 1. Space and time efficiency. If there are a hundred member functions associated with a class, but your program uses only two for one type and five for a second type, then instantiating the additional 193 can be a significant time and space hit.
+   
 2. Unimplemented functionality. Not all types with which a template is instantiated support all the operators (such as i/o and the relational operators) required by the complete set of member functions. By instantiating only those member functions actually used, a template is able to support types that otherwise would generate compile-time errors.
 
 以上origin的定义
@@ -114,7 +116,7 @@ Point< float > *p = new Point< float >;
 会实例化Point<float>,operator new， default constructor会被实例化。
 (It's interesting to note that although operator new is implicitly a static member of the class and so may not directly access any of its nonstatic members, it is still dependent on the actual template parameter type because its size_t first argument is passed the class size.)
 
-那么函数是何时被实例化的呢？有2中实现策略
+那么函数是何时被实例化的呢？有2种实现策略
 * 在编译时。In which case the functions are instantiated within the file in which origin and p are defined.
 * 在连接时。In which case the compiler is reinvoked by some auxiliary tool. The template function instances may be placed within this file, some other file, or a separate repository.
 
@@ -155,7 +157,7 @@ Mumble< int > mi;
 ```c++
 Mumble< int* > pmi;
 ```
-ne 8 is correct, but line 5 is a type error—you cannot assign a pointer an integer constant (other than 0).
+line 8 is correct, but line 5 is a type error—you cannot assign a pointer an integer constant (other than 0).
 
 With the declaration
 ```c++
@@ -278,8 +280,7 @@ extern double foo ( double );
 编译器在解析模板中的nonmember name时，具体解析到哪个定义，取决于 whether the use
 of the name is dependent on the parameter types used to instantiate the template. 如果对这个name的使用，跟模板实例化的类型参数无关，则使用template declaration scope中的定义。 否则的话，使用scope of the template instantiation
 
-上述例子中，foo的使用，其参数是_val,是个int类型的，与模板实例化的类型参数无关。同时，函数的解析只取决于其签名，也就是其参数类型，跟返回值无关。 因此，解析该函数，只能使用the scope of the template declaration， within this scope is only the one
-candidate instance of foo() from which to choose.
+上述例子中，foo的使用，其参数是_val,是个int类型的，与模板实例化的类型参数无关。同时，函数的解析只取决于其签名，也就是其参数类型，跟返回值无关。 因此，解析该函数，只能使用the scope of the template declaration， within this scope is only the one candidate instance of foo() from which to choose.
 
 
 Let's look at a type-dependent usage:
@@ -296,11 +297,7 @@ This instance clearly is dependent on the template argument that determines the 
 #### **Member Function Instantiation**
 一般模板函数的定义被放在头文件中。
 
-有的编译器会在类模板实例化时，其所有的成员函数都会被实例化，有的仅实例化用到的函数，通过simulate linkage of the application to see which instances are actually required and generate only those
-
-如何防止在多个.o文件中实例化相同成员函数？
-一种解决方案是生成多个副本，然后提供链接器支持以忽略除一个实例之外的所有实例。
-Another solution is the use-directed instantiation strategy of simulating the link phase to determine which instances are required
+有的编译器会在类模板实例化时，其所有的成员函数都会被实例化，有的仅实例化用到的函数
 
 模板的使用会导致编译时间增加。
 
@@ -327,9 +324,7 @@ Exception handling under C++ consists of the following three main syntactic comp
 2. One or more catch clauses. Each catch clause is the exception handler. It indicates a type of exception the clause is prepared to handle and gives the actual handler code enclosed in braces.
 3. A try block. A try block surrounds a sequence of statements for which an associated set of catch clauses is active.
 
-When an exception is thrown, control passes up the function call sequence until either an appropriate catch
-clause is matched or main() is reached without a handler's being found, at which point the default handler,
-terminate(), is invoked. As control passes up the call sequence, each function in turn is popped from the program stack (this process is called unwinding the stack). Prior to the popping of each function, the destructors of the function's local class objects are invoked.
+When an exception is thrown, control passes up the function call sequence until either an appropriate catch clause is matched or main() is reached without a handler's being found, at which point the default handler, terminate(), is invoked. As control passes up the call sequence, each function in turn is popped from the program stack (this process is called unwinding the stack). Prior to the popping of each function, the destructors of the function's local class objects are invoked.
 
 What is slightly nonintuitive about EH is the impact it has on functions that seemingly have nothing to do with exceptions. For example, consider the following:
 
@@ -351,7 +346,7 @@ What is slightly nonintuitive about EH is the impact it has on functions that se
 15. //...
 16 }
 ```
-如果在第一次调用foo()（第5行）时抛出异常，则函数可以从程序堆栈中简单地弹出。该语句不在try块内，因此无需尝试与catch子句匹配；也没有需要销毁的本地类对象。但是，如果在第二次调用foo()（第11行）时抛出异常，则EH机制必须在将函数从程序堆栈展开之前调用p的析构函数。
+如果在第一次调用foo()（第5行）时抛出异常，则函数可以从程序栈中简单地弹出。该语句不在try块内，因此无需尝试与catch子句匹配；也没有需要销毁的本地类对象。但是，如果在第二次调用foo()（第11行）时抛出异常，则EH机制必须在将函数从程序堆栈展开之前调用p的析构函数。
 
 
 
@@ -445,8 +440,7 @@ An exception table is generated for each function. It describes the regions asso
 catch clauses if a region is within an active try block.
 
 ##### **What Happens When an Actual Object Is Thrown during Program Execution?**
-When an exception is thrown, the exception object is created and placed generally on some form of exception data stack. Propagated from the throw site to each catch clause are the address of the exception object, the
-type descriptor (or the address of a function that returns the type descriptor object associated with the exception type), and possibly the address of the destructor for the exception object, if one is defined.
+When an exception is thrown, the exception object is created and placed generally on some form of exception data stack. Propagated from the throw site to each catch clause are the address of the exception object, the type descriptor (or the address of a function that returns the type descriptor object associated with the exception type), and possibly the address of the destructor for the exception object, if one is defined.
 
 Consider a catch clause of the form
 ```c++
@@ -491,8 +485,7 @@ mumble()
   // ...
 }
 ```
-Is the actual exception errVer propagated or is a copy of errVer constructed on the exception stack and propagated? A copy is constructed; the global errVer is not propagated. This means that any changes made to the exception object within a catch clause are local to the copy and are not reflected within errVer. The
-actual exception object is destroyed only after the evaluation of a catch clause that does not rethrow the exception.
+Is the actual exception errVer propagated or is a copy of errVer constructed on the exception stack and propagated? A copy is constructed; the global errVer is not propagated. This means that any changes made to the exception object within a catch clause are local to the copy and are not reflected within errVer. The actual exception object is destroyed only after the evaluation of a catch clause that does not rethrow the exception.
 
 ### **Runtime Type Identification**
 
